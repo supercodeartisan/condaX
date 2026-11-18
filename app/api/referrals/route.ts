@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { referralSchema } from "@/lib/inquiries";
+import { insertInquiry, insertReferral } from "@/lib/inquiries-db";
 import { notifyReferralCreated } from "@/lib/inquiry-notify";
 import {
   insertInquiryLocal,
@@ -8,7 +9,11 @@ import {
 } from "@/lib/local-store";
 
 export async function POST(request: Request) {
-  if (!isLocalDevStoreEnabled() && !process.env.RESEND_API_KEY?.trim()) {
+  const hasDb = Boolean(process.env.DATABASE_URL?.trim());
+  const hasResend = Boolean(process.env.RESEND_API_KEY?.trim());
+  const localOk = isLocalDevStoreEnabled();
+
+  if (!hasDb && !localOk && !hasResend) {
     return NextResponse.json(
       {
         error:
@@ -36,20 +41,59 @@ export async function POST(request: Request) {
   }
 
   const data = parsed.data;
-  const { id, code } = await insertReferralLocal(data);
-  await insertInquiryLocal({
-    kind: "referral",
-    name: data.referrerName,
-    email: data.referrerEmail,
-    referralCode: code,
-    payload: {
-      organization: data.organization,
-      contactName: data.contactName,
-      contactEmail: data.contactEmail,
-      notes: data.notes ?? null,
-      code,
-    },
-  });
+
+  let id: string;
+  let code: string;
+  try {
+    if (hasDb) {
+      ({ id, code } = await insertReferral(data));
+      await insertInquiry({
+        kind: "referral",
+        name: data.referrerName,
+        email: data.referrerEmail,
+        referralCode: code,
+        payload: {
+          organization: data.organization,
+          contactName: data.contactName,
+          contactEmail: data.contactEmail,
+          notes: data.notes ?? null,
+          code,
+        },
+      });
+    } else if (localOk) {
+      ({ id, code } = await insertReferralLocal(data));
+      await insertInquiryLocal({
+        kind: "referral",
+        name: data.referrerName,
+        email: data.referrerEmail,
+        referralCode: code,
+        payload: {
+          organization: data.organization,
+          contactName: data.contactName,
+          contactEmail: data.contactEmail,
+          notes: data.notes ?? null,
+          code,
+        },
+      });
+    } else {
+      return NextResponse.json(
+        {
+          error:
+            "Could not save referral. Set DATABASE_URL and run the inquiries/referrals tables from db/schema.sql on Neon.",
+        },
+        { status: 503 },
+      );
+    }
+  } catch (err) {
+    console.error("[referral] save failed", err);
+    return NextResponse.json(
+      {
+        error:
+          "Could not create referral link. Confirm DATABASE_URL and that the referrals table from db/schema.sql exists on Neon.",
+      },
+      { status: 502 },
+    );
+  }
 
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
@@ -57,7 +101,9 @@ export async function POST(request: Request) {
   const link = `${siteUrl}/get-in-touch?ref=${encodeURIComponent(code)}`;
 
   try {
-    await notifyReferralCreated({ id, code, link, ...data });
+    if (hasResend) {
+      await notifyReferralCreated({ id, code, link, ...data });
+    }
   } catch (error) {
     console.error("[referral] notify failed", error);
   }

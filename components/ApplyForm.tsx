@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
+import { EmailLink } from "@/components/EmailLink";
 import { CalendarDatePicker } from "@/components/ui/CalendarDatePicker";
 import { getDobBounds, getStartDateBounds } from "@/lib/careers-apply";
 
@@ -235,12 +236,13 @@ export function ApplyForm({
 
       <p className="text-[14px] text-neutral">
         Prefer email? Send your CV to{" "}
-        <a
-          href="mailto:admin@condaxits.com"
+        <EmailLink
+          to="admin@condaxits.com"
+          subject="Careers application"
           className="text-cobalt underline underline-offset-4"
         >
           admin@condaxits.com
-        </a>{" "}
+        </EmailLink>{" "}
         with the role in the subject line.
       </p>
     </form>

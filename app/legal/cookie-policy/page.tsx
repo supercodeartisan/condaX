@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { EmailLink } from "@/components/EmailLink";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = { title: "Cookie policy" };
@@ -58,9 +59,13 @@ export default function CookiePage() {
               Privacy policy
             </Link>
             . Questions:{" "}
-            <a href="mailto:support@condaxits.com" className="text-cobalt underline underline-offset-4">
+            <EmailLink
+              to="support@condaxits.com"
+              subject="Cookie policy question"
+              className="text-cobalt underline underline-offset-4"
+            >
               support@condaxits.com
-            </a>
+            </EmailLink>
             .
           </p>
         </section>

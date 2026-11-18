@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { EmailLink } from "@/components/EmailLink";
 import { investmentOptions, regionOptions, scopeOptions, sourceOptions } from "@/lib/site";
 
 export function ContactForm({ referralCode }: { referralCode?: string }) {
@@ -70,17 +71,25 @@ export function ContactForm({ referralCode }: { referralCode?: string }) {
         <p className="text-[14px] text-neutral">
           Thank you. We received your submission and typically reply within one business day. If you
           need to add anything, email{" "}
-          <a href="mailto:support@condaxits.com" className="text-cobalt underline underline-offset-4">
+          <EmailLink
+            to="support@condaxits.com"
+            subject="Follow-up to Condax contact form"
+            className="text-cobalt underline underline-offset-4"
+          >
             support@condaxits.com
-          </a>
+          </EmailLink>
           .
         </p>
       ) : (
         <p className="text-[14px] text-neutral">
           You may also email{" "}
-          <a href="mailto:support@condaxits.com" className="text-cobalt underline underline-offset-4">
+          <EmailLink
+            to="support@condaxits.com"
+            subject="Contact Condax"
+            className="text-cobalt underline underline-offset-4"
+          >
             support@condaxits.com
-          </a>
+          </EmailLink>
           .
         </p>
       )}

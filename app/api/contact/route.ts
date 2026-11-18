@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { contactInquirySchema } from "@/lib/inquiries";
+import { insertInquiry, getReferralByCode } from "@/lib/inquiries-db";
 import { notifyContactInquiry } from "@/lib/inquiry-notify";
 import {
   getReferralByCodeLocal,
@@ -8,7 +9,11 @@ import {
 } from "@/lib/local-store";
 
 export async function POST(request: Request) {
-  if (!isLocalDevStoreEnabled() && !process.env.RESEND_API_KEY?.trim()) {
+  const hasDb = Boolean(process.env.DATABASE_URL?.trim());
+  const hasResend = Boolean(process.env.RESEND_API_KEY?.trim());
+  const localOk = isLocalDevStoreEnabled();
+
+  if (!hasDb && !localOk && !hasResend) {
     return NextResponse.json(
       {
         error:
@@ -42,10 +47,18 @@ export async function POST(request: Request) {
   let referralMeta: { organization: string; referrer: string } | null = null;
 
   if (data.referralCode) {
-    const referral = await getReferralByCodeLocal(data.referralCode);
+    let referral = hasDb
+      ? await getReferralByCode(data.referralCode).catch(() => null)
+      : null;
+    if (!referral && localOk) {
+      referral = await getReferralByCodeLocal(data.referralCode);
+    }
     if (!referral) {
       return NextResponse.json(
-        { error: "That referral link is invalid or expired. Remove ?ref= from the URL or request a new link." },
+        {
+          error:
+            "That referral link is invalid or expired. Remove ?ref= from the URL or request a new link.",
+        },
         { status: 400 },
       );
     }
@@ -55,26 +68,55 @@ export async function POST(request: Request) {
     };
   }
 
-  const { id } = await insertInquiryLocal({
-    kind: "contact",
-    name: data.name,
-    email: data.email,
-    referralCode: data.referralCode,
-    payload: {
-      source: data.source,
-      region: data.region,
-      description: data.description,
-      scope: data.scope,
-      date: data.date,
-      investment: data.investment,
-      referralCode: data.referralCode ?? null,
-      referredOrganization: referralMeta?.organization ?? null,
-      referrer: referralMeta?.referrer ?? null,
-    },
-  });
+  const payload = {
+    source: data.source,
+    region: data.region,
+    description: data.description,
+    scope: data.scope,
+    date: data.date,
+    investment: data.investment,
+    referralCode: data.referralCode ?? null,
+    referredOrganization: referralMeta?.organization ?? null,
+    referrer: referralMeta?.referrer ?? null,
+  };
+
+  let id: string;
+  try {
+    if (hasDb) {
+      ({ id } = await insertInquiry({
+        kind: "contact",
+        name: data.name,
+        email: data.email,
+        referralCode: data.referralCode,
+        payload,
+      }));
+    } else if (localOk) {
+      ({ id } = await insertInquiryLocal({
+        kind: "contact",
+        name: data.name,
+        email: data.email,
+        referralCode: data.referralCode,
+        payload,
+      }));
+    } else {
+      // Email-only fallback when DB tables are not ready yet
+      id = `email-${Date.now()}`;
+    }
+  } catch (err) {
+    console.error("[contact] save failed", err);
+    return NextResponse.json(
+      {
+        error:
+          "Could not save your message. Confirm DATABASE_URL and that inquiries/referrals tables from db/schema.sql exist on Neon.",
+      },
+      { status: 502 },
+    );
+  }
 
   try {
-    await notifyContactInquiry({ id, ...data });
+    if (hasResend) {
+      await notifyContactInquiry({ id, ...data });
+    }
   } catch (error) {
     console.error("[contact] notify failed", error);
   }

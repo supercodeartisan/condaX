@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PillLink } from "@/components/Buttons";
+import { EmailLink } from "@/components/EmailLink";
 
 export const metadata: Metadata = {
   title: "Application received",
@@ -30,12 +31,13 @@ export default async function ApplicationSubmittedPage({
             <PillLink href="/careers" variant="solid">
               Back to careers
             </PillLink>
-            <a
-              href="mailto:admin@condaxits.com"
+            <EmailLink
+              to="admin@condaxits.com"
+              subject="Careers application help"
               className="inline-flex items-center rounded-full border border-hairline px-5 py-2.5 text-[15px] font-medium text-ink"
             >
               Email admin@condaxits.com
-            </a>
+            </EmailLink>
           </div>
         </>
       ) : (

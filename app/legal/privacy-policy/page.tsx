@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { EmailLink } from "@/components/EmailLink";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = { title: "Privacy policy" };
@@ -24,9 +25,13 @@ export default function PrivacyPage() {
           <p>
             Condax is an international consultancy serving clients worldwide. For privacy questions,
             email{" "}
-            <a href="mailto:support@condaxits.com" className="text-cobalt underline underline-offset-4">
+            <EmailLink
+              to="support@condaxits.com"
+              subject="Privacy question"
+              className="text-cobalt underline underline-offset-4"
+            >
               support@condaxits.com
-            </a>
+            </EmailLink>
             .
           </p>
         </section>

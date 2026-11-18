@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { EmailLink } from "@/components/EmailLink";
 import { ReferralForm } from "@/components/ReferralForm";
 
 export const metadata: Metadata = { title: "Refer a client" };
@@ -23,9 +24,13 @@ export default function ReferPage() {
       <ReferralForm />
       <p className="mt-8 text-[14px] text-muted">
         Or email{" "}
-        <a href="mailto:support@condaxits.com" className="text-cobalt underline underline-offset-4">
+        <EmailLink
+          to="support@condaxits.com"
+          subject="Referral"
+          className="text-cobalt underline underline-offset-4"
+        >
           support@condaxits.com
-        </a>{" "}
+        </EmailLink>{" "}
         with “Referral” in the subject line.
       </p>
     </main>
