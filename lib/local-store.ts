@@ -80,6 +80,11 @@ export async function listApplicationsLocal(limit = 100): Promise<ApplicationRow
   return apps.slice(0, limit);
 }
 
+export async function getApplicationByIdLocal(id: string): Promise<ApplicationRow | null> {
+  const apps = await readApps();
+  return apps.find((a) => a.id === id) ?? null;
+}
+
 export async function updateApplicationStatusLocal(id: string, status: string): Promise<void> {
   const apps = await readApps();
   const next = apps.map((a) => (a.id === id ? { ...a, status } : a));

@@ -51,6 +51,8 @@ export function Header() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  if (pathname.startsWith("/admin")) return null;
+
   return (
     <header ref={headerRef} className="fixed inset-x-0 top-0 z-40">
       <a

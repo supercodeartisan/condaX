@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { AdminApplicationsClient } from "@/components/admin/AdminApplicationsClient";
 import { isAdminAuthenticated, getAdminPassword } from "@/lib/admin-auth";
 import { listApplications } from "@/lib/db";
@@ -18,24 +17,18 @@ export default async function AdminApplicationsPage() {
 
   if (!passwordConfigured) {
     return (
-      <main className="paddings mx-auto max-w-[720px] pt-28 pb-24">
-        <h1 className="font-display text-[36px] font-light">Applications admin</h1>
-        <p className="mt-4 text-[16px] text-neutral">
-          Set <code className="text-ink">ADMIN_PASSWORD</code> in the environment to enable this
-          page.
+      <div className="mx-auto max-w-lg rounded-3xl border border-hairline bg-surface p-6 sm:p-8">
+        <h1 className="font-display text-[28px] font-medium text-ink">Applications admin</h1>
+        <p className="mt-3 text-[15px] leading-relaxed text-neutral">
+          Set <code className="rounded bg-warm px-1.5 py-0.5 text-ink">ADMIN_PASSWORD</code> in the
+          environment to enable this page.
         </p>
-      </main>
+      </div>
     );
   }
 
   if (!authed) {
-    return (
-      <main className="paddings mx-auto max-w-[480px] pt-28 pb-24">
-        <h1 className="font-display text-[36px] font-light">Applications admin</h1>
-        <p className="mt-3 text-[15px] text-neutral">Sign in to review career applications.</p>
-        <AdminApplicationsClient mode="login" />
-      </main>
-    );
+    return <AdminApplicationsClient mode="login" />;
   }
 
   let applications: Awaited<ReturnType<typeof listApplications>> = [];
@@ -58,27 +51,13 @@ export default async function AdminApplicationsPage() {
     }
   }
 
-  return (
-    <main className="paddings mx-auto max-w-[1100px] pt-28 pb-24">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <h1 className="font-display text-[36px] font-light md:text-[44px]">Applications</h1>
-          <p className="mt-2 text-[15px] text-neutral">
-            {applications.length} recent · newest first
-          </p>
-        </div>
-        <div className="flex flex-wrap items-center gap-4">
-          <Link href="/admin/inquiries" className="text-[14px] text-cobalt underline underline-offset-4">
-            Inquiries & referrals
-          </Link>
-          <AdminApplicationsClient mode="logout" />
-        </div>
+  if (loadError) {
+    return (
+      <div className="rounded-3xl border border-red-200 bg-red-50 px-5 py-6 text-[15px] text-red-800">
+        {loadError}
       </div>
-      {loadError ? (
-        <p className="mt-8 text-[15px] text-neutral">{loadError}</p>
-      ) : (
-        <AdminApplicationsClient mode="list" applications={applications} />
-      )}
-    </main>
-  );
+    );
+  }
+
+  return <AdminApplicationsClient mode="list" applications={applications} />;
 }

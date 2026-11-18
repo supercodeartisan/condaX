@@ -115,6 +115,45 @@ export async function listApplications(limit = 100): Promise<ApplicationRow[]> {
   })) as ApplicationRow[];
 }
 
+export async function getApplicationById(id: string): Promise<ApplicationRow | null> {
+  const db = sql();
+  const rows = await db`
+    SELECT
+      id::text,
+      role_title,
+      role_slug,
+      full_name,
+      email,
+      phone,
+      linkedin,
+      portfolio,
+      country,
+      city,
+      state,
+      address,
+      date_of_birth,
+      start_date,
+      note,
+      answers,
+      cv_url,
+      cv_filename,
+      status,
+      created_at::text
+    FROM applications
+    WHERE id = ${id}::uuid
+    LIMIT 1
+  `;
+  if (!rows[0]) return null;
+  const row = rows[0];
+  return {
+    ...row,
+    answers:
+      typeof row.answers === "string"
+        ? (JSON.parse(row.answers) as Record<string, string>)
+        : ((row.answers ?? {}) as Record<string, string>),
+  } as ApplicationRow;
+}
+
 export async function updateApplicationStatus(id: string, status: string): Promise<void> {
   const db = sql();
   await db`
