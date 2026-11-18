@@ -4,10 +4,9 @@ export const site = {
   /** Full legal / company name. */
   legalName: "Condax Information Technology Solutions",
   url: "https://condax.solutions",
-  tagline: "AI tools and custom products",
+  tagline: "AI, automation, and product engineering",
   description:
-    "Condax Information Technology Solutions (Condax) is an international consulting company based in the Philippines. We help clients worldwide adopt AI tools and build custom products — delivered remotely, in English.",
-  base: "Philippines",
+    "Condax Information Technology Solutions (Condax) designs and ships AI systems, workflow automation, and digital products for organizations worldwide.",
   footprint: "Worldwide",
 };
 
@@ -20,47 +19,58 @@ export type ProcessStep = {
   youDo: string[];
 };
 
+export type OutcomeStripItem = {
+  value: string;
+  label: string;
+};
+
+export type UseCaseRow = {
+  title: string;
+  audience: string;
+  text: string;
+};
+
 export const nav = {
   services: [
     {
       href: "/services/ai-for-teams",
       title: "AI for teams",
-      description: "Choose, adopt, and govern the tools your people will actually use.",
+      description: "Select, deploy, and govern AI tools aligned to operational workflows.",
     },
     {
       href: "/services/custom-products",
       title: "Custom products",
-      description: "Software built around your workflow — often with AI inside.",
+      description: "Software designed around your workflows, with AI where it adds measurable value.",
     },
     {
       href: "/services/advisory",
       title: "Advisory",
-      description: "A clear call: buy a tool, build a product, or wait.",
+      description: "A clear recommendation: adopt a tool, build a product, or defer.",
     },
   ],
   solutions: [
     {
       href: "/solutions/copilots",
       title: "Copilots & chat",
-      description: "Assistants trained on your work, not a generic chatbot.",
+      description: "Assistants grounded in your data and operating context.",
       visual: "copilot",
     },
     {
       href: "/solutions/internal-tools",
       title: "Internal tools",
-      description: "Ops systems your team can run every day.",
+      description: "Operations systems your people can run every day.",
       visual: "internal",
     },
     {
       href: "/solutions/automations",
       title: "Automations",
-      description: "Repeatable work, moved out of inboxes and spreadsheets.",
+      description: "Intelligent workflow automation across intake, routing, and customer operations.",
       visual: "auto",
     },
     {
       href: "/solutions/custom-apps",
       title: "Custom apps",
-      description: "Web and mobile products built for your customers.",
+      description: "Customer-facing products with AI and automation built into the workflow.",
       visual: "apps",
     },
   ],
@@ -93,33 +103,33 @@ export const footerNav = {
   ],
 };
 
-export const capabilities = ["AI for teams", "Custom products", "Advisory", "Worldwide"];
+export const capabilities = ["AI systems", "Workflow automation", "Custom products", "Structured handover"];
 
 export const plans = {
   startSmall: {
-    title: "Start small",
-    subtitle: "A short engagement to prove the path before you commit to a build.",
+    title: "Discovery and pilots",
+    subtitle: "A short engagement to validate the path before full product investment.",
     items: [
       {
         name: "AI pilot",
         price: "Starting at $5k",
-        text: "Pick tools, put them in the workflow, and leave the team able to run them.",
+        text: "Select tools, place them in the workflow, and transfer operational ownership cleanly.",
       },
       {
         name: "Discovery & scoping",
         price: "Starting at $4k",
-        text: "Should you buy a tool or build? A written recommendation and a build-ready brief.",
+        text: "Adopt a tool or build custom software? A written recommendation and a build-ready brief.",
       },
       {
         name: "Advisory session",
         price: "$1k–$4k per session",
-        text: "A focused working session on stack, risk, or a decision that is stuck.",
+        text: "A structured working session on architecture, risk, or a pending technology decision.",
       },
     ],
   },
   ongoing: {
-    title: "Build and stay",
-    subtitle: "When the path is clear — a product to ship, or a team to keep moving.",
+    title: "Delivery and partnership",
+    subtitle: "When the path is clear — a product to ship, or continued delivery support.",
     items: [
       {
         name: "Custom product",
@@ -135,108 +145,276 @@ export const plans = {
   },
 };
 
-export const workFilters = ["All work", "AI enablement", "Custom product", "Automation"];
+export const workFilters = ["All work", "AI for customers", "Automation", "AI enablement"];
 
 export const workItems = [
   {
-    slug: "atlas",
-    name: "Atlas",
-    blurb: "Rolled out AI writing and coding tools across a distributed ops team — with a simple policy, not a slide deck.",
-    tags: ["AI enablement"],
-    industry: "AI enablement",
-    chip: "Sample",
-  },
-  {
-    slug: "meridian",
-    name: "Meridian",
-    blurb: "A custom internal product that replaced three spreadsheets and a shared inbox for a services company.",
-    tags: ["Internal tool", "Custom product"],
-    industry: "Custom product",
-    chip: "Sample",
-  },
-  {
     slug: "kite",
     name: "Kite",
-    blurb: "A customer-facing assistant on top of the client’s own knowledge — scoped, built, and handed over to their team.",
-    tags: ["Copilot", "Custom product"],
-    industry: "Custom product",
+    blurb:
+      "Customer knowledge assistant with retrieval, citations, and a calm conversation surface.",
+    tags: ["Customer AI", "Copilot"],
+    industry: "AI for customers",
+    chip: "Sample",
+  },
+  {
+    slug: "beacon",
+    name: "Beacon",
+    blurb:
+      "Guided customer onboarding that answers product questions from approved documentation.",
+    tags: ["Customer AI", "Onboarding"],
+    industry: "AI for customers",
+    chip: "Sample",
+  },
+  {
+    slug: "canvas",
+    name: "Canvas",
+    blurb:
+      "Sales and support copilot that drafts replies from CRM context and policy sources.",
+    tags: ["Customer AI", "Copilot"],
+    industry: "AI for customers",
+    chip: "Sample",
+  },
+  {
+    slug: "pulse",
+    name: "Pulse",
+    blurb:
+      "AI-assisted support triage that classifies intent, urgency, and ownership before a human steps in.",
+    tags: ["Automation", "Customer AI"],
+    industry: "Automation",
     chip: "Sample",
   },
   {
     slug: "harbor",
     name: "Harbor",
-    blurb: "Automations that moved intake, routing, and status updates out of email for a multi-timezone team.",
+    blurb:
+      "Intake, routing, and status automation with clear human checkpoints.",
     tags: ["Automation"],
     industry: "Automation",
     chip: "Sample",
   },
+  {
+    slug: "relay",
+    name: "Relay",
+    blurb:
+      "Order-to-fulfillment automation that reduces handoffs across CRM, warehouse, and customer email.",
+    tags: ["Automation", "Operations"],
+    industry: "Automation",
+    chip: "Sample",
+  },
+  {
+    slug: "ledger",
+    name: "Ledger",
+    blurb:
+      "Invoice intake automation — extract, validate, and route exceptions for finance review.",
+    tags: ["Automation", "Finance"],
+    industry: "Automation",
+    chip: "Sample",
+  },
+  {
+    slug: "signal",
+    name: "Signal",
+    blurb:
+      "Lead qualification and routing automation with scoring rules and CRM write-back.",
+    tags: ["Automation", "Sales"],
+    industry: "Automation",
+    chip: "Sample",
+  },
+  {
+    slug: "meridian",
+    name: "Meridian",
+    blurb:
+      "Operations queue and workflow visibility that replaces spreadsheet sprawl before automation expands.",
+    tags: ["Automation", "Internal tool"],
+    industry: "Automation",
+    chip: "Sample",
+  },
+  {
+    slug: "atlas",
+    name: "Atlas",
+    blurb:
+      "Rolling out AI writing and coding tools with a documented usage policy and governance model.",
+    tags: ["AI enablement"],
+    industry: "AI enablement",
+    chip: "Sample",
+  },
 ];
 
+export const insightTopicFilters = [
+  "All topics",
+  "AI",
+  "Automation",
+  "Customer AI",
+  "Governance",
+  "Workflow automation",
+  "Product",
+] as const;
+
 export const insights = [
+  {
+    slug: "ai-governance-review-cadence",
+    type: "Guide",
+    topic: "Governance",
+    date: "November 2026",
+    title: "An AI governance review cadence operators will actually follow",
+    dek: "Quarterly checkpoints that connect policy, tooling, and real usage — without turning governance into a slide deck nobody opens.",
+    author: "Condax",
+    role: "AI enablement",
+  },
+  {
+    slug: "customer-ai-guardrails",
+    type: "Guide",
+    topic: "Customer AI",
+    date: "October 2026",
+    title: "Guardrails for customer-facing AI assistants",
+    dek: "How to define allowed actions, escalation paths, and review steps before a copilot talks to customers in production.",
+    author: "Condax",
+    role: "Product engineering",
+  },
+  {
+    slug: "workflow-automation-checkpoints",
+    type: "Guide",
+    topic: "Workflow automation",
+    date: "October 2026",
+    title: "Designing workflow automation with human checkpoints",
+    dek: "Where to keep people in the loop so automation speeds up work without hiding errors until they reach a customer.",
+    author: "Condax",
+    role: "Advisory & delivery",
+  },
   {
     slug: "tool-or-build",
     type: "Guide",
     topic: "AI",
-    date: "October 2026",
-    title: "Buy the tool, or build the product?",
-    dek: "A short way to decide whether ChatGPT-class tools are enough, or you need something that lives in your stack.",
-    author: "Condax Team",
-    role: "Studio",
+    date: "September 2026",
+    title: "Adopt a tool or build custom software",
+    dek: "A practical framework for deciding when general-purpose AI tools are enough, and when you need software that lives in your stack.",
+    author: "Condax",
+    role: "Advisory & delivery",
+  },
+  {
+    slug: "measuring-ai-pilot-success",
+    type: "Article",
+    topic: "AI",
+    date: "September 2026",
+    title: "Metrics that prove an AI pilot is worth scaling",
+    dek: "Leading indicators for adoption, quality, and risk — and the thresholds we use before recommending a wider rollout.",
+    author: "Condax",
+    role: "AI enablement",
   },
   {
     slug: "rollout-without-leaking-data",
     type: "Guide",
-    topic: "AI",
-    date: "September 2026",
-    title: "Rolling out AI tools without leaking the company",
-    dek: "What to lock down before you hand everyone a copilot: data, vendors, and a policy people will follow.",
-    author: "Condax Team",
-    role: "Studio",
+    topic: "Governance",
+    date: "August 2026",
+    title: "Rolling out AI tools without compromising data governance",
+    dek: "What to lock down before organization-wide access: data boundaries, vendors, and a policy people can follow.",
+    author: "Condax",
+    role: "AI enablement",
+  },
+  {
+    slug: "retrieval-for-customer-answers",
+    type: "Guide",
+    topic: "Customer AI",
+    date: "August 2026",
+    title: "Retrieval quality for customer support answers",
+    dek: "Corpus design, chunking, and evaluation habits that keep citations trustworthy when pressure on response time is high.",
+    author: "Condax",
+    role: "Product engineering",
+  },
+  {
+    slug: "intake-routing-automation",
+    type: "Guide",
+    topic: "Automation",
+    date: "July 2026",
+    title: "Automating intake and routing without breaking SLA commitments",
+    dek: "Classifiers, queues, and exception paths that respect service levels when volume spikes.",
+    author: "Condax",
+    role: "Advisory & delivery",
+  },
+  {
+    slug: "vendor-due-diligence-for-ai",
+    type: "Article",
+    topic: "Governance",
+    date: "July 2026",
+    title: "Vendor due diligence for enterprise AI platforms",
+    dek: "A practical questionnaire for security, data residency, subprocessors, and model behavior — before legal is already in contract review.",
+    author: "Condax",
+    role: "AI enablement",
   },
   {
     slug: "copilot-vs-chatgpt",
     type: "Guide",
     topic: "Product",
-    date: "August 2026",
-    title: "When a custom copilot beats a generic chat window",
-    dek: "The cases where wrapping your own data and workflow is worth the build — and the cases where it is not.",
-    author: "Condax Team",
-    role: "Studio",
+    date: "June 2026",
+    title: "When a custom copilot outperforms a generic chat interface",
+    dek: "The cases where wrapping your own data and workflow justifies a build — and the cases where it does not.",
+    author: "Condax",
+    role: "Product engineering",
+  },
+  {
+    slug: "automation-roi-first-90-days",
+    type: "Guide",
+    topic: "Automation",
+    date: "May 2026",
+    title: "How to prove automation ROI in the first 90 days",
+    dek: "Pick one workflow, instrument the baseline, and define the go/no-go metrics before expanding connectors.",
+    author: "Condax",
+    role: "Advisory & delivery",
+  },
+  {
+    slug: "handover-checklist-for-ai-systems",
+    type: "Checklist",
+    topic: "Product",
+    date: "May 2026",
+    title: "A handover checklist for AI and automation systems",
+    dek: "Owners, runbooks, eval suites, and access — what must transfer so operators can run the system without the builders.",
+    author: "Condax",
+    role: "Product engineering",
+  },
+  {
+    slug: "choosing-human-checkpoints",
+    type: "Article",
+    topic: "Workflow automation",
+    date: "April 2026",
+    title: "Choosing where humans stay in the loop",
+    dek: "A practical way to decide which steps stay manual, which can draft for review, and which can run unattended.",
+    author: "Condax",
+    role: "Advisory & delivery",
   },
 ];
 
 export const team = [
-  ["International", "Clients across regions"],
-  ["Remote-first", "Delivery without on-site theatre"],
-  ["English", "One working language"],
-  ["Hands-on", "Pilots and products that ship"],
+  ["Ownership", "Named owners on every engagement"],
+  ["Senior delivery", "Practitioners who can decide and ship"],
+  ["Handover", "Your operators can run what we leave"],
+  ["Independent guidance", "We recommend deferring or adopting existing tools when that is the better investment"],
 ];
 
 export const values = [
-  ["Useful", "If it does not change how the team works next week, it is not done."],
-  ["Clear", "Buy vs build, in plain language, with the trade-offs visible."],
-  ["Ship", "Pilots and products leave the slide and enter the workflow."],
+  ["Useful", "If it does not change operational workflow within the first release cycle, it is not complete."],
+  ["Clear", "Adopt versus build, with trade-offs documented for decision-makers."],
+  ["Ship", "Pilots and products move from presentation into production workflows."],
   ["Careful with data", "Client information stays in the tenancy you choose. Models are a vendor, not a vault."],
-  ["Distributed", "Remote by default. We schedule to the client’s working day, not ours alone."],
-  ["Straight", "We will say when a tool is enough, and when you should not hire us to build."],
+  ["Accountable", "Clear owners and status you can rely on."],
+  ["Candor", "We recommend adoption when it meets requirements, and decline build work when it does not."],
 ];
 
 export const faqs = [
   {
-    q: "Do you help us use tools like ChatGPT, Claude, or Cursor — or do you only build software?",
-    a: "Both. We roll out AI tools the team will actually use, and we design and build custom products when a generic tool is not enough. Many clients start with a pilot, then decide.",
+    q: "Do you provide AI enablement, or only custom development?",
+    a: "Both. We deploy AI tools the organization can adopt with governance and measurable usage, and we design and build custom products when a general-purpose tool is not enough. Many clients begin with a pilot, then decide.",
   },
   {
-    q: "How do I know if I should buy a tool or build a product?",
-    a: "If a well-configured existing tool covers 80% of the job, we help you adopt it. If the work lives in your data, your process, or your customer experience, we scope a custom build. Advisory exists for that call.",
+    q: "How do I know whether to adopt a tool or build a product?",
+    a: "If a well-configured existing tool covers most of the job, we help you adopt it. If the work depends on your data, process, or customer experience, we scope a custom build. Advisory exists for that decision.",
   },
   {
-    q: "Where are you based?",
-    a: "Condax Information Technology Solutions is based in the Philippines and works with clients internationally. Delivery is remote and in English — we align to your working day.",
+    q: "How do you work with clients?",
+    a: "Delivery is remote by default. English is our working language, and we schedule around your working day — whether you operate in one region or several.",
   },
   {
-    q: "Do you work with companies outside the Philippines?",
-    a: "Yes. Condax is built for international work. Location is not a gate — we schedule around the client’s day.",
+    q: "Do you work with international companies?",
+    a: "Yes. Cross-border engagements are the default. We align to the client’s calendar and stakeholders, not a single local office hour.",
   },
   {
     q: "What happens to our data if we use AI?",
@@ -244,44 +422,44 @@ export const faqs = [
   },
   {
     q: "How long is a typical first engagement?",
-    a: "An AI pilot or advisory is usually measured in weeks. A custom product is scoped after that — months, not an open-ended retainer, unless you ask for ongoing partnership.",
+    a: "An AI pilot or advisory is usually measured in weeks. A custom product is scoped after that — typically months, not an open-ended retainer, unless you request ongoing partnership.",
   },
   {
-    q: "Do you replace our internal team?",
-    a: "No. We work beside the people who will own the tools or the product after we leave. Handover is part of the work.",
+    q: "Do you supplement or replace internal staff?",
+    a: "We work alongside the people who will own the tools or product after we leave. Handover is part of the engagement.",
   },
 ];
 
 export const comparison = [
   [
     "Starting point",
-    "Hand everyone ChatGPT and hope it sticks.",
-    "A short pilot: the right tools, in the real workflow, with a policy.",
+    "Deploy general-purpose AI tools without adoption planning, governance, or success metrics.",
+    "A short pilot: the right tools, in the real workflow, with a documented policy.",
   ],
   [
-    "Buy vs build",
-    "A slide that says “AI strategy.”",
-    "A written call: adopt a tool, build a product, or wait.",
+    "Adopt vs build",
+    "A strategy document without operational commitments.",
+    "A written recommendation: adopt a tool, build a product, or defer.",
   ],
   [
     "Custom work",
-    "A generic chatbot with your logo.",
+    "A thin chat interface without integration into core workflows.",
     "Software that runs on your process and your data.",
   ],
   [
     "Delivery",
-    "Local hours, on-site theatre, a long ramp.",
-    "Remote from week one, in English — aligned to your working day.",
+    "Long mobilization, heavy on-site presence, and slow time-to-value.",
+    "Senior owners from week one — async-friendly, aligned to your working day.",
   ],
   [
     "Data",
-    "Pasted into whatever model is handy.",
+    "Ad hoc use of consumer tools without data controls.",
     "Tenancy, vendors, and access agreed before the rollout.",
   ],
   [
     "After launch",
-    "A deck, then silence.",
-    "Your team can run it — or we stay on a clear monthly scope.",
+    "A presentation without operational transfer.",
+    "Your operators can run it — or we continue on a defined monthly scope.",
   ],
 ];
 

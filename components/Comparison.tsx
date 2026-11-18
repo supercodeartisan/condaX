@@ -11,7 +11,7 @@ export function Comparison() {
   return (
     <section className="paddings mx-auto w-full max-w-[1720px] py-16">
       <h2 className="font-display mb-10 max-w-[16ch] text-[36px] leading-[120%] font-light md:text-[48px] lg:text-[60px]">
-        A partner who will tell you when not to build
+        A partner focused on the right investment
       </h2>
       <div className="flex flex-wrap gap-2 border-b border-px-white-12 pb-4">
         {comparison.map(([label], i) => (
@@ -28,9 +28,9 @@ export function Comparison() {
         ))}
       </div>
       <div className="mt-10 grid gap-8 md:grid-cols-[auto_1fr_1fr] md:items-start">
-        <div className="text-[12px] tracking-[0.16em] text-px-white-32 uppercase">vs the default</div>
+        <div className="text-[12px] tracking-[0.16em] text-px-white-32 uppercase">Comparison</div>
         <div>
-          <div className="mb-2 text-[12px] tracking-[0.14em] text-px-white-32 uppercase">Typical path</div>
+          <div className="mb-2 text-[12px] tracking-[0.14em] text-px-white-32 uppercase">Common approach</div>
           <p className="text-[20px] leading-snug text-px-white-48 md:text-[24px]">{row[1]}</p>
         </div>
         <div>

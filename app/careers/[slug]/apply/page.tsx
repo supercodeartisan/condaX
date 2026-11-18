@@ -24,18 +24,18 @@ export default async function ApplyPage({ params }: { params: Promise<{ slug: st
   if (!role) notFound();
 
   return (
-    <main id="main-content" className="paddings mx-auto max-w-[820px] pt-28 pb-24 lg:pt-32">
-      <Link href={`/careers/${role.slug}`} className="text-[14px] text-px-white-48 hover:text-px-lime">
+    <main id="main-content" className="paddings mx-auto max-w-[820px] pt-40 pb-24 lg:pt-44">
+      <Link href={`/careers/${role.slug}`} className="text-[14px] text-neutral hover:text-cobalt">
         ← {role.title}
       </Link>
       <h1 className="font-display mt-8 text-[40px] leading-[1.1] font-light md:text-[52px]">
         Apply · {role.title}
       </h1>
-      <p className="mt-4 text-[16px] text-px-white-48">
-        {role.location}. Condax · remote delivery.
+      <p className="mt-4 text-[16px] text-neutral">
+        {role.location}. LinkedIn, role questions, and CV required.
       </p>
       <div className="mt-10">
-        <ApplyForm roleTitle={role.title} />
+        <ApplyForm roleTitle={role.title} roleSlug={role.slug} questions={role.applyQuestions} />
       </div>
     </main>
   );

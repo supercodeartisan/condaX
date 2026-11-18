@@ -1,28 +1,30 @@
 import type { Metadata } from "next";
 import { ServicePage } from "@/components/ServicePage";
+import { AIAssistant } from "@/components/visuals/AIAssistant";
 
 export const metadata: Metadata = { title: "AI for teams" };
 
 export default function AiForTeamsPage() {
   return (
     <ServicePage
-      title="AI tools your people will actually use."
-      lede="We help you choose the stack, put it in the daily workflow, train the team, and set a policy they will follow — worldwide, remotely."
+      visual={<AIAssistant />}
+      title="AI enablement for the people who run the work."
+      lede="We help you select the stack, place it in daily workflows, train operators, and establish governance they can apply consistently."
       cta="Start an AI pilot"
       processHeading="Engagement process"
-      processLede="From mapping real work to a team that can run the tools without us. Typical first pilots land in weeks — not a multi-year transformation programme."
+      processLede="From mapping real work to operators who can run the tools independently. Typical first pilots land in weeks — not multi-year transformation programs."
       offerings={[
-        { title: "Tool selection", text: "ChatGPT, Claude, Cursor, and the rest — matched to the job, not the hype cycle." },
-        { title: "Rollout", text: "Accounts, prompts, and working sessions so the team uses the tools on live work, not a demo." },
-        { title: "Policy & data", text: "What may leave the company, what stays in your tenancy, and who is allowed to paste what." },
-        { title: "Enablement", text: "Short training for operators, managers, and builders — in English, across time zones." },
+        { title: "Tool selection", text: "Vendor selection aligned to workload, risk, and data requirements — not market momentum." },
+        { title: "Rollout", text: "Accounts, prompts, and working sessions so operators use the tools on live work, not presentation-only demos." },
+        { title: "Policy & data", text: "What may leave the company, what stays in your tenancy, and who is authorized to share what." },
+        { title: "Enablement", text: "Short training for operators, managers, and builders — applied to live work, not presentation-only sessions." },
       ]}
       process={[
         {
           title: "Map",
           duration: "3–5 days",
           summary:
-            "We learn where work actually happens — systems, handoffs, and the tools you already pay for — before anyone buys another license.",
+            "We learn where work happens — systems, handoffs, and the tools you already operate — before anyone procures another license.",
           outcomes: [
             "Current-state map of the jobs AI should touch",
             "Inventory of existing tools, access, and friction",
@@ -64,7 +66,7 @@ export default function AiForTeamsPage() {
           title: "Pilot",
           duration: "2–4 weeks",
           summary:
-            "A named group uses the tools on live work. We coach in the workflow, measure against the success bar, and cut what does not stick.",
+            "A named group uses the tools on live work. We coach in the workflow, measure against the success criteria, and discontinue approaches that do not meet them.",
           outcomes: [
             "Pilot running on real tasks, not demos",
             "Usage notes, wins, and drop-off points",
@@ -92,7 +94,7 @@ export default function AiForTeamsPage() {
             "Access roles and escalation path",
           ],
           weDo: [
-            "Draft policy language in plain English",
+            "Draft policy language operators can use",
             "Align with your security / legal reviewers",
             "Translate rules into day-to-day do’s and don’ts",
           ],
@@ -146,10 +148,10 @@ export default function AiForTeamsPage() {
         },
       ]}
       stats={[
-        { value: "Weeks", label: "Typical first pilot", text: "Not a six-month transformation programme." },
-        { value: "Your stack", label: "Tools you already pay for", text: "We start with what you have, then fill the gaps." },
+        { value: "Weeks", label: "Typical first pilot", text: "Measured in weeks, not multi-year transformation programs." },
+        { value: "Your stack", label: "Tools you already operate", text: "We start with what you have, then fill the gaps." },
         { value: "Your tenancy", label: "Data stays where you put it", text: "We do not train public models on your files." },
-        { value: "Worldwide", label: "Remote by default", text: "English delivery, scheduled around your working day." },
+        { value: "Handover", label: "Operators can run it", text: "Training and policy remain with the people who own the work." },
       ]}
     />
   );

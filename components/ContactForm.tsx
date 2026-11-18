@@ -3,59 +3,85 @@
 import { useState } from "react";
 import { investmentOptions, regionOptions, scopeOptions, sourceOptions } from "@/lib/site";
 
-export function ContactForm() {
+export function ContactForm({ referralCode }: { referralCode?: string }) {
   const [sent, setSent] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   return (
     <form
       className="flex flex-col gap-4"
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
-        setSent(true);
+        setBusy(true);
+        setError(null);
+        const form = e.currentTarget;
+        const body = new FormData(form);
+        try {
+          const res = await fetch("/api/contact", { method: "POST", body });
+          const data = (await res.json().catch(() => null)) as { error?: string } | null;
+          if (!res.ok) {
+            setError(data?.error ?? "Could not submit. Please try again.");
+            setBusy(false);
+            return;
+          }
+          setSent(true);
+          form.reset();
+        } catch {
+          setError("Network error. Please try again or email hello@condax.solutions.");
+        }
+        setBusy(false);
       }}
     >
+      {referralCode ? <input type="hidden" name="referralCode" value={referralCode} /> : null}
+      {referralCode ? (
+        <p className="rounded-2xl border border-cobalt/20 bg-cobalt/5 px-4 py-3 text-[13px] text-cobalt">
+          Referral code applied: <span className="font-medium">{referralCode}</span>
+        </p>
+      ) : null}
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Name *" name="name" />
         <Field label="Email *" name="email" type="email" />
       </div>
-      <Select label="How did you get to know us? *" name="source" options={sourceOptions} />
-      <Select label="Where is your team based? *" name="region" options={regionOptions} />
+      <Select label="How did you hear about Condax? *" name="source" options={sourceOptions} />
+      <Select label="Where is your organization based? *" name="region" options={regionOptions} />
       <label className="relative block">
-        <span className="sr-only">How can we help?</span>
+        <span className="sr-only">Describe your request</span>
         <textarea
           name="description"
           required
           rows={5}
-          placeholder="How can we help? *"
-          className="w-full resize-none rounded-2xl border border-px-white-12 bg-[#141410] px-4 py-4 text-[15px] outline-none placeholder:text-px-white-48 focus:border-px-lime"
+          placeholder="Describe your request. *"
+          className="w-full resize-none rounded-2xl border border-hairline bg-surface px-4 py-4 text-[15px] text-charcoal outline-none placeholder:text-muted focus:border-cobalt"
         />
-        <span className="pointer-events-none absolute right-4 bottom-3 text-[11px] text-px-white-32">
-          Upload is optional. Must be PDF, PNG or JPG.
-        </span>
-      </label>
-      <label className="inline-flex w-fit cursor-pointer items-center rounded-full border border-px-lime/30 px-4 py-2 text-[13px] text-px-white-64 hover:border-px-lime hover:text-px-lime">
-        <input type="file" name="file" accept=".pdf,.png,.jpg,.jpeg" className="sr-only" />
-        Upload file
       </label>
       <Select label="What do you need? *" name="scope" options={scopeOptions} />
       <Field label="Any key milestones or ideal start date? *" name="date" />
       <Select label="Expected investment (USD) *" name="investment" options={investmentOptions} />
       <button
         type="submit"
-        className="mt-2 inline-flex w-fit items-center rounded-[32px] bg-px-lime px-6 py-3 text-[16px] font-medium text-px-ink hover:bg-px-lime-dim"
+        disabled={busy || sent}
+        className="mt-2 inline-flex w-fit items-center rounded-full bg-cobalt px-6 py-3 text-[16px] font-medium text-white hover:bg-cobalt-hover disabled:opacity-60"
       >
-        Submit
+        {busy ? "Submitting…" : sent ? "Submitted" : "Submit"}
       </button>
+      {error ? <p className="text-[14px] text-red-700">{error}</p> : null}
       {sent ? (
-        <p className="text-[14px] text-px-white-64">
-          Thanks — this demo form does not send anywhere yet. Wire it to your inbox when you are ready.
-        </p>
-      ) : (
-        <p className="text-[14px] text-px-white-48">
-          Just want to drop a message? Email us at{" "}
-          <a href="mailto:hello@condax.solutions" className="text-px-lime underline underline-offset-4">
+        <p className="text-[14px] text-neutral">
+          Thank you. We received your submission and typically reply within one business day. If you
+          need to add anything, email{" "}
+          <a href="mailto:hello@condax.solutions" className="text-cobalt underline underline-offset-4">
             hello@condax.solutions
           </a>
+          .
+        </p>
+      ) : (
+        <p className="text-[14px] text-neutral">
+          You may also email{" "}
+          <a href="mailto:hello@condax.solutions" className="text-cobalt underline underline-offset-4">
+            hello@condax.solutions
+          </a>
+          .
         </p>
       )}
     </form>
@@ -71,7 +97,7 @@ function Field({ label, name, type = "text" }: { label: string; name: string; ty
         type={type}
         required
         placeholder={label}
-        className="w-full rounded-2xl border border-px-white-12 bg-[#141410] px-4 py-4 text-[15px] outline-none placeholder:text-px-white-48 focus:border-px-lime"
+        className="w-full rounded-2xl border border-hairline bg-surface px-4 py-4 text-[15px] text-charcoal outline-none placeholder:text-muted focus:border-cobalt"
       />
     </label>
   );
@@ -85,7 +111,7 @@ function Select({ label, name, options }: { label: string; name: string; options
         name={name}
         required
         defaultValue=""
-        className="w-full appearance-none rounded-2xl border border-px-white-12 bg-[#141410] px-4 py-4 text-[15px] outline-none focus:border-px-lime"
+        className="w-full appearance-none rounded-2xl border border-hairline bg-surface px-4 py-4 text-[15px] text-charcoal outline-none focus:border-cobalt"
       >
         <option value="" disabled>
           {label}

@@ -1,107 +1,141 @@
 import type { Metadata } from "next";
 import { Plans } from "@/components/Plans";
 import { StickyCta } from "@/components/StickyCta";
+import { cn } from "@/lib/cn";
 
 export const metadata: Metadata = { title: "What we do" };
 
 const modes = [
   {
     title: "Adopt AI tools",
-    text: "Choose the stack, put it in daily work, train the team, and set a policy. For companies that need to use AI well — not just buy licences.",
+    text: "Select the stack, place it in daily work, train operators, and establish governance — with deployment and policy, not license procurement alone.",
   },
   {
     title: "Build a custom product",
-    text: "When a generic tool cannot carry the process, we design and ship software around your workflow. Web, mobile, or internal.",
+    text: "When a general-purpose tool cannot carry the process, we design and ship software around your workflow. Web, mobile, or internal.",
   },
   {
-    title: "Put AI into what you already run",
-    text: "Copilots, search, and automations on systems you already pay for. We will say when the right move is to stop and use the tool as-is.",
+    title: "Embed AI in systems you already run",
+    text: "Copilots, search, and automations on systems you already operate. We recommend stopping at tool adoption when that meets the requirements.",
   },
 ];
 
 const impacts = [
-  ["A decision, not a deck", "Buy, build, or wait — written down, with the trade-offs attached."],
-  ["In the workflow", "Tools and products land where the work already happens. Handover is part of the job."],
-  ["Careful with data", "Your tenancy, your vendors, your access rules. We do not treat models as a dumping ground."],
-  ["Remote, worldwide", "English delivery aligned to your working day — no on-site requirement."],
+  ["Documented decisions", "Adopt, build, or defer — written down, with the trade-offs attached."],
+  ["In the workflow", "Tools and products land where the work already happens. Handover is part of the engagement."],
+  ["Careful with data", "Your tenancy, your vendors, your access rules. We treat model vendors as subprocessors with defined data boundaries."],
+  ["Senior ownership", "You work with people who can decide and deliver — then leave your operators able to run the result."],
+];
+
+const expertise = [
+  {
+    title: "AI for teams",
+    items: ["Tool selection", "Rollout & training", "Policy & data"],
+    extra: "Appropriate when tooling is already procured.",
+  },
+  {
+    title: "Custom products",
+    items: ["Discovery", "Design", "Engineering"],
+    extra: "Appropriate when a tool cannot carry the job.",
+  },
+  {
+    title: "In the stack you have",
+    items: ["Copilots", "Internal tools", "Automations"],
+    extra: "Appropriate when the systems already exist.",
+  },
 ];
 
 export default function WhatWeDoPage() {
   return (
-    <main id="main-content" className="pt-16 lg:pt-20">
-      <StickyCta href="#plans" label="See our plans" />
-      <section className="relative flex h-[566px] w-full items-end justify-center md:h-[768px]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(212,255,31,0.22),transparent_42%),radial-gradient(circle_at_82%_62%,rgba(232,230,225,0.12),transparent_48%)]" />
-        <div className="absolute inset-0 bg-px-black/45" />
-        <h1 className="font-display paddings relative z-10 mx-auto mb-16 max-w-[1100px] text-center text-[36px] leading-[1.12] font-light sm:text-[52px] lg:text-[72px] lg:leading-[80px]">
-          Help the team use AI. Or build the product when a tool is not enough.
+    <main id="main-content" className="pt-36 lg:pt-40">
+      <StickyCta href="#plans" label="View engagement options" />
+
+      <section className="paddings mx-auto max-w-[1100px] pt-10 pb-14 md:pt-16 md:pb-20">
+        <p className="text-center text-[12px] tracking-[0.14em] text-muted uppercase">Our approach</p>
+        <h1 className="font-display mx-auto mt-4 max-w-[18ch] text-center text-[32px] leading-[1.15] font-light sm:text-[44px] md:text-[56px] lg:text-[64px]">
+          Enable AI adoption. Build custom software when off-the-shelf tools are insufficient.
         </h1>
       </section>
 
-      <section className="paddings mx-auto grid w-full max-w-[1720px] gap-10 py-14 md:grid-cols-3">
-        {modes.map((m) => (
-          <div key={m.title}>
-            <h2 className="text-[20px] font-medium">{m.title}</h2>
-            <p className="mt-3 text-[15px] leading-relaxed text-px-white-64">{m.text}</p>
+      <section className="paddings mx-auto grid w-full max-w-[1720px] gap-8 border-y border-hairline py-12 sm:gap-10 md:grid-cols-3 md:py-16">
+        {modes.map((m, i) => (
+          <div
+            key={m.title}
+            className={cn(
+              "md:border-hairline",
+              i > 0 && "border-t border-hairline pt-8 md:border-t-0 md:border-l md:pt-0 md:pl-8 lg:pl-10",
+            )}
+          >
+            <div className="text-[11px] tracking-[0.14em] text-muted uppercase">
+              {String(i + 1).padStart(2, "0")}
+            </div>
+            <h2 className="mt-3 text-[18px] font-medium sm:text-[20px]">{m.title}</h2>
+            <p className="mt-3 text-[15px] leading-relaxed text-neutral">{m.text}</p>
           </div>
         ))}
       </section>
 
-      <section className="paddings mx-auto grid w-full max-w-[1720px] gap-8 py-10 lg:grid-cols-[1fr_auto_1.4fr]">
-        <h2 className="font-display sticky top-[120px] self-start text-[36px] leading-[120%] font-light sm:text-[42px] md:text-[48px] lg:text-[60px]">
-          What you can expect
-        </h2>
-        <div className="sticky top-[120px] hidden size-[34px] items-center justify-center rounded-full border border-px-white-24 lg:flex" aria-hidden>
-          <span className="text-sm">→</span>
+      <section className="paddings mx-auto grid w-full max-w-[1720px] gap-10 py-14 md:gap-12 md:py-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <h2 className="font-display text-[32px] leading-[1.15] font-light sm:text-[40px] md:text-[48px]">
+            What you can expect
+          </h2>
+          <p className="mt-4 max-w-[36ch] text-[15px] leading-relaxed text-neutral">
+            Clear decisions, production delivery, and a handover your operators can run.
+          </p>
         </div>
-        <div className="flex flex-col gap-10">
+        <div className="divide-y divide-hairline border-y border-hairline">
           {impacts.map(([t, d]) => (
-            <div key={t}>
-              <h3 className="text-[18px] font-medium">{t}</h3>
-              <p className="mt-2 max-w-[46ch] text-[15px] text-px-white-48">{d}</p>
+            <div key={t} className="grid gap-2 py-6 sm:grid-cols-[minmax(0,0.4fr)_minmax(0,0.6fr)] sm:gap-6">
+              <h3 className="text-[17px] font-medium text-ink">{t}</h3>
+              <p className="text-[15px] leading-relaxed text-neutral">{d}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="relative my-8 flex h-[70vh] min-h-[420px] items-center justify-center overflow-hidden">
-        <div className="font-display absolute inset-0 flex flex-col items-center justify-center text-[18vw] leading-[0.9] font-light text-white/90">
-          <span>Tools</span>
-          <span>Products</span>
-          <span>Worldwide</span>
+      <section className="relative overflow-hidden border-y border-hairline bg-[linear-gradient(160deg,#1c1c1a_0%,#243044_100%)]">
+        <div className="paddings mx-auto flex max-w-[1720px] flex-col items-start gap-8 py-16 md:flex-row md:items-end md:justify-between md:py-20">
+          <div>
+            <p className="text-[12px] tracking-[0.14em] text-white/45 uppercase">Focus</p>
+            <div className="font-display mt-4 space-y-1 text-[40px] leading-[1.05] font-light text-white sm:text-[52px] md:text-[64px]">
+              <div>Tools</div>
+              <div>Products</div>
+              <div>Delivery</div>
+            </div>
+          </div>
+          <p className="max-w-[34ch] text-[15px] leading-relaxed text-white/60 md:text-right">
+            Three modes of work — adopt what exists, build what must be custom, or embed AI into the
+            systems you already run.
+          </p>
         </div>
-        <svg className="relative h-[42%] w-[70%] opacity-80" viewBox="0 0 800 240" fill="none" aria-hidden>
-          <defs>
-            <linearGradient id="arc" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#d4ff1f" />
-              <stop offset="50%" stopColor="#e8e6e1" />
-              <stop offset="100%" stopColor="#6e6e68" />
-            </linearGradient>
-          </defs>
-          <path d="M40 200 C 220 20, 580 20, 760 200" stroke="url(#arc)" strokeWidth="18" strokeLinecap="round" />
-        </svg>
       </section>
 
-      <section className="paddings mx-auto flex w-full max-w-[1720px] flex-col gap-10 py-10">
-        <h2 className="font-display text-[36px] font-light md:text-[48px]">Where we spend the work</h2>
-        <div className="grid gap-10 border-t border-px-white-12 pt-8 md:grid-cols-3">
-          <Expertise title="AI for teams" items={["Tool selection", "Rollout & training", "Policy & data"]} extra="Start here if you already have licences." />
-          <Expertise title="Custom products" items={["Discovery", "Design", "Engineering"]} extra="Start here if a tool cannot carry the job." />
-          <Expertise title="In the stack you have" items={["Copilots", "Internal tools", "Automations"]} extra="Start here if the systems already exist." />
+      <section className="paddings mx-auto w-full max-w-[1720px] py-14 md:py-20">
+        <h2 className="font-display text-[32px] font-light sm:text-[40px] md:text-[48px]">
+          Where we spend the work
+        </h2>
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+          {expertise.map((item) => (
+            <div
+              key={item.title}
+              className="rounded-[20px] border border-hairline bg-surface p-6 shadow-[0_8px_30px_rgba(17,17,16,0.03)]"
+            >
+              <div className="text-[11px] tracking-[0.14em] text-muted uppercase">{item.title}</div>
+              <ul className="mt-4 space-y-2">
+                {item.items.map((i) => (
+                  <li key={i} className="text-[18px] font-medium tracking-tight text-ink sm:text-[20px]">
+                    {i}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 text-[13px] leading-relaxed text-neutral">{item.extra}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       <Plans />
     </main>
-  );
-}
-
-function Expertise({ title, items, extra }: { title: string; items: string[]; extra: string }) {
-  return (
-    <div>
-      <div className="mb-4 text-[12px] tracking-[0.16em] text-px-white-48 uppercase">{title}</div>
-      <ul className="space-y-2 text-[20px]">{items.map((i) => <li key={i}>{i}</li>)}</ul>
-      <div className="mt-4 text-px-white-32">{extra}</div>
-    </div>
   );
 }

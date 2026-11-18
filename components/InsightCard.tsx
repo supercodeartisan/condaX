@@ -1,7 +1,11 @@
 import Link from "next/link";
+import { EditorialImage } from "@/components/ui/EditorialImage";
+import { images, type InsightSlug } from "@/lib/images";
 
 export function InsightCard({
   item,
+  showCover = false,
+  showTopicChip = false,
 }: {
   item: {
     slug: string;
@@ -13,15 +17,32 @@ export function InsightCard({
     author: string;
     role: string;
   };
+  showCover?: boolean;
+  showTopicChip?: boolean;
 }) {
+  const cover = images.insights[item.slug as InsightSlug];
+
   return (
     <Link
       href={`/insights/${item.slug}`}
       className="group flex flex-col border-t border-px-white-12 py-8 transition-colors hover:border-px-lime"
     >
-      <div className="mb-4 flex flex-wrap gap-3 text-[13px] text-px-white-48">
+      {showCover && cover ? (
+        <EditorialImage
+          asset={cover}
+          className="mb-6 aspect-[16/10] w-full rounded-[16px]"
+          sizes="(max-width: 768px) 100vw, 40vw"
+        />
+      ) : null}
+      <div className="mb-4 flex flex-wrap items-center gap-3 text-[13px] text-px-white-48">
         <span>{item.type}</span>
-        <span>{item.topic}</span>
+        {showTopicChip ? (
+          <span className="rounded-full border border-px-white-12 px-2.5 py-0.5 text-[12px] text-px-white-48">
+            {item.topic}
+          </span>
+        ) : (
+          <span>{item.topic}</span>
+        )}
         <span>{item.date}</span>
       </div>
       <h3 className="font-display text-[28px] leading-[120%] font-light group-hover:text-px-lime md:text-[32px]">

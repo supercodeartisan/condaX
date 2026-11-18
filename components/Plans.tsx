@@ -3,9 +3,12 @@ import { plans } from "@/lib/site";
 
 export function Plans({ id = "plans" }: { id?: string }) {
   return (
-    <section id={id} className="paddings mx-auto mt-[42px] mb-20 flex w-full max-w-[1720px] scroll-mt-[80px] flex-col gap-[42px] lg:mt-[22px] lg:gap-[50px] sm:mb-[200px]">
-      <h2 className="font-display text-[36px] leading-[120%] font-light sm:text-[42px] md:text-[48px] lg:text-[60px]">
-        Ways to start
+    <section
+      id={id}
+      className="paddings mx-auto mt-10 mb-20 flex w-full max-w-[1720px] scroll-mt-28 flex-col gap-10 sm:mb-28 md:mt-12 md:gap-12"
+    >
+      <h2 className="font-display text-[32px] leading-[1.15] font-light sm:text-[40px] md:text-[48px]">
+        Engagement options
       </h2>
       <PlanGroup group={plans.startSmall} />
       <div className="h-px bg-px-white-12" />
@@ -25,7 +28,7 @@ function PlanGroup({
         <h3 className="font-display text-[32px] font-light md:text-[40px]">{group.title}</h3>
         <p className="mt-3 max-w-[36ch] text-[16px] text-px-white-48">{group.subtitle}</p>
         <PillLink href="/get-in-touch" className="mt-6">
-          Get a quote
+          Request pricing
         </PillLink>
       </div>
       <div className="flex flex-col gap-8">

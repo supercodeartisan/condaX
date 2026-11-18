@@ -1,10 +1,8 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { Footer } from "@/components/Footer";
 
+/** Footer is always visible — homepage scroll lock removed in Condax v2. */
 export function FooterHost() {
-  const pathname = usePathname();
-  if (pathname === "/") return null;
   return <Footer />;
 }
