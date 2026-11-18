@@ -98,7 +98,7 @@ export async function POST(request: Request) {
     referrer: referralMeta?.referrer ?? null,
   };
 
-  let id: string;
+  let id: string | null = null;
   try {
     if (hasDb) {
       ({ id } = await insertInquiry({
@@ -116,18 +116,22 @@ export async function POST(request: Request) {
         referralCode: data.referralCode,
         payload,
       }));
-    } else {
-      id = `email-${Date.now()}`;
     }
   } catch (err) {
-    console.error("[contact] save failed", err);
-    return NextResponse.json(
-      {
-        error:
-          "Could not save your message. Confirm DATABASE_URL and that inquiries/referrals tables from db/schema.sql exist on Neon.",
-      },
-      { status: 502 },
-    );
+    console.error("[contact] save failed — will try email-only fallback", err);
+  }
+
+  if (!id) {
+    if (!hasResend) {
+      return NextResponse.json(
+        {
+          error:
+            "Could not save your message. In Neon SQL Editor, run the inquiries/referrals section from db/schema.sql, then try again.",
+        },
+        { status: 502 },
+      );
+    }
+    id = `email-${Date.now()}`;
   }
 
   try {
@@ -136,6 +140,14 @@ export async function POST(request: Request) {
     }
   } catch (error) {
     console.error("[contact] notify failed", error);
+    // DB saved but email failed — still OK for the visitor
+    if (!id.startsWith("email-")) {
+      return NextResponse.json({ ok: true, id });
+    }
+    return NextResponse.json(
+      { error: "Could not deliver your message. Please email support@condaxits.com." },
+      { status: 502 },
+    );
   }
 
   return NextResponse.json({ ok: true, id });
