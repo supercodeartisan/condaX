@@ -50,3 +50,12 @@ export function honeypotTripped(value: FormDataEntryValue | string | null | unde
   const text = typeof value === "string" ? value : String(value);
   return text.trim().length > 0;
 }
+
+/** Prefer first non-empty cf-turnstile-response when duplicates exist. */
+export function turnstileTokenFromFormData(formData: FormData): string {
+  const all = formData.getAll("cf-turnstile-response");
+  for (const value of all) {
+    if (typeof value === "string" && value.trim()) return value.trim();
+  }
+  return "";
+}

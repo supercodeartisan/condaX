@@ -7,17 +7,11 @@ declare global {
     turnstile?: {
       render: (
         el: HTMLElement,
-        opts: {
-          sitekey: string;
-          callback?: (token: string) => void;
-          "expired-callback"?: () => void;
-          "error-callback"?: () => void;
-          theme?: "light" | "dark" | "auto";
-          size?: "normal" | "flexible" | "compact";
-          appearance?: "always" | "execute" | "interaction-only";
-        },
+        opts: Record<string, unknown>,
       ) => string;
       remove: (widgetId?: string) => void;
+      reset: (widgetId?: string) => void;
+      getResponse: (widgetId?: string) => string;
     };
     onCondaxTurnstileLoad?: () => void;
   }
@@ -49,12 +43,16 @@ export function TurnstileField({ siteKey }: { siteKey: string }) {
         widgetId.current = null;
       }
       hostRef.current.innerHTML = "";
+      setToken("");
+      // Disable Turnstile's built-in field — it would create a second
+      // cf-turnstile-response and FormData.get() would often read our empty one first.
       widgetId.current = window.turnstile.render(hostRef.current, {
         sitekey: siteKey,
         theme: "light",
         size: "normal",
-        // Always show the Cloudflare box (even when it auto-passes).
         appearance: "always",
+        "response-field": false,
+        responseField: false,
         callback: setToken,
         "expired-callback": () => setToken(""),
         "error-callback": () => setToken(""),
@@ -98,7 +96,13 @@ export function TurnstileField({ siteKey }: { siteKey: string }) {
       <p className="mb-2 text-[12px] font-medium tracking-wide text-muted uppercase">
         Security check
       </p>
-      <input ref={inputRef} type="hidden" name="cf-turnstile-response" defaultValue="" />
+      <input
+        ref={inputRef}
+        type="hidden"
+        name="cf-turnstile-response"
+        defaultValue=""
+        autoComplete="off"
+      />
       <div ref={hostRef} className="min-h-[65px]" />
       <p className="mt-2 text-[12px] leading-relaxed text-muted">
         Cloudflare verifies you are human. Most visitors pass automatically; if a checkbox appears,
@@ -106,6 +110,24 @@ export function TurnstileField({ siteKey }: { siteKey: string }) {
       </p>
     </div>
   );
+}
+
+/** Prefer a non-empty Turnstile token from the form (or live widget). */
+export function readTurnstileToken(form: HTMLFormElement): string {
+  const values = form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
+    '[name="cf-turnstile-response"]',
+  );
+  for (const el of values) {
+    const v = el.value?.trim();
+    if (v) return v;
+  }
+  try {
+    const live = window.turnstile?.getResponse?.();
+    if (live?.trim()) return live.trim();
+  } catch {
+    /* ignore */
+  }
+  return "";
 }
 
 /** Invisible honeypot — leave empty. */

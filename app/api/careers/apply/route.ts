@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { submitCareerApplication } from "@/lib/careers-submit";
 import { guardPublicForm, rateLimitResponse } from "@/lib/form-guard";
+import { turnstileTokenFromFormData } from "@/lib/turnstile";
 
 export const runtime = "nodejs";
 
@@ -16,7 +17,7 @@ export async function POST(request: Request) {
       bucket: "careers-apply",
       limit: 5,
       windowMs: 60 * 60 * 1000,
-      turnstileToken: String(formData.get("cf-turnstile-response") ?? ""),
+      turnstileToken: turnstileTokenFromFormData(formData),
       honeypot: formData.get("website"),
     });
     if (!guarded.ok) {

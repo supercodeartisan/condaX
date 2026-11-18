@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { EmailLink } from "@/components/EmailLink";
 import { FormSecurityFields } from "@/components/FormSecurityFields";
+import { readTurnstileToken } from "@/components/TurnstileField";
 import { investmentOptions, regionOptions, scopeOptions, sourceOptions } from "@/lib/site";
 
 export function ContactForm({ referralCode }: { referralCode?: string }) {
@@ -19,12 +20,24 @@ export function ContactForm({ referralCode }: { referralCode?: string }) {
         setError(null);
         const form = e.currentTarget;
         const body = new FormData(form);
+        const turnstileToken = readTurnstileToken(form);
+        if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() && !turnstileToken) {
+          setError("Please wait for the security check to finish (Success!), then submit again.");
+          setBusy(false);
+          return;
+        }
+        if (turnstileToken) body.set("cf-turnstile-response", turnstileToken);
         try {
           const res = await fetch("/api/contact", { method: "POST", body });
           const data = (await res.json().catch(() => null)) as { error?: string } | null;
           if (!res.ok) {
             setError(data?.error ?? "Could not submit. Please try again.");
             setBusy(false);
+            try {
+              window.turnstile?.reset?.();
+            } catch {
+              /* ignore */
+            }
             return;
           }
           setSent(true);

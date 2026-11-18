@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FormSecurityFields } from "@/components/FormSecurityFields";
+import { readTurnstileToken } from "@/components/TurnstileField";
 
 export function ReferralForm() {
   const [busy, setBusy] = useState(false);
@@ -17,6 +18,12 @@ export function ReferralForm() {
         setError(null);
         const form = e.currentTarget;
         const data = Object.fromEntries(new FormData(form).entries());
+        const turnstileToken = readTurnstileToken(form);
+        if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() && !turnstileToken) {
+          setError("Please wait for the security check to finish (Success!), then submit again.");
+          setBusy(false);
+          return;
+        }
         try {
           const res = await fetch("/api/referrals", {
             method: "POST",
@@ -29,7 +36,7 @@ export function ReferralForm() {
               contactEmail: data.contactEmail,
               notes: data.notes || null,
               website: data.website || "",
-              "cf-turnstile-response": data["cf-turnstile-response"] || "",
+              "cf-turnstile-response": turnstileToken,
             }),
           });
           const json = (await res.json().catch(() => null)) as
@@ -38,6 +45,11 @@ export function ReferralForm() {
           if (!res.ok || !json?.code || !json.link) {
             setError(json?.error ?? "Could not create referral link.");
             setBusy(false);
+            try {
+              window.turnstile?.reset?.();
+            } catch {
+              /* ignore */
+            }
             return;
           }
           setResult({ code: json.code, link: json.link });

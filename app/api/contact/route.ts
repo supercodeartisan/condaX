@@ -8,6 +8,7 @@ import {
   insertInquiryLocal,
   isLocalDevStoreEnabled,
 } from "@/lib/local-store";
+import { turnstileTokenFromFormData } from "@/lib/turnstile";
 
 export async function POST(request: Request) {
   const hasDb = Boolean(process.env.DATABASE_URL?.trim());
@@ -29,7 +30,7 @@ export async function POST(request: Request) {
     bucket: "contact",
     limit: 8,
     windowMs: 60 * 60 * 1000,
-    turnstileToken: String(formData.get("cf-turnstile-response") ?? ""),
+    turnstileToken: turnstileTokenFromFormData(formData),
     honeypot: formData.get("website"),
   });
   if (!guarded.ok) {

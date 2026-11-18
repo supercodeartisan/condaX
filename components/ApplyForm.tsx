@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { EmailLink } from "@/components/EmailLink";
 import { FormSecurityFields } from "@/components/FormSecurityFields";
+import { readTurnstileToken } from "@/components/TurnstileField";
 import { CalendarDatePicker } from "@/components/ui/CalendarDatePicker";
 import { getDobBounds, getStartDateBounds } from "@/lib/careers-apply";
 
@@ -47,6 +48,13 @@ export function ApplyForm({
           setBusy(false);
           return;
         }
+        const turnstileToken = readTurnstileToken(form);
+        if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() && !turnstileToken) {
+          setError("Please wait for the security check to finish (Success!), then submit again.");
+          setBusy(false);
+          return;
+        }
+        if (turnstileToken) body.set("cf-turnstile-response", turnstileToken);
         body.set("response", "json");
         try {
           const res = await fetch("/api/careers/apply", {
@@ -60,6 +68,11 @@ export function ApplyForm({
           if (!res.ok) {
             setError(data?.error ?? "Could not submit application. Please try again.");
             setBusy(false);
+            try {
+              window.turnstile?.reset?.();
+            } catch {
+              /* ignore */
+            }
             return;
           }
           const params = new URLSearchParams({
