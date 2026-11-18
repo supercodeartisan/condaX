@@ -24,14 +24,14 @@ export function Logo({
       <Image
         src="/logo.png"
         alt={site.name}
-        width={size === "lg" ? 108 : 72}
-        height={size === "lg" ? 70 : 46}
+        width={size === "lg" ? 120 : 80}
+        height={size === "lg" ? 96 : 64}
         className={cn(
           "w-auto object-contain [image-rendering:auto]",
           size === "lg" ? "h-12" : "h-8",
         )}
         priority
-        sizes={size === "lg" ? "108px" : "72px"}
+        sizes={size === "lg" ? "120px" : "80px"}
       />
     </Link>
   );
