@@ -22,7 +22,10 @@ export async function submitCareerApplication(
   requestOrigin: string,
 ): Promise<SubmitResult> {
   const hasDb = Boolean(process.env.DATABASE_URL?.trim());
-  const hasBlob = Boolean(process.env.BLOB_READ_WRITE_TOKEN?.trim());
+  // Private Blob stores work with BLOB_READ_WRITE_TOKEN and/or BLOB_STORE_ID + OIDC on Vercel.
+  const hasBlob = Boolean(
+    process.env.BLOB_READ_WRITE_TOKEN?.trim() || process.env.BLOB_STORE_ID?.trim(),
+  );
   const localOk = isLocalDevStoreEnabled();
 
   if (!hasDb && !localOk) {
@@ -71,14 +74,25 @@ export async function submitCareerApplication(
   let cvFilename: string;
 
   if (hasBlob) {
-    const safeName = cvCheck.file.name.replace(/[^\w.\-()+ ]+/g, "_").slice(0, 120);
-    const blob = await put(`careers-cvs/${Date.now()}-${safeName}`, cvCheck.file, {
-      access: "public",
-      addRandomSuffix: true,
-      contentType: cvCheck.file.type || undefined,
-    });
-    cvUrl = blob.url;
-    cvFilename = cvCheck.file.name;
+    try {
+      const safeName = cvCheck.file.name.replace(/[^\w.\-()+ ]+/g, "_").slice(0, 120);
+      // Store was created as Private — must upload with access: "private".
+      const blob = await put(`careers-cvs/${Date.now()}-${safeName}`, cvCheck.file, {
+        access: "private",
+        addRandomSuffix: true,
+        contentType: cvCheck.file.type || undefined,
+      });
+      cvUrl = blob.url;
+      cvFilename = cvCheck.file.name;
+    } catch (err) {
+      console.error("[careers] blob upload failed", err);
+      return {
+        ok: false,
+        status: 502,
+        error:
+          "Could not upload CV to storage. Check Blob store connection / BLOB_READ_WRITE_TOKEN, then try again.",
+      };
+    }
   } else if (localOk) {
     const local = await saveCvLocally(cvCheck.file, requestOrigin);
     cvUrl = local.url;
@@ -112,9 +126,20 @@ export async function submitCareerApplication(
     cvFilename,
   };
 
-  const { id } = hasDb
-    ? await insertApplication(payload)
-    : await insertApplicationLocal(payload);
+  let id: string;
+  try {
+    ({ id } = hasDb
+      ? await insertApplication(payload)
+      : await insertApplicationLocal(payload));
+  } catch (err) {
+    console.error("[careers] db insert failed", err);
+    return {
+      ok: false,
+      status: 502,
+      error:
+        "Could not save the application to the database. Confirm DATABASE_URL and that db/schema.sql was run on Neon.",
+    };
+  }
 
   if (process.env.RESEND_API_KEY?.trim()) {
     try {

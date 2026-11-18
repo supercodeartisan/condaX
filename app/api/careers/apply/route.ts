@@ -37,8 +37,8 @@ export async function POST(request: Request) {
     return NextResponse.redirect(new URL(`/careers/submitted?${params}`, origin), 303);
   } catch (err) {
     console.error("[careers] apply failed", err);
-    const message =
-      "Something went wrong submitting your application. Please try again or email admin@condaxits.com.";
+    const detail = err instanceof Error ? err.message : "Unknown error";
+    const message = `Something went wrong submitting your application (${detail}). Please try again or email admin@condaxits.com.`;
     const wantsJson = request.headers.get("accept")?.includes("application/json");
     if (wantsJson) {
       return NextResponse.json({ error: message }, { status: 500 });
