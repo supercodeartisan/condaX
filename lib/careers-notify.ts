@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import { getCareersNotifyTo, getResendFrom } from "@/lib/env";
 import type { NewApplication } from "@/lib/db";
+import { formatRequestGeo } from "@/lib/request-geo";
 
 export async function notifyNewApplication(
   applicationId: string,
@@ -37,6 +38,14 @@ export async function notifyNewApplication(
     `Earliest start: ${input.startDate}`,
     `CV (admin): ${siteUrl}/api/admin/applications/${applicationId}/cv`,
     `Download CV: ${siteUrl}/api/admin/applications/${applicationId}/cv?download=1`,
+    input.geo
+      ? `Submitter network: ${formatRequestGeo({
+          ip: input.geo.ip,
+          geo_country: input.geo.country,
+          geo_region: input.geo.region,
+          geo_city: input.geo.city,
+        })}`
+      : null,
     ``,
     `Introduction:`,
     input.note,

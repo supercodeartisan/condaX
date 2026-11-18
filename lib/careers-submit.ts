@@ -12,6 +12,7 @@ import {
   isLocalDevStoreEnabled,
   saveCvLocally,
 } from "@/lib/local-store";
+import type { RequestGeo } from "@/lib/request-geo";
 
 export type SubmitResult =
   | { ok: true; id: string; storage: "neon" | "local-dev" }
@@ -20,6 +21,7 @@ export type SubmitResult =
 export async function submitCareerApplication(
   formData: FormData,
   requestOrigin: string,
+  geo?: RequestGeo | null,
 ): Promise<SubmitResult> {
   const hasDb = Boolean(process.env.DATABASE_URL?.trim());
   // Private Blob stores work with BLOB_READ_WRITE_TOKEN and/or BLOB_STORE_ID + OIDC on Vercel.
@@ -124,6 +126,7 @@ export async function submitCareerApplication(
     answers,
     cvUrl,
     cvFilename,
+    geo: geo ?? null,
   };
 
   let id: string;

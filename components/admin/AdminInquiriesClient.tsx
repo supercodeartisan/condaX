@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import type { InquiryRow, ReferralRow } from "@/lib/inquiries";
 import { cn } from "@/lib/cn";
 import { formatAdminDate } from "@/components/admin/statusStyles";
+import { formatRequestGeo } from "@/lib/request-geo";
 
 type Tab = "inquiries" | "referrals";
 
@@ -175,6 +176,14 @@ export function AdminInquiriesClient({
                         </a>
                       </div>
                       <dl className="grid gap-3 sm:grid-cols-2">
+                        <div className="rounded-xl bg-surface px-3 py-2.5 ring-1 ring-hairline sm:col-span-2">
+                          <dt className="text-[11px] font-semibold tracking-wide text-muted uppercase">
+                            Network / region
+                          </dt>
+                          <dd className="mt-1 break-words text-[14px] text-ink">
+                            {formatRequestGeo(item)}
+                          </dd>
+                        </div>
                         {entries.map(([key, value]) => (
                           <div
                             key={key}
@@ -255,6 +264,7 @@ export function AdminInquiriesClient({
                       <Field label="Organization" value={r.organization} />
                       <Field label="Contact" value={`${r.contact_name} · ${r.contact_email}`} />
                       <Field label="Referrer" value={`${r.referrer_name} · ${r.referrer_email}`} />
+                      <Field label="Network / region" value={formatRequestGeo(r)} />
                       {r.notes ? (
                         <div className="rounded-xl bg-surface px-3 py-2.5 ring-1 ring-hairline sm:col-span-2">
                           <dt className="text-[11px] font-semibold tracking-wide text-muted uppercase">

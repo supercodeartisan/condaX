@@ -8,12 +8,14 @@ import {
   insertInquiryLocal,
   isLocalDevStoreEnabled,
 } from "@/lib/local-store";
+import { getRequestGeo } from "@/lib/request-geo";
 import { turnstileTokenFromFormData } from "@/lib/turnstile";
 
 export async function POST(request: Request) {
   const hasDb = Boolean(process.env.DATABASE_URL?.trim());
   const hasResend = Boolean(process.env.RESEND_API_KEY?.trim());
   const localOk = isLocalDevStoreEnabled();
+  const geo = getRequestGeo(request);
 
   if (!hasDb && !localOk && !hasResend) {
     return NextResponse.json(
@@ -108,6 +110,7 @@ export async function POST(request: Request) {
         email: data.email,
         referralCode: data.referralCode,
         payload,
+        geo,
       }));
     } else if (localOk) {
       ({ id } = await insertInquiryLocal({
@@ -116,6 +119,7 @@ export async function POST(request: Request) {
         email: data.email,
         referralCode: data.referralCode,
         payload,
+        geo,
       }));
     }
   } catch (err) {
@@ -137,7 +141,7 @@ export async function POST(request: Request) {
 
   try {
     if (hasResend) {
-      await notifyContactInquiry({ id, ...data });
+      await notifyContactInquiry({ id, ...data, geo });
     }
   } catch (error) {
     console.error("[contact] notify failed", error);

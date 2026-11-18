@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { submitCareerApplication } from "@/lib/careers-submit";
 import { guardPublicForm, rateLimitResponse } from "@/lib/form-guard";
+import { getRequestGeo } from "@/lib/request-geo";
 import { turnstileTokenFromFormData } from "@/lib/turnstile";
 
 export const runtime = "nodejs";
@@ -9,6 +10,7 @@ export async function POST(request: Request) {
   try {
     const formData = await request.formData();
     const origin = new URL(request.url).origin;
+    const geo = getRequestGeo(request);
     const wantsJson =
       request.headers.get("accept")?.includes("application/json") ||
       formData.get("response") === "json";
@@ -44,7 +46,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const result = await submitCareerApplication(formData, origin);
+    const result = await submitCareerApplication(formData, origin, geo);
 
     if (!result.ok) {
       if (wantsJson) {

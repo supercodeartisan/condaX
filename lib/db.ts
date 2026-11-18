@@ -1,5 +1,6 @@
 import { neon } from "@neondatabase/serverless";
 import { requireEnv } from "@/lib/env";
+import type { RequestGeo } from "@/lib/request-geo";
 
 export type ApplicationRow = {
   id: string;
@@ -21,6 +22,10 @@ export type ApplicationRow = {
   cv_url: string;
   cv_filename: string | null;
   status: string;
+  submitter_ip: string | null;
+  geo_country: string | null;
+  geo_region: string | null;
+  geo_city: string | null;
   created_at: string;
 };
 
@@ -42,18 +47,53 @@ export type NewApplication = {
   answers: Record<string, string>;
   cvUrl: string;
   cvFilename: string | null;
+  geo?: RequestGeo | null;
 };
 
 function sql() {
   return neon(requireEnv("DATABASE_URL"));
 }
 
+function mapApplicationRow(row: Record<string, unknown>): ApplicationRow {
+  return {
+    id: String(row.id),
+    role_title: String(row.role_title),
+    role_slug: (row.role_slug as string | null) ?? null,
+    full_name: String(row.full_name),
+    email: String(row.email),
+    phone: String(row.phone),
+    linkedin: String(row.linkedin),
+    portfolio: (row.portfolio as string | null) ?? null,
+    country: String(row.country),
+    city: String(row.city),
+    state: (row.state as string | null) ?? null,
+    address: (row.address as string | null) ?? null,
+    date_of_birth: (row.date_of_birth as string | null) ?? null,
+    start_date: String(row.start_date),
+    note: String(row.note),
+    answers:
+      typeof row.answers === "string"
+        ? (JSON.parse(row.answers) as Record<string, string>)
+        : ((row.answers ?? {}) as Record<string, string>),
+    cv_url: String(row.cv_url),
+    cv_filename: (row.cv_filename as string | null) ?? null,
+    status: String(row.status),
+    submitter_ip: (row.submitter_ip as string | null) ?? null,
+    geo_country: (row.geo_country as string | null) ?? null,
+    geo_region: (row.geo_region as string | null) ?? null,
+    geo_city: (row.geo_city as string | null) ?? null,
+    created_at: String(row.created_at),
+  };
+}
+
 export async function insertApplication(input: NewApplication): Promise<{ id: string }> {
   const db = sql();
+  const geo = input.geo;
   const rows = await db`
     INSERT INTO applications (
       role_title, role_slug, full_name, email, phone, linkedin, portfolio,
-      country, city, state, address, date_of_birth, start_date, note, answers, cv_url, cv_filename
+      country, city, state, address, date_of_birth, start_date, note, answers, cv_url, cv_filename,
+      submitter_ip, geo_country, geo_region, geo_city
     ) VALUES (
       ${input.roleTitle},
       ${input.roleSlug},
@@ -71,7 +111,11 @@ export async function insertApplication(input: NewApplication): Promise<{ id: st
       ${input.note},
       ${JSON.stringify(input.answers)},
       ${input.cvUrl},
-      ${input.cvFilename}
+      ${input.cvFilename},
+      ${geo?.ip ?? null},
+      ${geo?.country ?? null},
+      ${geo?.region ?? null},
+      ${geo?.city ?? null}
     )
     RETURNING id
   `;
@@ -101,18 +145,16 @@ export async function listApplications(limit = 100): Promise<ApplicationRow[]> {
       cv_url,
       cv_filename,
       status,
+      submitter_ip,
+      geo_country,
+      geo_region,
+      geo_city,
       created_at::text
     FROM applications
     ORDER BY created_at DESC
     LIMIT ${limit}
   `;
-  return rows.map((row) => ({
-    ...row,
-    answers:
-      typeof row.answers === "string"
-        ? (JSON.parse(row.answers) as Record<string, string>)
-        : ((row.answers ?? {}) as Record<string, string>),
-  })) as ApplicationRow[];
+  return rows.map((row) => mapApplicationRow(row as Record<string, unknown>));
 }
 
 export async function getApplicationById(id: string): Promise<ApplicationRow | null> {
@@ -138,20 +180,17 @@ export async function getApplicationById(id: string): Promise<ApplicationRow | n
       cv_url,
       cv_filename,
       status,
+      submitter_ip,
+      geo_country,
+      geo_region,
+      geo_city,
       created_at::text
     FROM applications
     WHERE id = ${id}::uuid
     LIMIT 1
   `;
   if (!rows[0]) return null;
-  const row = rows[0];
-  return {
-    ...row,
-    answers:
-      typeof row.answers === "string"
-        ? (JSON.parse(row.answers) as Record<string, string>)
-        : ((row.answers ?? {}) as Record<string, string>),
-  } as ApplicationRow;
+  return mapApplicationRow(rows[0] as Record<string, unknown>);
 }
 
 export async function updateApplicationStatus(id: string, status: string): Promise<void> {

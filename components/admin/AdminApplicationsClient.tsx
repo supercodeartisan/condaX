@@ -10,6 +10,7 @@ import {
   formatStatusLabel,
   statusBadgeClass,
 } from "@/components/admin/statusStyles";
+import { formatRequestGeo } from "@/lib/request-geo";
 
 function cvViewHref(id: string) {
   return `/api/admin/applications/${id}/cv`;
@@ -218,8 +219,9 @@ export function AdminApplicationsClient({
                       {app.email}
                       <span className="hidden sm:inline"> · {formatAdminDate(app.created_at)}</span>
                     </p>
-                    <p className="mt-0.5 text-[12px] text-muted sm:hidden">
-                      {formatAdminDate(app.created_at)}
+                    <p className="mt-0.5 truncate text-[12px] text-muted">
+                      {formatRequestGeo(app)}
+                      <span className="sm:hidden"> · {formatAdminDate(app.created_at)}</span>
                     </p>
                   </div>
                   <span
@@ -260,6 +262,10 @@ export function AdminApplicationsClient({
                           <Detail label="Date of birth" value={app.date_of_birth || "—"} />
                           <Detail label="Earliest start" value={app.start_date || "—"} />
                           <Detail label="Submitted" value={formatAdminDate(app.created_at)} />
+                          <Detail
+                            label="Network / region"
+                            value={formatRequestGeo(app)}
+                          />
                         </dl>
 
                         {app.note ? (

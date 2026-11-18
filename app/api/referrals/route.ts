@@ -8,11 +8,13 @@ import {
   insertReferralLocal,
   isLocalDevStoreEnabled,
 } from "@/lib/local-store";
+import { getRequestGeo } from "@/lib/request-geo";
 
 export async function POST(request: Request) {
   const hasDb = Boolean(process.env.DATABASE_URL?.trim());
   const hasResend = Boolean(process.env.RESEND_API_KEY?.trim());
   const localOk = isLocalDevStoreEnabled();
+  const geo = getRequestGeo(request);
 
   if (!hasDb && !localOk && !hasResend) {
     return NextResponse.json(
@@ -72,7 +74,7 @@ export async function POST(request: Request) {
   let code: string;
   try {
     if (hasDb) {
-      ({ id, code } = await insertReferral(data));
+      ({ id, code } = await insertReferral({ ...data, geo }));
       await insertInquiry({
         kind: "referral",
         name: data.referrerName,
@@ -85,9 +87,10 @@ export async function POST(request: Request) {
           notes: data.notes ?? null,
           code,
         },
+        geo,
       });
     } else if (localOk) {
-      ({ id, code } = await insertReferralLocal(data));
+      ({ id, code } = await insertReferralLocal({ ...data, geo }));
       await insertInquiryLocal({
         kind: "referral",
         name: data.referrerName,
@@ -100,6 +103,7 @@ export async function POST(request: Request) {
           notes: data.notes ?? null,
           code,
         },
+        geo,
       });
     } else {
       return NextResponse.json(
@@ -128,7 +132,7 @@ export async function POST(request: Request) {
 
   try {
     if (hasResend) {
-      await notifyReferralCreated({ id, code, link, ...data });
+      await notifyReferralCreated({ id, code, link, ...data, geo });
     }
   } catch (error) {
     console.error("[referral] notify failed", error);

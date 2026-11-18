@@ -32,6 +32,10 @@ export type InquiryRow = {
   payload: Record<string, string | null>;
   referral_code: string | null;
   status: string;
+  submitter_ip: string | null;
+  geo_country: string | null;
+  geo_region: string | null;
+  geo_city: string | null;
   created_at: string;
 };
 
@@ -44,5 +48,9 @@ export type ReferralRow = {
   contact_name: string;
   contact_email: string;
   notes: string | null;
+  submitter_ip: string | null;
+  geo_country: string | null;
+  geo_region: string | null;
+  geo_city: string | null;
   created_at: string;
 };

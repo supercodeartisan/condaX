@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import { getContactNotifyTo, getResendFrom } from "@/lib/env";
+import { formatRequestGeo, type RequestGeo } from "@/lib/request-geo";
 
 function notifyTo() {
   return getContactNotifyTo();
@@ -16,6 +17,7 @@ export async function notifyContactInquiry(input: {
   date: string;
   investment: string;
   referralCode?: string | null;
+  geo?: RequestGeo | null;
 }): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   if (!apiKey) {
@@ -38,6 +40,14 @@ export async function notifyContactInquiry(input: {
     `Timeline: ${input.date}`,
     `Investment: ${input.investment}`,
     input.referralCode ? `Referral code: ${input.referralCode}` : null,
+    input.geo
+      ? `Submitter network: ${formatRequestGeo({
+          ip: input.geo.ip,
+          geo_country: input.geo.country,
+          geo_region: input.geo.region,
+          geo_city: input.geo.city,
+        })}`
+      : null,
     ``,
     `Request:`,
     input.description,
@@ -66,6 +76,7 @@ export async function notifyReferralCreated(input: {
   contactEmail: string;
   notes?: string | null;
   link: string;
+  geo?: RequestGeo | null;
 }): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   if (!apiKey) {
@@ -86,6 +97,14 @@ export async function notifyReferralCreated(input: {
     `Referral code: ${input.code}`,
     `Referral link: ${input.link}`,
     input.notes ? `\nNotes:\n${input.notes}` : null,
+    input.geo
+      ? `Submitter network: ${formatRequestGeo({
+          ip: input.geo.ip,
+          geo_country: input.geo.country,
+          geo_region: input.geo.region,
+          geo_city: input.geo.city,
+        })}`
+      : null,
     ``,
     `Review: ${siteUrl}/admin/inquiries`,
     `Referral ID: ${input.id}`,

@@ -22,6 +22,10 @@ CREATE TABLE IF NOT EXISTS applications (
   cv_filename TEXT,
   status TEXT NOT NULL DEFAULT 'new'
     CHECK (status IN ('new', 'screening', 'interview', 'offer', 'hired', 'rejected', 'archived')),
+  submitter_ip TEXT,
+  geo_country TEXT,
+  geo_region TEXT,
+  geo_city TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
@@ -39,6 +43,10 @@ CREATE TABLE IF NOT EXISTS inquiries (
   payload JSONB NOT NULL DEFAULT '{}'::jsonb,
   referral_code TEXT,
   status TEXT NOT NULL DEFAULT 'new',
+  submitter_ip TEXT,
+  geo_country TEXT,
+  geo_region TEXT,
+  geo_city TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
@@ -56,8 +64,28 @@ CREATE TABLE IF NOT EXISTS referrals (
   contact_name TEXT NOT NULL,
   contact_email TEXT NOT NULL,
   notes TEXT,
+  submitter_ip TEXT,
+  geo_country TEXT,
+  geo_region TEXT,
+  geo_city TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 CREATE INDEX IF NOT EXISTS referrals_created_at_idx ON referrals (created_at DESC);
 CREATE INDEX IF NOT EXISTS referrals_code_idx ON referrals (code);
+
+-- ---- Migrations for existing Neon DBs (safe to re-run) ----
+ALTER TABLE applications ADD COLUMN IF NOT EXISTS submitter_ip TEXT;
+ALTER TABLE applications ADD COLUMN IF NOT EXISTS geo_country TEXT;
+ALTER TABLE applications ADD COLUMN IF NOT EXISTS geo_region TEXT;
+ALTER TABLE applications ADD COLUMN IF NOT EXISTS geo_city TEXT;
+
+ALTER TABLE inquiries ADD COLUMN IF NOT EXISTS submitter_ip TEXT;
+ALTER TABLE inquiries ADD COLUMN IF NOT EXISTS geo_country TEXT;
+ALTER TABLE inquiries ADD COLUMN IF NOT EXISTS geo_region TEXT;
+ALTER TABLE inquiries ADD COLUMN IF NOT EXISTS geo_city TEXT;
+
+ALTER TABLE referrals ADD COLUMN IF NOT EXISTS submitter_ip TEXT;
+ALTER TABLE referrals ADD COLUMN IF NOT EXISTS geo_country TEXT;
+ALTER TABLE referrals ADD COLUMN IF NOT EXISTS geo_region TEXT;
+ALTER TABLE referrals ADD COLUMN IF NOT EXISTS geo_city TEXT;

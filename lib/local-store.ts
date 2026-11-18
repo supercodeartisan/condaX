@@ -68,6 +68,10 @@ export async function insertApplicationLocal(input: NewApplication): Promise<{ i
     cv_url: input.cvUrl,
     cv_filename: input.cvFilename,
     status: "new",
+    submitter_ip: input.geo?.ip ?? null,
+    geo_country: input.geo?.country ?? null,
+    geo_region: input.geo?.region ?? null,
+    geo_city: input.geo?.city ?? null,
     created_at: new Date().toISOString(),
   };
   apps.unshift(row);
@@ -77,7 +81,13 @@ export async function insertApplicationLocal(input: NewApplication): Promise<{ i
 
 export async function listApplicationsLocal(limit = 100): Promise<ApplicationRow[]> {
   const apps = await readApps();
-  return apps.slice(0, limit);
+  return apps.slice(0, limit).map((row) => ({
+    ...row,
+    submitter_ip: row.submitter_ip ?? null,
+    geo_country: row.geo_country ?? null,
+    geo_region: row.geo_region ?? null,
+    geo_city: row.geo_city ?? null,
+  }));
 }
 
 export async function getApplicationByIdLocal(id: string): Promise<ApplicationRow | null> {
@@ -121,6 +131,12 @@ export async function insertInquiryLocal(input: {
   email: string;
   payload: Record<string, string | null>;
   referralCode?: string | null;
+  geo?: {
+    ip: string;
+    country: string | null;
+    region: string | null;
+    city: string | null;
+  } | null;
 }): Promise<{ id: string }> {
   const rows = await readJsonFile<InquiryRow>(INQUIRIES_FILE);
   const id = randomUUID();
@@ -132,6 +148,10 @@ export async function insertInquiryLocal(input: {
     payload: input.payload,
     referral_code: input.referralCode ?? null,
     status: "new",
+    submitter_ip: input.geo?.ip ?? null,
+    geo_country: input.geo?.country ?? null,
+    geo_region: input.geo?.region ?? null,
+    geo_city: input.geo?.city ?? null,
     created_at: new Date().toISOString(),
   });
   await writeJsonFile(INQUIRIES_FILE, rows);
@@ -140,7 +160,13 @@ export async function insertInquiryLocal(input: {
 
 export async function listInquiriesLocal(limit = 100): Promise<InquiryRow[]> {
   const rows = await readJsonFile<InquiryRow>(INQUIRIES_FILE);
-  return rows.slice(0, limit);
+  return rows.slice(0, limit).map((row) => ({
+    ...row,
+    submitter_ip: row.submitter_ip ?? null,
+    geo_country: row.geo_country ?? null,
+    geo_region: row.geo_region ?? null,
+    geo_city: row.geo_city ?? null,
+  }));
 }
 
 function makeReferralCode() {
@@ -154,6 +180,12 @@ export async function insertReferralLocal(input: {
   contactName: string;
   contactEmail: string;
   notes?: string | null;
+  geo?: {
+    ip: string;
+    country: string | null;
+    region: string | null;
+    city: string | null;
+  } | null;
 }): Promise<{ id: string; code: string }> {
   const rows = await readJsonFile<ReferralRow>(REFERRALS_FILE);
   const id = randomUUID();
@@ -167,6 +199,10 @@ export async function insertReferralLocal(input: {
     contact_name: input.contactName,
     contact_email: input.contactEmail,
     notes: input.notes ?? null,
+    submitter_ip: input.geo?.ip ?? null,
+    geo_country: input.geo?.country ?? null,
+    geo_region: input.geo?.region ?? null,
+    geo_city: input.geo?.city ?? null,
     created_at: new Date().toISOString(),
   });
   await writeJsonFile(REFERRALS_FILE, rows);
@@ -180,5 +216,11 @@ export async function getReferralByCodeLocal(code: string): Promise<ReferralRow 
 
 export async function listReferralsLocal(limit = 100): Promise<ReferralRow[]> {
   const rows = await readJsonFile<ReferralRow>(REFERRALS_FILE);
-  return rows.slice(0, limit);
+  return rows.slice(0, limit).map((row) => ({
+    ...row,
+    submitter_ip: row.submitter_ip ?? null,
+    geo_country: row.geo_country ?? null,
+    geo_region: row.geo_region ?? null,
+    geo_city: row.geo_city ?? null,
+  }));
 }
