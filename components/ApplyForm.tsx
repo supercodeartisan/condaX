@@ -67,7 +67,7 @@ export function ApplyForm({
           });
           router.push(`/careers/submitted?${params.toString()}`);
         } catch {
-          setError("Network error. Please try again or email careers@condax.solutions.");
+          setError("Network error. Please try again or email admin@condaxits.com.");
           setBusy(false);
         }
       }}
@@ -236,10 +236,10 @@ export function ApplyForm({
       <p className="text-[14px] text-neutral">
         Prefer email? Send your CV to{" "}
         <a
-          href="mailto:careers@condax.solutions"
+          href="mailto:admin@condaxits.com"
           className="text-cobalt underline underline-offset-4"
         >
-          careers@condax.solutions
+          admin@condaxits.com
         </a>{" "}
         with the role in the subject line.
       </p>

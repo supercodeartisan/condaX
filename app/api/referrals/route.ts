@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error:
-          "Referrals are not configured yet. Email hello@condax.solutions with “Referral” in the subject.",
+          "Referrals are not configured yet. Email support@condaxits.com with “Referral” in the subject.",
       },
       { status: 503 },
     );

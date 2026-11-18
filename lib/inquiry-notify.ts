@@ -1,8 +1,8 @@
 import { Resend } from "resend";
-import { getCareersNotifyTo, getResendFrom } from "@/lib/env";
+import { getContactNotifyTo, getResendFrom } from "@/lib/env";
 
 function notifyTo() {
-  return process.env.CONTACT_TO?.trim() || getCareersNotifyTo();
+  return getContactNotifyTo();
 }
 
 export async function notifyContactInquiry(input: {
@@ -24,7 +24,8 @@ export async function notifyContactInquiry(input: {
   }
 
   const resend = new Resend(apiKey);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://condax.solutions";
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://www.condaxits.com";
 
   const text = [
     `New Condax contact inquiry`,
@@ -73,7 +74,8 @@ export async function notifyReferralCreated(input: {
   }
 
   const resend = new Resend(apiKey);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://condax.solutions";
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://www.condaxits.com";
 
   const text = [
     `New Condax referral`,

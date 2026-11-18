@@ -1,5 +1,7 @@
 /** Server-only env helpers. Missing values throw only when a feature is used. */
 
+import { site } from "@/lib/site";
+
 export function requireEnv(name: string): string {
   const value = process.env[name]?.trim();
   if (!value) {
@@ -12,10 +14,14 @@ export function getCareersNotifyTo(): string {
   return (
     process.env.CAREERS_TO?.trim() ||
     process.env.CONTACT_TO?.trim() ||
-    "careers@condax.solutions"
+    site.emails.careers
   );
 }
 
+export function getContactNotifyTo(): string {
+  return process.env.CONTACT_TO?.trim() || site.emails.contact;
+}
+
 export function getResendFrom(): string {
-  return process.env.RESEND_FROM?.trim() || "Condax Careers <onboarding@resend.dev>";
+  return process.env.RESEND_FROM?.trim() || `Condax <${site.emails.contact}>`;
 }

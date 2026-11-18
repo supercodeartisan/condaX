@@ -40,7 +40,7 @@ export function ReferralForm() {
           setResult({ code: json.code, link: json.link });
           form.reset();
         } catch {
-          setError("Network error. Please try again or email hello@condax.solutions.");
+          setError("Network error. Please try again or email support@condaxits.com.");
         }
         setBusy(false);
       }}

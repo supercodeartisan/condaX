@@ -58,8 +58,8 @@ export default function CookiePage() {
               Privacy policy
             </Link>
             . Questions:{" "}
-            <a href="mailto:hello@condax.solutions" className="text-cobalt underline underline-offset-4">
-              hello@condax.solutions
+            <a href="mailto:support@condaxits.com" className="text-cobalt underline underline-offset-4">
+              support@condaxits.com
             </a>
             .
           </p>

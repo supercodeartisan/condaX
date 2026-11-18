@@ -3,11 +3,17 @@ export const site = {
   name: "Condax",
   /** Full legal / company name. */
   legalName: "Condax Information Technology Solutions",
-  url: "https://condax.solutions",
+  url: "https://www.condaxits.com",
   tagline: "AI, automation, and product engineering",
   description:
     "Condax Information Technology Solutions (Condax) designs and ships AI systems, workflow automation, and digital products for organizations worldwide.",
   footprint: "Worldwide",
+  emails: {
+    /** Public contact / forms */
+    contact: "support@condaxits.com",
+    /** Careers applications & hiring alerts */
+    careers: "admin@condaxits.com",
+  },
 };
 
 export type ProcessStep = {

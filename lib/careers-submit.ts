@@ -30,7 +30,7 @@ export async function submitCareerApplication(
       ok: false,
       status: 503,
       error:
-        "Applications are not configured yet (missing DATABASE_URL). Email careers@condax.solutions meanwhile.",
+        "Applications are not configured yet (missing DATABASE_URL). Email admin@condaxits.com meanwhile.",
     };
   }
 
@@ -88,7 +88,7 @@ export async function submitCareerApplication(
       ok: false,
       status: 503,
       error:
-        "File storage is not configured yet (missing BLOB_READ_WRITE_TOKEN). Email careers@condax.solutions meanwhile.",
+        "File storage is not configured yet (missing BLOB_READ_WRITE_TOKEN). Email admin@condaxits.com meanwhile.",
     };
   }
 

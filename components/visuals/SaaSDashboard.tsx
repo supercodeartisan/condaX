@@ -12,7 +12,7 @@ export function SaaSDashboard({ className = "" }: { className?: string }) {
         <div className="ml-3 flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-hairline bg-warm/80 px-3 py-1.5">
           <span className="size-1.5 shrink-0 rounded-full bg-cobalt" />
           <span className="truncate text-[11px] tracking-wide text-muted">
-            app.condax.solutions / delivery / release-4.2
+            app.condaxits.com / delivery / release-4.2
           </span>
         </div>
       </div>

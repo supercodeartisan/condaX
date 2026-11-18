@@ -24,8 +24,8 @@ export default function PrivacyPage() {
           <p>
             Condax is an international consultancy serving clients worldwide. For privacy questions,
             email{" "}
-            <a href="mailto:hello@condax.solutions" className="text-cobalt underline underline-offset-4">
-              hello@condax.solutions
+            <a href="mailto:support@condaxits.com" className="text-cobalt underline underline-offset-4">
+              support@condaxits.com
             </a>
             .
           </p>
@@ -103,7 +103,7 @@ export default function PrivacyPage() {
           <h2 className="font-display text-[24px] font-medium text-ink">Your choices</h2>
           <p>
             You may request access, correction, or deletion of personal information we hold about
-            you by emailing hello@condax.solutions. We may need to verify your request. Some records
+            you by emailing support@condaxits.com. We may need to verify your request. Some records
             may be retained where we have a legal obligation.
           </p>
         </section>

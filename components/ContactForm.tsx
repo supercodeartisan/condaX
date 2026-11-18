@@ -28,7 +28,7 @@ export function ContactForm({ referralCode }: { referralCode?: string }) {
           setSent(true);
           form.reset();
         } catch {
-          setError("Network error. Please try again or email hello@condax.solutions.");
+          setError("Network error. Please try again or email support@condaxits.com.");
         }
         setBusy(false);
       }}
@@ -70,16 +70,16 @@ export function ContactForm({ referralCode }: { referralCode?: string }) {
         <p className="text-[14px] text-neutral">
           Thank you. We received your submission and typically reply within one business day. If you
           need to add anything, email{" "}
-          <a href="mailto:hello@condax.solutions" className="text-cobalt underline underline-offset-4">
-            hello@condax.solutions
+          <a href="mailto:support@condaxits.com" className="text-cobalt underline underline-offset-4">
+            support@condaxits.com
           </a>
           .
         </p>
       ) : (
         <p className="text-[14px] text-neutral">
           You may also email{" "}
-          <a href="mailto:hello@condax.solutions" className="text-cobalt underline underline-offset-4">
-            hello@condax.solutions
+          <a href="mailto:support@condaxits.com" className="text-cobalt underline underline-offset-4">
+            support@condaxits.com
           </a>
           .
         </p>

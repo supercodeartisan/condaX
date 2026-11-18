@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error:
-          "Contact form is not configured yet. Email hello@condax.solutions meanwhile.",
+          "Contact form is not configured yet. Email support@condaxits.com meanwhile.",
       },
       { status: 503 },
     );

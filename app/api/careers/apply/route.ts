@@ -38,7 +38,7 @@ export async function POST(request: Request) {
   } catch (err) {
     console.error("[careers] apply failed", err);
     const message =
-      "Something went wrong submitting your application. Please try again or email careers@condax.solutions.";
+      "Something went wrong submitting your application. Please try again or email admin@condaxits.com.";
     const wantsJson = request.headers.get("accept")?.includes("application/json");
     if (wantsJson) {
       return NextResponse.json({ error: message }, { status: 500 });

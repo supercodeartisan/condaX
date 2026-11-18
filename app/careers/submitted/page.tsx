@@ -31,10 +31,10 @@ export default async function ApplicationSubmittedPage({
               Back to careers
             </PillLink>
             <a
-              href="mailto:careers@condax.solutions"
+              href="mailto:admin@condaxits.com"
               className="inline-flex items-center rounded-full border border-hairline px-5 py-2.5 text-[15px] font-medium text-ink"
             >
-              Email careers@condax.solutions
+              Email admin@condaxits.com
             </a>
           </div>
         </>

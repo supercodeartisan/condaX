@@ -15,7 +15,8 @@ export async function notifyNewApplication(
   const resend = new Resend(apiKey);
   const to = getCareersNotifyTo();
   const from = getResendFrom();
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://condax.solutions";
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://www.condaxits.com";
 
   const answerLines = Object.entries(input.answers)
     .map(([key, value]) => `• ${key}:\n${value}`)
