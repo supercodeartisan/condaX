@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { guardPublicForm, rateLimitResponse } from "@/lib/form-guard";
 import { contactInquirySchema } from "@/lib/inquiries";
 import { insertInquiry, getReferralByCode } from "@/lib/inquiries-db";
 import { notifyContactInquiry } from "@/lib/inquiry-notify";
@@ -24,6 +25,23 @@ export async function POST(request: Request) {
   }
 
   const formData = await request.formData();
+  const guarded = await guardPublicForm(request, {
+    bucket: "contact",
+    limit: 8,
+    windowMs: 60 * 60 * 1000,
+    turnstileToken: String(formData.get("cf-turnstile-response") ?? ""),
+    honeypot: formData.get("website"),
+  });
+  if (!guarded.ok) {
+    if (guarded.kind === "honeypot") {
+      return NextResponse.json({ ok: true, id: "ok" });
+    }
+    if (guarded.kind === "rate_limit") {
+      return rateLimitResponse(guarded.retryAfterSec);
+    }
+    return NextResponse.json({ error: guarded.error }, { status: 400 });
+  }
+
   const parsed = contactInquirySchema.safeParse({
     name: String(formData.get("name") ?? ""),
     email: String(formData.get("email") ?? ""),
@@ -99,7 +117,6 @@ export async function POST(request: Request) {
         payload,
       }));
     } else {
-      // Email-only fallback when DB tables are not ready yet
       id = `email-${Date.now()}`;
     }
   } catch (err) {

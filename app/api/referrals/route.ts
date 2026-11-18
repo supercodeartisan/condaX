@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { guardPublicForm, rateLimitResponse } from "@/lib/form-guard";
 import { referralSchema } from "@/lib/inquiries";
 import { insertInquiry, insertReferral } from "@/lib/inquiries-db";
 import { notifyReferralCreated } from "@/lib/inquiry-notify";
@@ -24,6 +25,31 @@ export async function POST(request: Request) {
   }
 
   const body = (await request.json().catch(() => null)) as Record<string, unknown> | null;
+  const guarded = await guardPublicForm(request, {
+    bucket: "referral",
+    limit: 6,
+    windowMs: 60 * 60 * 1000,
+    turnstileToken: String(body?.["cf-turnstile-response"] ?? body?.turnstileToken ?? ""),
+    honeypot: typeof body?.website === "string" ? body.website : null,
+  });
+  if (!guarded.ok) {
+    if (guarded.kind === "honeypot") {
+      const siteUrl =
+        process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
+        new URL(request.url).origin;
+      return NextResponse.json({
+        ok: true,
+        id: "ok",
+        code: "CX-HOLD",
+        link: `${siteUrl}/get-in-touch`,
+      });
+    }
+    if (guarded.kind === "rate_limit") {
+      return rateLimitResponse(guarded.retryAfterSec);
+    }
+    return NextResponse.json({ error: guarded.error }, { status: 400 });
+  }
+
   const parsed = referralSchema.safeParse({
     referrerName: String(body?.referrerName ?? ""),
     referrerEmail: String(body?.referrerEmail ?? ""),

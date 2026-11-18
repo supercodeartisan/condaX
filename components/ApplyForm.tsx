@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { EmailLink } from "@/components/EmailLink";
+import { FormSecurityFields } from "@/components/FormSecurityFields";
 import { CalendarDatePicker } from "@/components/ui/CalendarDatePicker";
 import { getDobBounds, getStartDateBounds } from "@/lib/careers-apply";
 
@@ -225,6 +226,8 @@ export function ApplyForm({
           {error}
         </div>
       ) : null}
+
+      <FormSecurityFields />
 
       <button
         type="submit"

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { FormSecurityFields } from "@/components/FormSecurityFields";
 
 export function ReferralForm() {
   const [busy, setBusy] = useState(false);
@@ -27,6 +28,8 @@ export function ReferralForm() {
               contactName: data.contactName,
               contactEmail: data.contactEmail,
               notes: data.notes || null,
+              website: data.website || "",
+              "cf-turnstile-response": data["cf-turnstile-response"] || "",
             }),
           });
           const json = (await res.json().catch(() => null)) as
@@ -63,6 +66,7 @@ export function ReferralForm() {
           className="w-full resize-none rounded-2xl border border-hairline bg-surface px-4 py-4 text-[15px] text-charcoal outline-none placeholder:text-muted focus:border-cobalt"
         />
       </label>
+      <FormSecurityFields />
       <button
         type="submit"
         disabled={busy}

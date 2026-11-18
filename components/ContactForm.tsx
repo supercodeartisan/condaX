@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { EmailLink } from "@/components/EmailLink";
+import { FormSecurityFields } from "@/components/FormSecurityFields";
 import { investmentOptions, regionOptions, scopeOptions, sourceOptions } from "@/lib/site";
 
 export function ContactForm({ referralCode }: { referralCode?: string }) {
@@ -59,6 +60,7 @@ export function ContactForm({ referralCode }: { referralCode?: string }) {
       <Select label="What do you need? *" name="scope" options={scopeOptions} />
       <Field label="Any key milestones or ideal start date? *" name="date" />
       <Select label="Expected investment (USD) *" name="investment" options={investmentOptions} />
+      <FormSecurityFields />
       <button
         type="submit"
         disabled={busy || sent}

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { submitCareerApplication } from "@/lib/careers-submit";
+import { guardPublicForm, rateLimitResponse } from "@/lib/form-guard";
 
 export const runtime = "nodejs";
 
@@ -10,6 +11,37 @@ export async function POST(request: Request) {
     const wantsJson =
       request.headers.get("accept")?.includes("application/json") ||
       formData.get("response") === "json";
+
+    const guarded = await guardPublicForm(request, {
+      bucket: "careers-apply",
+      limit: 5,
+      windowMs: 60 * 60 * 1000,
+      turnstileToken: String(formData.get("cf-turnstile-response") ?? ""),
+      honeypot: formData.get("website"),
+    });
+    if (!guarded.ok) {
+      if (guarded.kind === "honeypot") {
+        if (wantsJson) return NextResponse.json({ ok: true, id: "ok" });
+        return NextResponse.redirect(new URL("/careers/submitted?ok=1", origin), 303);
+      }
+      if (guarded.kind === "rate_limit") {
+        if (wantsJson) return rateLimitResponse(guarded.retryAfterSec);
+        return NextResponse.redirect(
+          new URL(
+            `/careers/submitted?error=${encodeURIComponent("Too many requests. Please try again later.")}`,
+            origin,
+          ),
+          303,
+        );
+      }
+      if (wantsJson) {
+        return NextResponse.json({ error: guarded.error }, { status: 400 });
+      }
+      return NextResponse.redirect(
+        new URL(`/careers/submitted?error=${encodeURIComponent(guarded.error)}`, origin),
+        303,
+      );
+    }
 
     const result = await submitCareerApplication(formData, origin);
 
