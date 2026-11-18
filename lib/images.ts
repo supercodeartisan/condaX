@@ -1,7 +1,7 @@
 /**
  * Local visual assets under /public/images.
  * Prefer Condax originals for About/Careers heroes. Older Unsplash plates remain
- * as illustrative atmosphere only — never Condax staff or offices.
+ * as illustrative atmosphere only - never Condax staff or offices.
  */
 
 export type ImageAsset = {
@@ -33,7 +33,7 @@ export const images = {
     },
     careersTeaser: {
       src: "/images/home/careers-teaser.webp",
-      alt: "Quiet empty office with soft daylight — place photography, not Condax staff",
+      alt: "Quiet empty office with soft daylight - place photography, not Condax staff",
       width: 1600,
       height: 1067,
       sourceUrl: u("1497366811353-6870744d04b2"),
@@ -79,14 +79,14 @@ export const images = {
     },
     workspaceArchitecture: {
       src: "/images/about/workspace-architecture.webp",
-      alt: "Contemporary consulting office — conference glass, workstations, and a professional desk",
+      alt: "Contemporary consulting office - conference glass, workstations, and a professional desk",
       width: 1280,
       height: 720,
       sourceUrl: null,
       sourceSite: "Condax original",
       license: "All rights reserved",
       photoId: null,
-      usage: "About page hero visual — business office atmosphere",
+      usage: "About page hero visual - business office atmosphere",
     },
     deliveryWide: {
       src: "/images/about/delivery-wide.webp",
@@ -101,14 +101,14 @@ export const images = {
     },
     presenceRemote: {
       src: "/images/about/presence-remote.webp",
-      alt: "Laptop open on a wooden desk — remote work atmosphere",
+      alt: "Laptop open on a wooden desk - remote work atmosphere",
       width: 1200,
       height: 1600,
       sourceUrl: u("1486312338219-ce68d2c6f44d"),
       sourceSite: "Unsplash",
       license: "Unsplash License",
       photoId: "1486312338219-ce68d2c6f44d",
-      usage: "About presence grid — illustrative",
+      usage: "About presence grid - illustrative",
     },
     presenceFocus: {
       src: "/images/about/presence-focus.webp",
@@ -119,7 +119,7 @@ export const images = {
       sourceSite: "Unsplash",
       license: "Unsplash License",
       photoId: "1555066931-4365d14bab8c",
-      usage: "About presence grid — illustrative",
+      usage: "About presence grid - illustrative",
     },
     presenceCraft: {
       src: "/images/about/presence-craft.webp",
@@ -130,7 +130,7 @@ export const images = {
       sourceSite: "Unsplash",
       license: "Unsplash License",
       photoId: "1581291518633-83b4ebd1d83e",
-      usage: "About presence grid — illustrative",
+      usage: "About presence grid - illustrative",
     },
     presenceClarity: {
       src: "/images/about/presence-clarity.webp",
@@ -141,20 +141,20 @@ export const images = {
       sourceSite: "Unsplash",
       license: "Unsplash License",
       photoId: "1454165804606-c3d57bc86b40",
-      usage: "About presence grid — illustrative",
+      usage: "About presence grid - illustrative",
     },
   },
   careers: {
     hero: {
       src: "/images/careers/careers-hero.webp",
-      alt: "Professional software consultancy office — dual monitors, standing desks, meeting rooms",
+      alt: "Professional software consultancy office - dual monitors, standing desks, meeting rooms",
       width: 1280,
       height: 720,
       sourceUrl: null,
       sourceSite: "Condax original",
       license: "All rights reserved",
       photoId: null,
-      usage: "Careers page hero visual — business office atmosphere",
+      usage: "Careers page hero visual - business office atmosphere",
     },
     culture: {
       src: "/images/careers/careers-culture.webp",
@@ -281,7 +281,7 @@ export const images = {
       sourceSite: "Unsplash",
       license: "Unsplash License",
       photoId: "1434030216411-0b793f4b4173",
-      usage: "Work — Atlas cover",
+      usage: "Work - Atlas cover",
     },
     meridian: {
       src: "/images/work/meridian-cover.webp",
@@ -292,29 +292,29 @@ export const images = {
       sourceSite: "Unsplash",
       license: "Unsplash License",
       photoId: "1551288049-bebda4e38f71",
-      usage: "Work — Meridian cover",
+      usage: "Work - Meridian cover",
     },
     kite: {
       src: "/images/work/kite-cover.webp",
-      alt: "Library shelves suggesting knowledge retrieval — Kite sample concept",
+      alt: "Library shelves suggesting knowledge retrieval - Kite sample concept",
       width: 1400,
       height: 933,
       sourceUrl: u("1507842217343-583bb7270b66"),
       sourceSite: "Unsplash",
       license: "Unsplash License",
       photoId: "1507842217343-583bb7270b66",
-      usage: "Work — Kite cover",
+      usage: "Work - Kite cover",
     },
     harbor: {
       src: "/images/work/harbor-cover.webp",
-      alt: "Analytics laptop suggesting automation workflows — Harbor sample concept",
+      alt: "Analytics laptop suggesting automation workflows - Harbor sample concept",
       width: 1400,
       height: 933,
       sourceUrl: u("1460925895917-afdab827c52f"),
       sourceSite: "Unsplash",
       license: "Unsplash License",
       photoId: "1460925895917-afdab827c52f",
-      usage: "Work — Harbor cover",
+      usage: "Work - Harbor cover",
     },
   },
   insights: {
@@ -327,7 +327,7 @@ export const images = {
       sourceSite: "Unsplash",
       license: "Unsplash License",
       photoId: "1504639725590-34d0984388bd",
-      usage: "Insight cover — tool or build",
+      usage: "Insight cover - tool or build",
     },
     "rollout-without-leaking-data": {
       src: "/images/insights/rollout-without-leaking.webp",
@@ -338,7 +338,7 @@ export const images = {
       sourceSite: "Unsplash",
       license: "Unsplash License",
       photoId: "1563986768609-322da13575f3",
-      usage: "Insight cover — rollout without leaking",
+      usage: "Insight cover - rollout without leaking",
     },
     "copilot-vs-chatgpt": {
       src: "/images/insights/copilot-vs-chatgpt.webp",
@@ -349,7 +349,7 @@ export const images = {
       sourceSite: "Unsplash",
       license: "Unsplash License",
       photoId: "1516321318423-f06f85e504b3",
-      usage: "Insight cover — copilot vs chatgpt",
+      usage: "Insight cover - copilot vs chatgpt",
     },
   },
   shared: {

@@ -5,7 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 const capabilities = [
   {
     title: "Customer AI",
-    text: "Assistants, copilots, and grounded answers for onboarding, support, and sales — with citations and human review.",
+    text: "Assistants, copilots, and grounded answers for onboarding, support, and sales - with citations and human review.",
   },
   {
     title: "Workflow automation",
@@ -38,7 +38,7 @@ export function Capabilities() {
           </Reveal>
           <Reveal delay={90}>
             <p className="max-w-[40ch] text-[17px] leading-relaxed text-neutral lg:justify-self-end lg:pb-1">
-              From customer AI and automation pilots to production systems — integrated only where outcomes are measurable.
+              From customer AI and automation pilots to production systems - integrated only where outcomes are measurable.
             </p>
           </Reveal>
         </div>

@@ -46,7 +46,7 @@ export default function CookiePage() {
         <section className="space-y-3">
           <h2 className="font-display text-[24px] font-medium text-ink">Your controls</h2>
           <p>
-            You can control cookies through your browser settings — including blocking or deleting
+            You can control cookies through your browser settings - including blocking or deleting
             cookies. Blocking essential cookies may affect site functionality.
           </p>
         </section>

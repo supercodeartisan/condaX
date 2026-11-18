@@ -128,14 +128,14 @@ export const plans = {
       },
       {
         name: "Advisory session",
-        price: "$1k–$4k per session",
+        price: "$1k-$4k per session",
         text: "A structured working session on architecture, risk, or a pending technology decision.",
       },
     ],
   },
   ongoing: {
     title: "Delivery and partnership",
-    subtitle: "When the path is clear — a product to ship, or continued delivery support.",
+    subtitle: "When the path is clear - a product to ship, or continued delivery support.",
     items: [
       {
         name: "Custom product",
@@ -212,7 +212,7 @@ export const workItems = [
     slug: "ledger",
     name: "Ledger",
     blurb:
-      "Invoice intake automation — extract, validate, and route exceptions for finance review.",
+      "Invoice intake automation - extract, validate, and route exceptions for finance review.",
     tags: ["Automation", "Finance"],
     industry: "Automation",
     chip: "Sample",
@@ -263,7 +263,7 @@ export const insights = [
     topic: "Governance",
     date: "November 2026",
     title: "An AI governance review cadence operators will actually follow",
-    dek: "Quarterly checkpoints that connect policy, tooling, and real usage — without turning governance into a slide deck nobody opens.",
+    dek: "Quarterly checkpoints that connect policy, tooling, and real usage - without turning governance into a slide deck nobody opens.",
     author: "Condax",
     role: "AI enablement",
   },
@@ -303,7 +303,7 @@ export const insights = [
     topic: "AI",
     date: "September 2026",
     title: "Metrics that prove an AI pilot is worth scaling",
-    dek: "Leading indicators for adoption, quality, and risk — and the thresholds we use before recommending a wider rollout.",
+    dek: "Leading indicators for adoption, quality, and risk - and the thresholds we use before recommending a wider rollout.",
     author: "Condax",
     role: "AI enablement",
   },
@@ -343,7 +343,7 @@ export const insights = [
     topic: "Governance",
     date: "July 2026",
     title: "Vendor due diligence for enterprise AI platforms",
-    dek: "A practical questionnaire for security, data residency, subprocessors, and model behavior — before legal is already in contract review.",
+    dek: "A practical questionnaire for security, data residency, subprocessors, and model behavior - before legal is already in contract review.",
     author: "Condax",
     role: "AI enablement",
   },
@@ -353,7 +353,7 @@ export const insights = [
     topic: "Product",
     date: "June 2026",
     title: "When a custom copilot outperforms a generic chat interface",
-    dek: "The cases where wrapping your own data and workflow justifies a build — and the cases where it does not.",
+    dek: "The cases where wrapping your own data and workflow justifies a build - and the cases where it does not.",
     author: "Condax",
     role: "Product engineering",
   },
@@ -373,7 +373,7 @@ export const insights = [
     topic: "Product",
     date: "May 2026",
     title: "A handover checklist for AI and automation systems",
-    dek: "Owners, runbooks, eval suites, and access — what must transfer so operators can run the system without the builders.",
+    dek: "Owners, runbooks, eval suites, and access - what must transfer so operators can run the system without the builders.",
     author: "Condax",
     role: "Product engineering",
   },
@@ -416,7 +416,7 @@ export const faqs = [
   },
   {
     q: "How do you work with clients?",
-    a: "Delivery is remote by default. English is our working language, and we schedule around your working day — whether you operate in one region or several.",
+    a: "Delivery is remote by default. English is our working language, and we schedule around your working day - whether you operate in one region or several.",
   },
   {
     q: "Do you work with international companies?",
@@ -428,7 +428,7 @@ export const faqs = [
   },
   {
     q: "How long is a typical first engagement?",
-    a: "An AI pilot or advisory is usually measured in weeks. A custom product is scoped after that — typically months, not an open-ended retainer, unless you request ongoing partnership.",
+    a: "An AI pilot or advisory is usually measured in weeks. A custom product is scoped after that - typically months, not an open-ended retainer, unless you request ongoing partnership.",
   },
   {
     q: "Do you supplement or replace internal staff?",
@@ -455,7 +455,7 @@ export const comparison = [
   [
     "Delivery",
     "Long mobilization, heavy on-site presence, and slow time-to-value.",
-    "Senior owners from week one — async-friendly, aligned to your working day.",
+    "Senior owners from week one - async-friendly, aligned to your working day.",
   ],
   [
     "Data",
@@ -465,7 +465,7 @@ export const comparison = [
   [
     "After launch",
     "A presentation without operational transfer.",
-    "Your operators can run it — or we continue on a defined monthly scope.",
+    "Your operators can run it - or we continue on a defined monthly scope.",
   ],
 ];
 
@@ -473,7 +473,7 @@ export const sourceOptions = ["Word of mouth", "Google search", "AI search", "So
 export const scopeOptions = [
   "Help using AI tools",
   "A custom product",
-  "Not sure — help me decide",
+  "Not sure - help me decide",
 ];
 export const regionOptions = [
   "Americas",
@@ -482,4 +482,4 @@ export const regionOptions = [
   "Asia Pacific",
   "Other / worldwide",
 ];
-export const investmentOptions = ["Under $10k", "$10k–$40k", "$40k–$120k", "$120k+", "Not sure yet"];
+export const investmentOptions = ["Under $10k", "$10k-$40k", "$40k-$120k", "$120k+", "Not sure yet"];

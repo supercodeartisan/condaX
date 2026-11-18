@@ -20,7 +20,7 @@ export default function WorkPage() {
           Sample product work.
         </h1>
         <p className="mt-5 max-w-[52ch] text-[17px] text-neutral">
-          Customer AI, workflow automation, and enablement concepts — each with a product UI
+          Customer AI, workflow automation, and enablement concepts - each with a product UI
           screenshot. Live client case studies replace these samples when released.
         </p>
         <div className="mt-10 flex gap-2 overflow-x-auto pb-2">

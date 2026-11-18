@@ -194,7 +194,7 @@ function ServicesPanel() {
         >
           <div className="eyebrow">What we do</div>
           <p className="font-display mt-3 text-[22px] leading-snug font-medium tracking-tight text-ink">
-            Product and AI engineering — from initial scope through production handover.
+            Product and AI engineering - from initial scope through production handover.
           </p>
           <span className="mt-6 inline-flex text-[14px] font-medium text-cobalt group-hover:underline">
             Our approach

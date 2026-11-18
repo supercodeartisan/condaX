@@ -83,7 +83,7 @@ export default async function RolePage({ params }: { params: Promise<{ slug: str
       <section className="mt-16 rounded-[24px] border border-cobalt/15 bg-paper p-8">
         <h2 className="font-display text-[28px] font-light">Ready to apply?</h2>
         <p className="mt-2 text-neutral">
-          Remote role with Condax — open internationally. Application includes LinkedIn, location,
+          Remote role with Condax - open internationally. Application includes LinkedIn, location,
           and a few role-specific questions. We hire for strong technical craft and clear English
           communication in interviews and client delivery.
         </p>

@@ -1,4 +1,4 @@
-/** Illustrative concept — intelligent automation canvas. */
+/** Illustrative concept - intelligent automation canvas. */
 export function HarborFlow({ className = "" }: { className?: string }) {
   const nodes = [
     { title: "Event", meta: "CRM webhook", detail: "deal.updated" },

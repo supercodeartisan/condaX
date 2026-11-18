@@ -1,96 +1,102 @@
 import Image from "next/image";
-import { people, type Person } from "@/lib/people";
+import { people, type Person, type PersonLink } from "@/lib/people";
 import { cn } from "@/lib/cn";
 
 export function People() {
-  const lead = people.find((p) => p.featured) ?? people[0];
-  const others = people.filter((p) => p.name !== lead.name);
-
   return (
     <section className="paddings mx-auto max-w-[1720px] py-16 md:py-24">
-      <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="text-[13px] tracking-[0.14em] text-muted uppercase">Who you’ll work with</p>
-          <h2 className="font-display mt-3 text-[36px] font-light md:text-[48px]">Leadership & practitioners</h2>
-        </div>
-        <p className="max-w-[40ch] text-[15px] leading-relaxed text-neutral md:text-right">
-          A small senior group. Named owners on every engagement — not a large delivery bench.
-        </p>
-      </div>
+      <h2 className="font-display text-[36px] font-light tracking-tight text-ink md:text-[48px]">
+        Who leads the work
+      </h2>
 
-      <div className="mt-12 space-y-8">
-        <PersonCard person={lead} featured />
-        {others.length > 0 ? (
-          <div
-            className={cn(
-              "grid gap-6",
-              others.length > 1 ? "md:grid-cols-2" : "md:grid-cols-1 max-w-[720px]",
-            )}
-          >
-            {others.map((person) => (
-              <PersonCard key={person.name} person={person} />
-            ))}
-          </div>
-        ) : null}
-      </div>
+      <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 xl:grid-cols-4">
+        {people.map((person) => (
+          <li key={person.name} className="min-w-0">
+            <PersonCard person={person} />
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
 
-function PersonCard({ person, featured = false }: { person: Person; featured?: boolean }) {
+function PersonCard({ person }: { person: Person }) {
   return (
-    <article
-      className={cn(
-        "rounded-[24px] border border-hairline bg-surface p-6 md:p-8",
-        featured && "md:grid md:grid-cols-[auto_1fr] md:items-start md:gap-10",
-      )}
-    >
-      <Avatar person={person} size={featured ? "lg" : "md"} />
-      <div className={cn(!featured && "mt-5")}>
-        <h3 className="font-display text-[24px] font-medium tracking-tight text-ink md:text-[28px]">
-          {person.name}
-        </h3>
-        <p className="mt-1 text-[14px] font-medium text-cobalt">{person.role}</p>
-        <p className="mt-4 max-w-[54ch] text-[15px] leading-relaxed text-neutral">{person.bio}</p>
-        {person.links && person.links.length > 0 ? (
-          <div className="mt-5 flex flex-wrap gap-4">
-            {person.links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[13px] font-medium text-ink underline-offset-4 hover:text-cobalt hover:underline"
-              >
-                {link.label}
-              </a>
+    <article className="flex h-full flex-col overflow-hidden rounded-[24px] border border-hairline bg-surface shadow-[0_12px_40px_rgba(17,17,16,0.04)]">
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <div className="relative mx-auto size-44 overflow-hidden rounded-[22px] bg-warm ring-1 ring-hairline sm:size-48">
+          <Image
+            src={person.photo}
+            alt={`${person.name}, ${person.role}`}
+            fill
+            className="object-cover object-top"
+            sizes="192px"
+          />
+        </div>
+
+        <div className="mt-5 flex flex-1 flex-col">
+          <h3 className="font-display text-[20px] font-medium tracking-tight text-ink md:text-[22px]">
+            {person.name}
+          </h3>
+          <p className="mt-1 text-[11px] font-semibold tracking-[0.08em] text-cobalt uppercase">
+            {person.role}
+          </p>
+
+          <p className="mt-3 text-[13px] leading-relaxed text-neutral sm:text-[14px]">{person.bio}</p>
+
+          <ul className="mt-4 space-y-1.5 border-t border-hairline pt-4">
+            {person.focus.map((item) => (
+              <li key={item} className="flex items-start gap-2 text-[12px] text-charcoal">
+                <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-cobalt" aria-hidden />
+                <span>{item}</span>
+              </li>
             ))}
-          </div>
-        ) : (
-          <p className="mt-5 text-[13px] text-muted">LinkedIn profile coming soon</p>
-        )}
+          </ul>
+
+          {person.links && person.links.length > 0 ? (
+            <div className="mt-5 flex items-center gap-2">
+              {person.links.map((link) => (
+                <SocialIconLink key={link.href} link={link} />
+              ))}
+            </div>
+          ) : (
+            <div className="mt-5" />
+          )}
+        </div>
       </div>
     </article>
   );
 }
 
-function Avatar({ person, size }: { person: Person; size: "md" | "lg" }) {
-  const dim = size === "lg" ? 128 : 80;
+function SocialIconLink({ link }: { link: PersonLink }) {
   return (
-    <div
+    <a
+      href={link.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={link.label}
       className={cn(
-        "relative shrink-0 overflow-hidden rounded-full ring-1 ring-hairline",
-        size === "lg" ? "size-28 md:size-32" : "size-20",
+        "inline-flex size-9 items-center justify-center rounded-full border border-hairline bg-paper text-ink transition-colors",
+        "hover:border-cobalt hover:text-cobalt",
       )}
     >
-      <Image
-        src={person.photo}
-        alt={`${person.name}, ${person.role}`}
-        width={dim === 128 ? 256 : 160}
-        height={dim === 128 ? 256 : 160}
-        className="h-full w-full object-cover object-top"
-        sizes={size === "lg" ? "128px" : "80px"}
-      />
-    </div>
+      {link.network === "linkedin" ? <LinkedInIcon /> : <XIcon />}
+    </a>
+  );
+}
+
+function LinkedInIcon() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
+
+function XIcon() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.995-9.142L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
+    </svg>
   );
 }

@@ -9,7 +9,7 @@ export async function notifyNewApplication(
 ): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   if (!apiKey) {
-    console.warn("[careers] RESEND_API_KEY missing — skipped email notify");
+    console.warn("[careers] RESEND_API_KEY missing - skipped email notify");
     return;
   }
 
@@ -60,7 +60,7 @@ export async function notifyNewApplication(
   await resend.emails.send({
     from,
     to: [to],
-    subject: `[Careers] ${input.roleTitle} — ${input.fullName}`,
+    subject: `[Careers] ${input.roleTitle} - ${input.fullName}`,
     text,
   });
 }

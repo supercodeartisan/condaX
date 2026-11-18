@@ -22,7 +22,7 @@ type MotionState = "static" | "hidden" | "visible";
 
 /**
  * GPU-friendly scroll reveal: opacity + translate only.
- * Starts as plain content (no opacity:0) until JS opts into motion —
+ * Starts as plain content (no opacity:0) until JS opts into motion -
  * so a failed/disabled script never leaves the page blank.
  */
 export function Reveal({ children, className, delay = 0, once = true }: RevealProps) {

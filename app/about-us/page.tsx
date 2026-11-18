@@ -11,7 +11,7 @@ const workflow = [
   {
     step: "01",
     title: "Discover",
-    text: "Map the customer journey, systems, and constraints. Identify where AI and automation can change the work — not where a slide says they should.",
+    text: "Map the customer journey, systems, and constraints. Identify where AI and automation can change the work - not where a slide says they should.",
   },
   {
     step: "02",
@@ -26,7 +26,7 @@ const workflow = [
   {
     step: "04",
     title: "Build & automate",
-    text: "Ship iteratively — copilots, retrieval, and workflow automation with observability, evals, and owners attached from day one.",
+    text: "Ship iteratively - copilots, retrieval, and workflow automation with observability, evals, and owners attached from day one.",
   },
   {
     step: "05",
@@ -36,7 +36,7 @@ const workflow = [
   {
     step: "06",
     title: "Hand over",
-    text: "Transfer runbooks, access, and ownership. Your operators can run and extend the system — or we stay on a defined partnership.",
+    text: "Transfer runbooks, access, and ownership. Your operators can run and extend the system - or we stay on a defined partnership.",
   },
 ];
 
@@ -50,7 +50,7 @@ export default function AboutPage() {
         </h1>
         <p className="mt-6 max-w-[46ch] text-[18px] text-px-white-64">
           Condax Information Technology Solutions (Condax) helps organizations adopt AI, automate
-          customer and operations workflows, and build custom products — with senior owners and a clean
+          customer and operations workflows, and build custom products - with senior owners and a clean
           handover.
         </p>
         <EditorialImage
@@ -88,7 +88,7 @@ export default function AboutPage() {
             <h2 className="font-display mt-3 text-[36px] font-light md:text-[48px]">How we work</h2>
           </div>
           <p className="max-w-[42ch] text-[15px] leading-relaxed text-px-white-48 md:text-right">
-            A structured path from discovery to handover — built for AI systems and automation that
+            A structured path from discovery to handover - built for AI systems and automation that
             have to run after we leave.
           </p>
         </div>

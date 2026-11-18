@@ -24,7 +24,7 @@ const concepts = [
     slug: "harbor",
     name: "Harbor",
     category: "Intelligent automation",
-    blurb: "Classify, retrieve, and execute — with human review where judgment is required.",
+    blurb: "Classify, retrieve, and execute - with human review where judgment is required.",
   },
 ];
 

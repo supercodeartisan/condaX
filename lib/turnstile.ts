@@ -1,4 +1,4 @@
-/** Cloudflare Turnstile — optional; skipped when keys are not configured. */
+/** Cloudflare Turnstile - optional; skipped when keys are not configured. */
 
 export function turnstileConfigured(): boolean {
   return Boolean(

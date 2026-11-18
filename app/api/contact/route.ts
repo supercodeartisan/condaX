@@ -123,7 +123,7 @@ export async function POST(request: Request) {
       }));
     }
   } catch (err) {
-    console.error("[contact] save failed — will try email-only fallback", err);
+    console.error("[contact] save failed - will try email-only fallback", err);
   }
 
   if (!id) {
@@ -145,7 +145,7 @@ export async function POST(request: Request) {
     }
   } catch (error) {
     console.error("[contact] notify failed", error);
-    // DB saved but email failed — still OK for the visitor
+    // DB saved but email failed - still OK for the visitor
     if (!id.startsWith("email-")) {
       return NextResponse.json({ ok: true, id });
     }

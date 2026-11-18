@@ -6,7 +6,7 @@ export type WorkCase = {
   stack?: string[];
 };
 
-/** Product concepts — labeled Sample on the site until live client cases replace them. */
+/** Product concepts - labeled Sample on the site until live client cases replace them. */
 export const workCases: Record<string, WorkCase> = {
   kite: {
     slug: "kite",
@@ -48,7 +48,7 @@ export const workCases: Record<string, WorkCase> = {
       "Sales and support agents spent too long drafting replies while switching between CRM, policy docs, and prior tickets. Quality varied by person and shift.",
     approach: [
       "Connected approved CRM fields and policy sources into a single drafting surface.",
-      "Required citation and tone controls before send — never auto-send on day one.",
+      "Required citation and tone controls before send - never auto-send on day one.",
       "Logged drafts and outcomes so the team could improve prompts and retrieval.",
       "Trained champions to extend playbooks after Condax left.",
     ],
@@ -140,7 +140,7 @@ export const workCases: Record<string, WorkCase> = {
     outcome: [
       "Faster response to high-intent leads.",
       "Clearer ownership between marketing and sales.",
-      "A measurable, adjustable scoring model — not a black box.",
+      "A measurable, adjustable scoring model - not a black box.",
     ],
     stack: ["Lead scoring", "CRM APIs", "Enrichment", "Routing rules"],
   },
@@ -149,7 +149,7 @@ export const workCases: Record<string, WorkCase> = {
     challenge:
       "Operations lived across spreadsheets, inboxes, and chat threads. Ownership was unclear, and automation could not be layered on top of tribal process.",
     approach: [
-      "Captured the real queue: intake, assignment, blockers, and done — with the people who run it daily.",
+      "Captured the real queue: intake, assignment, blockers, and done - with the people who run it daily.",
       "Designed an operations surface with visible ownership and status before automating steps.",
       "Built the first release around one high-volume process.",
       "Documented roles and handover so the client could extend fields and later automate stages.",
@@ -166,7 +166,7 @@ export const workCases: Record<string, WorkCase> = {
     challenge:
       "A growing team had already procured AI writing and coding licenses, but usage was uneven and nobody owned the data rules. Leadership wanted adoption without exposing customer or source material to the wrong destinations.",
     approach: [
-      "Mapped real workflows — support replies, internal briefs, and engineering assist — rather than generic AI training.",
+      "Mapped real workflows - support replies, internal briefs, and engineering assist - rather than generic AI training.",
       "Chose and configured tools against tenancy and retention settings the company could defend.",
       "Wrote a short usage policy with concrete do / don’t examples from their work.",
       "Ran role-based enablement and left named owners for access, policy updates, and questions.",

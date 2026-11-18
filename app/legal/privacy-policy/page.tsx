@@ -80,7 +80,7 @@ export default function PrivacyPage() {
           <h2 className="font-display text-[24px] font-medium text-ink">Sharing</h2>
           <p>
             We may share information with service providers who help us run email, hosting, or
-            recruiting infrastructure — under confidentiality obligations — or when required by law.
+            recruiting infrastructure - under confidentiality obligations - or when required by law.
             We do not share your information for unrelated marketing lists.
           </p>
         </section>

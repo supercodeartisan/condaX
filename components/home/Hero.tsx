@@ -30,7 +30,7 @@ export function Hero() {
 
             <p className="animate-fade-up delay-300 mt-7 max-w-[36ch] text-[17px] leading-[1.7] text-neutral md:text-[18px]">
               We design customer AI, workflow automation, and production software for organizations that
-              need durable outcomes — not prototypes.
+              need durable outcomes - not prototypes.
             </p>
             <div className="animate-fade-up delay-400 mt-10 flex flex-wrap items-center gap-3">
               <ButtonLink href="/work" arrow>

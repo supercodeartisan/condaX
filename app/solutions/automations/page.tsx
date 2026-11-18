@@ -15,10 +15,10 @@ export default function AutomationsPage() {
         </BrowserFrame>
       }
       title="Automate repeatable work currently handled by email."
-      lede="We connect the tools you already operate — and add AI where a person was only copying, routing, classifying, or summarizing. Checkpoints remain wherever judgment is required."
+      lede="We connect the tools you already operate - and add AI where a person was only copying, routing, classifying, or summarizing. Checkpoints remain wherever judgment is required."
       cta="Chart an automation path"
       statsHeading="Automation with accountability"
-      statsLede="Visible runs, named owners, and logs your organization can audit — not opaque scripts that only consultants understand."
+      statsLede="Visible runs, named owners, and logs your organization can audit - not opaque scripts that only consultants understand."
       outcomeStripHeading="Results operators notice"
       outcomeStrip={[
         { value: "Hours back", label: "Less manual routing and chase" },
@@ -26,12 +26,12 @@ export default function AutomationsPage() {
         { value: "Still human", label: "Review gates where policy demands" },
       ]}
       useCasesHeading="Workflows we automate"
-      useCasesLede="Intelligent automation across intake, document flow, and customer operations — starting with one high-volume path before broadening connectors."
+      useCasesLede="Intelligent automation across intake, document flow, and customer operations - starting with one high-volume path before broadening connectors."
       useCases={[
         {
           title: "Ticket and case routing",
           audience: "Support & operations",
-          text: "Classify, assign, and notify from helpdesk or CRM events — with AI drafts only where templates already exist.",
+          text: "Classify, assign, and notify from helpdesk or CRM events - with AI drafts only where templates already exist.",
         },
         {
           title: "Document intake",
@@ -41,7 +41,7 @@ export default function AutomationsPage() {
         {
           title: "Order and fulfillment handoffs",
           audience: "Revenue operations",
-          text: "Status sync between sales, ops, and finance tools — exceptions surfaced instead of buried in email.",
+          text: "Status sync between sales, ops, and finance tools - exceptions surfaced instead of buried in email.",
         },
         {
           title: "Internal approvals",
@@ -50,11 +50,11 @@ export default function AutomationsPage() {
         },
       ]}
       offeringsHeading="What we implement"
-      offeringsLede="Integration-first engineering with AI steps inside the flow — not a separate chatbot on the side."
+      offeringsLede="Integration-first engineering with AI steps inside the flow - not a separate chatbot on the side."
       offerings={[
         {
           title: "Stack mapping",
-          text: "Inventory triggers, APIs, and ownership before writing automation — new SaaS only when the workflow cannot live in current tools.",
+          text: "Inventory triggers, APIs, and ownership before writing automation - new SaaS only when the workflow cannot live in current tools.",
         },
         {
           title: "Orchestration",
@@ -76,7 +76,7 @@ export default function AutomationsPage() {
           title: "Chart",
           duration: "1 week",
           summary:
-            "Trace the current loop — who touches it, which systems, where it breaks — and pick one automation candidate with measurable ROI.",
+            "Trace the current loop - who touches it, which systems, where it breaks - and pick one automation candidate with measurable ROI.",
           outcomes: ["Current-state diagram", "Candidate workflow and metrics", "Risk and compliance notes"],
           weDo: [
             "Interview operators and review sample items",
@@ -91,7 +91,7 @@ export default function AutomationsPage() {
         },
         {
           title: "Connect",
-          duration: "1–3 weeks",
+          duration: "1-3 weeks",
           summary:
             "Wire authentication, webhooks or polling, and sandbox paths. AI steps run only with logging and test fixtures on historical samples.",
           outcomes: ["Integrated dev/staging paths", "Test harness on sample payloads", "Alerting on failures"],
@@ -108,7 +108,7 @@ export default function AutomationsPage() {
         },
         {
           title: "Pilot",
-          duration: "2–4 weeks",
+          duration: "2-4 weeks",
           summary:
             "Production traffic on the chosen path with side-by-side comparison to the manual process where safe.",
           outcomes: ["Time and error metrics", "Tuned thresholds and routing rules", "Operator feedback incorporated"],
@@ -159,7 +159,7 @@ export default function AutomationsPage() {
         {
           value: "Visible",
           label: "Runs you can inspect",
-          text: "Logs, owners, and pause controls — not hidden cron jobs.",
+          text: "Logs, owners, and pause controls - not hidden cron jobs.",
         },
         {
           value: "Owned",

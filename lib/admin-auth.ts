@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 
 export const ADMIN_COOKIE = "condax_admin";
 
-/** 7 days — shorter session reduces stolen-cookie window. */
+/** 7 days - shorter session reduces stolen-cookie window. */
 const SESSION_MAX_AGE_SEC = 60 * 60 * 24 * 7;
 
 export function getAdminPassword(): string | null {
@@ -28,7 +28,7 @@ function safeEqual(a: string, b: string): boolean {
   return timingSafeEqual(bufA, bufB);
 }
 
-/** Signed session token — never stores the raw admin password in the cookie. */
+/** Signed session token - never stores the raw admin password in the cookie. */
 export function createAdminSessionToken(): string | null {
   const secret = sessionSecret();
   if (!secret) return null;
@@ -42,7 +42,7 @@ export function verifyAdminSessionToken(token: string | undefined | null): boole
   const secret = sessionSecret();
   if (!secret) return false;
 
-  // Legacy: cookie previously stored the raw password — accept once, then re-login upgrades.
+  // Legacy: cookie previously stored the raw password - accept once, then re-login upgrades.
   const password = getAdminPassword();
   if (password && safeEqual(token, password)) return true;
 

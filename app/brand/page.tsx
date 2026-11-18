@@ -11,7 +11,7 @@ const concepts = [
   {
     file: "condax-logo-01-wordmark.jpg",
     title: "01 · Wordmark",
-    note: "Studio-style text only — closest to Metalab / Work & Co confidence.",
+    note: "Studio-style text only - closest to Metalab / Work & Co confidence.",
   },
   {
     file: "condax-logo-02-c-mark.jpg",
@@ -31,7 +31,7 @@ const concepts = [
   {
     file: "condax-logo-05-frame.jpg",
     title: "05 · Frame",
-    note: "Product-window metaphor — UI craft without stock.",
+    note: "Product-window metaphor - UI craft without stock.",
   },
 ] as const;
 
@@ -56,7 +56,7 @@ export default function BrandPage() {
         </h1>
         <p className="mt-5 max-w-[52ch] text-[17px] leading-relaxed text-neutral">
           Drawn from product-studio patterns (quiet wordmark + simple geometric mark) and aligned to
-          the site palette — ink, cobalt, warm paper. Production SVGs live in{" "}
+          the site palette - ink, cobalt, warm paper. Production SVGs live in{" "}
           <code className="text-ink">/public/logos</code>. Pick one lockup + one mark; swap the
           header when ready.
         </p>
@@ -113,7 +113,7 @@ export default function BrandPage() {
       <section className="paddings mx-auto max-w-[1100px] pb-24">
         <h2 className="font-display text-[28px] font-medium text-ink">Concept renders</h2>
         <p className="mt-3 max-w-[48ch] text-[15px] text-neutral">
-          Exploratory images for direction — use the SVGs above for production.
+          Exploratory images for direction - use the SVGs above for production.
         </p>
         <div className="mt-8 grid gap-8">
           {concepts.map((c) => (

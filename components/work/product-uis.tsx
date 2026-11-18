@@ -2,7 +2,7 @@ import { cn } from "@/lib/cn";
 
 type ShellProps = { className?: string };
 
-/** Kite — full knowledge workspace */
+/** Kite - full knowledge workspace */
 export function KiteUi({ className = "" }: ShellProps) {
   return (
     <div className={cn("min-h-[420px] bg-[#0f1419] text-white", className)} aria-hidden>
@@ -118,7 +118,7 @@ export function KiteUi({ className = "" }: ShellProps) {
   );
 }
 
-/** Beacon — full onboarding console */
+/** Beacon - full onboarding console */
 export function BeaconUi({ className = "" }: ShellProps) {
   const steps = [
     { label: "Welcome", done: true },
@@ -230,7 +230,7 @@ export function BeaconUi({ className = "" }: ShellProps) {
   );
 }
 
-/** Canvas — full mail + CRM workspace */
+/** Canvas - full mail + CRM workspace */
 export function CanvasUi({ className = "" }: ShellProps) {
   return (
     <div className={cn("min-h-[420px] bg-[#f3f1ec]", className)} aria-hidden>
@@ -254,7 +254,7 @@ export function CanvasUi({ className = "" }: ShellProps) {
           <div className="border-b border-hairline px-4 py-3">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div>
-                <div className="text-[13px] font-medium">Re: Renewal — Acme Logistics</div>
+                <div className="text-[13px] font-medium">Re: Renewal - Acme Logistics</div>
                 <div className="text-[10px] text-muted">To: jordan@acme.co · Thread · 4 messages</div>
               </div>
               <span className="rounded-full bg-cobalt/10 px-2.5 py-1 text-[10px] font-medium text-cobalt">
@@ -271,7 +271,7 @@ export function CanvasUi({ className = "" }: ShellProps) {
               <div className="mb-2 flex items-center gap-2 text-[10px] font-medium text-cobalt">
                 Canvas draft · grounded in CRM + policy
               </div>
-              <p>Hi Jordan —</p>
+              <p>Hi Jordan -</p>
               <p className="mt-2">
                 We can share the SOC2 packet and DPA today. Renewal pricing stays at the contracted
                 rate unless VP approves an exception. Happy to join a 20-minute security walkthrough.
@@ -314,7 +314,7 @@ export function CanvasUi({ className = "" }: ShellProps) {
   );
 }
 
-/** Pulse — full triage board */
+/** Pulse - full triage board */
 export function PulseUi({ className = "" }: ShellProps) {
   const cols = [
     {
@@ -387,7 +387,7 @@ export function PulseUi({ className = "" }: ShellProps) {
   );
 }
 
-/** Harbor — full topology console */
+/** Harbor - full topology console */
 export function HarborUi({ className = "" }: ShellProps) {
   return (
     <div className={cn("min-h-[420px] bg-[#0c0f14] text-white", className)} aria-hidden>
@@ -468,7 +468,7 @@ export function HarborUi({ className = "" }: ShellProps) {
   );
 }
 
-/** Relay — full swimlane page */
+/** Relay - full swimlane page */
 export function RelayUi({ className = "" }: ShellProps) {
   const lanes = [
     { name: "CRM", bars: [{ left: 0, width: 24, label: "Deal won" }] },
@@ -531,7 +531,7 @@ export function RelayUi({ className = "" }: ShellProps) {
   );
 }
 
-/** Ledger — full invoice review page */
+/** Ledger - full invoice review page */
 export function LedgerUi({ className = "" }: ShellProps) {
   return (
     <div className={cn("min-h-[420px] bg-[#e8ebe7]", className)} aria-hidden>
@@ -599,7 +599,7 @@ export function LedgerUi({ className = "" }: ShellProps) {
   );
 }
 
-/** Signal — full qualification console */
+/** Signal - full qualification console */
 export function SignalUi({ className = "" }: ShellProps) {
   return (
     <div
@@ -670,13 +670,13 @@ export function SignalUi({ className = "" }: ShellProps) {
   );
 }
 
-/** Meridian — full ops board */
+/** Meridian - full ops board */
 export function MeridianUi({ className = "" }: ShellProps) {
   const cols = [
     { title: "Intake", wip: "4", items: ["Vendor onboarding", "Access request", "Badge revoke"] },
     { title: "In review", wip: "3", items: ["Contract renewal", "SLA follow-up"], active: true },
     { title: "Blocked", wip: "2", items: ["Invoice exception"] },
-    { title: "Done", wip: "—", items: ["Vendor NDA", "Seat transfer", "Policy update"] },
+    { title: "Done", wip: "-", items: ["Vendor NDA", "Seat transfer", "Policy update"] },
   ];
   return (
     <div className={cn("min-h-[420px] bg-[#f7f5f1]", className)} aria-hidden>
@@ -721,7 +721,7 @@ export function MeridianUi({ className = "" }: ShellProps) {
   );
 }
 
-/** Atlas — full governance page */
+/** Atlas - full governance page */
 export function AtlasUi({ className = "" }: ShellProps) {
   const tools = ["Writing", "Coding", "Research"];
   const rules = ["Tenancy lock", "No model training", "Access review", "PII redaction", "Vendor list"];
@@ -773,7 +773,7 @@ export function AtlasUi({ className = "" }: ShellProps) {
                       cell ? "bg-cobalt text-white" : "bg-warm text-muted",
                     )}
                   >
-                    {cell ? "✓" : "—"}
+                    {cell ? "✓" : "-"}
                   </span>
                 </div>
               ))}

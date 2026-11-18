@@ -18,25 +18,25 @@ export const hiringProcess = [
   {
     step: "01",
     title: "Application review",
-    duration: "3–5 business days",
-    text: "We read your CV, LinkedIn, and answers against the role — looking for clear technical depth and evidence you can explain your work. Strong fits move forward; everyone hears back either way.",
+    duration: "3-5 business days",
+    text: "We read your CV, LinkedIn, and answers against the role - looking for clear technical depth and evidence you can explain your work. Strong fits move forward; everyone hears back either way.",
   },
   {
     step: "02",
     title: "Screening conversation",
-    duration: "25–30 minutes",
-    text: "A focused English interview with the hiring lead: recent work, what you want next, timezone overlap, and mutual fit. We assess spoken communication as carefully as substance — client delivery depends on both.",
+    duration: "25-30 minutes",
+    text: "A focused English interview with the hiring lead: recent work, what you want next, timezone overlap, and mutual fit. We assess spoken communication as carefully as substance - client delivery depends on both.",
   },
   {
     step: "03",
     title: "Practical assessment",
-    duration: "60–90 minutes",
-    text: "Role-specific and grounded in real work — portfolio deep-dive, pairing, architecture discussion, or a short case. Strong technical skill is non-negotiable. We share the format in advance; no trick puzzles.",
+    duration: "60-90 minutes",
+    text: "Role-specific and grounded in real work - portfolio deep-dive, pairing, architecture discussion, or a short case. Strong technical skill is non-negotiable. We share the format in advance; no trick puzzles.",
   },
   {
     step: "04",
     title: "Team & ways of working",
-    duration: "45–60 minutes",
+    duration: "45-60 minutes",
     text: "Meet people you would deliver with. We cover async habits, client communication in English, ownership, and how decisions get made on a distributed team.",
   },
   {
@@ -50,7 +50,7 @@ export const hiringProcess = [
 export const whyJoin = [
   {
     title: "Client delivery, not idle staffing",
-    text: "You work on client pilots and products — AI enablement and custom builds that must ship.",
+    text: "You work on client pilots and products - AI enablement and custom builds that must ship.",
   },
   {
     title: "International by default",
@@ -62,7 +62,7 @@ export const whyJoin = [
   },
   {
     title: "Craft and communication",
-    text: "Strong technical skill and clear English — interviews, demos, and async writing. You work with clients directly, not behind a coordination layer.",
+    text: "Strong technical skill and clear English - interviews, demos, and async writing. You work with clients directly, not behind a coordination layer.",
   },
 ];
 
@@ -76,11 +76,11 @@ export const roles: Role[] = [
     summary:
       "Own end-to-end delivery of custom web products, internal tools, and production AI features for international clients.",
     about:
-      "Condax engages when a team needs software that operators will run in production — SaaS products, internal platforms, and carefully scoped AI features. As a Senior Full-Stack Engineer you own slices of that work from brief to handover: architecture choices, implementation, quality, and the written trail that lets the client’s team continue without us. You will work in small squads with design and product, talk to clients in English, and prefer maintainable systems over demonstration-led delivery.",
+      "Condax engages when a team needs software that operators will run in production - SaaS products, internal platforms, and carefully scoped AI features. As a Senior Full-Stack Engineer you own slices of that work from brief to handover: architecture choices, implementation, quality, and the written trail that lets the client’s team continue without us. You will work in small squads with design and product, talk to clients in English, and prefer maintainable systems over demonstration-led delivery.",
     youWill: [
       "Lead feature delivery across API, data model, UI, deployment, and observability.",
       "Ship production TypeScript applications (typically React / Next.js and a solid backend or BFF).",
-      "Integrate model-backed capabilities where they earn their place — with evals, logging, and human checkpoints.",
+      "Integrate model-backed capabilities where they earn their place - with evals, logging, and human checkpoints.",
       "Write handover docs, runbooks, and short decision records so ownership can leave Condax cleanly.",
       "Participate in client demos, trade-off conversations, and status updates in English.",
       "Uphold engineering standards: reviews, testing strategy, and secure handling of client data.",
@@ -90,7 +90,7 @@ export const roles: Role[] = [
       "5+ years building and operating production web software.",
       "Deep TypeScript fluency and strong React (or equivalent) craft.",
       "Comfort owning ambiguous scope without a large supporting cast.",
-      "Evidence of shipping under real constraints — deadlines, legacy systems, or imperfect data.",
+      "Evidence of shipping under real constraints - deadlines, legacy systems, or imperfect data.",
       "Strong English interview and communication skills (spoken and written) for client-facing delivery.",
     ],
     nice: [
@@ -119,21 +119,21 @@ export const roles: Role[] = [
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
     summary:
-      "Craft calm, production-grade interfaces for products, copilots, and internal tools — accessibility and performance included.",
+      "Craft calm, production-grade interfaces for products, copilots, and internal tools - accessibility and performance included.",
     about:
       "Our product compositions and client UIs need engineers who care about interaction quality as much as delivery speed. As a Frontend Engineer you partner closely with design and full-stack peers to implement systems that feel considered: dense operational screens, customer-facing flows, and AI surfaces that stay usable under load. You will raise the bar on component quality, performance budgets, and front-end architecture that survives handover.",
     youWill: [
       "Implement responsive, accessible interfaces in React / Next.js (or similar) with strong TypeScript.",
       "Translate Figma (and imperfect briefs) into production UI with sensible component boundaries.",
       "Own front-end performance, state management choices, and design-system consistency.",
-      "Build AI product surfaces — review steps, streaming states, empty states — without novelty for its own sake.",
+      "Build AI product surfaces - review steps, streaming states, empty states - without novelty for its own sake.",
       "Collaborate with backend engineers on API contracts and error handling that operators understand.",
       "Document UI patterns so client teams can extend the product after Condax exits.",
     ],
     youMight: [
       "3+ years of professional front-end engineering on shipped products.",
       "Strong React and TypeScript; comfort with modern CSS (including Tailwind or equivalent).",
-      "Eye for spacing, hierarchy, and interaction detail — not layout alone.",
+      "Eye for spacing, hierarchy, and interaction detail - not layout alone.",
       "Experience working with designers in a tight feedback loop.",
       "Strong technical front-end craft and strong English interview / communication skills for reviews and client demos.",
     ],
@@ -176,7 +176,7 @@ export const roles: Role[] = [
     ],
     youMight: [
       "5+ years of backend or platform engineering in production.",
-      "Strong in at least one of Node/TypeScript, Python, Go, or Java — and SQL fluency.",
+      "Strong in at least one of Node/TypeScript, Python, Go, or Java - and SQL fluency.",
       "Experience with cloud infrastructure and containerized deployments.",
       "Track record of operating systems you built (on-call or equivalent ownership).",
       "Strong backend/platform technical skill and strong English interview / communication skills for design reviews and client sessions.",
@@ -190,7 +190,7 @@ export const roles: Role[] = [
     applyQuestions: [
       {
         id: "reliability",
-        label: "Describe a production incident you owned — cause, response, and what you changed afterward.",
+        label: "Describe a production incident you owned - cause, response, and what you changed afterward.",
       },
       {
         id: "integration",
@@ -206,20 +206,20 @@ export const roles: Role[] = [
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
     summary:
-      "Turn AI pilots into systems clients can run — copilots, retrieval, and automations grounded in their data, not a demo chatbot.",
+      "Turn AI pilots into systems clients can run - copilots, retrieval, and automations grounded in their data, not a demo chatbot.",
     about:
       "Condax treats AI as product engineering with extra failure modes. As an AI / LLM Engineer you design retrieval, tool use, evaluation, and human checkpoints so features earn their place in production. You will push back when a prompt is not a product, choose vendors against cost and data constraints, and leave the client able to operate what you shipped.",
     youWill: [
       "Design and build copilots, RAG pipelines, and workflow automations on real client stacks.",
       "Select models and vendors against latency, cost, quality, and data-residency constraints.",
       "Add evals, tracing, and human review steps before anything is called production-ready.",
-      "Partner with product and engineering so AI sits inside the product — not as a side chatbot.",
+      "Partner with product and engineering so AI sits inside the product - not as a side chatbot.",
       "Support AI-for-teams rollouts: safe usage patterns, tenancy boundaries, and operator training materials.",
       "Document prompts, datasets, and operational playbooks for handover.",
     ],
     youMight: [
       "Shipped at least one LLM or ML feature that real users depended on.",
-      "Solid software engineering habits — APIs, tests, reviews — not only notebooks.",
+      "Solid software engineering habits - APIs, tests, reviews - not only notebooks.",
       "Ability to explain adopt versus build for AI without relying on presentation-only rationale.",
       "Strong AI/engineering technical skill and strong English interview / communication skills for async handovers and client explanations.",
       "Comfort saying “not yet” when data quality or risk is wrong.",
@@ -249,16 +249,16 @@ export const roles: Role[] = [
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
     summary:
-      "Shape technical direction for engagements — from discovery recommendations to architecture that a delivery team can execute.",
+      "Shape technical direction for engagements - from discovery recommendations to architecture that a delivery team can execute.",
     about:
-      "Many Condax engagements start with a hard call: buy a tool, build software, or wait. As a Solutions Architect you lead that technical clarity — mapping current systems, proposing options with trade-offs, and establishing an architecture the delivery team can ship against. You stay close enough to implementation to remain credible, and close enough to clients to keep recommendations practical.",
+      "Many Condax engagements start with a hard call: buy a tool, build software, or wait. As a Solutions Architect you lead that technical clarity - mapping current systems, proposing options with trade-offs, and establishing an architecture the delivery team can ship against. You stay close enough to implementation to remain credible, and close enough to clients to keep recommendations practical.",
     youWill: [
       "Run technical discovery: systems, constraints, risks, and success criteria.",
       "Produce architecture options and recommendations clients can accept or reject.",
       "Define integration patterns, data boundaries, and non-functional requirements.",
       "Guide delivery teams on sequencing, spikes, and technical debt they should not ignore.",
       "Support advisory and enablement work when AI tooling is the right answer instead of a build.",
-      "Present findings clearly in English — written briefs and live sessions.",
+      "Present findings clearly in English - written briefs and live sessions.",
     ],
     youMight: [
       "7+ years across engineering and architecture, or equivalent senior IC experience.",
@@ -293,7 +293,7 @@ export const roles: Role[] = [
     summary:
       "Make environments, pipelines, and cloud foundations reliably operable for product teams and client handovers.",
     about:
-      "Delivery speed collapses when environments are fragile. As a DevOps / Cloud Engineer you create the infrastructure and automation that let Condax squads ship safely — and that clients can operate after engagement. You will prefer clear IaC, least-privilege access, and observability over clever one-offs.",
+      "Delivery speed collapses when environments are fragile. As a DevOps / Cloud Engineer you create the infrastructure and automation that let Condax squads ship safely - and that clients can operate after engagement. You will prefer clear IaC, least-privilege access, and observability over clever one-offs.",
     youWill: [
       "Build and maintain CI/CD, environments, and release workflows for product teams.",
       "Implement infrastructure as code on AWS, GCP, or Azure with reviewable changes.",
@@ -332,9 +332,9 @@ export const roles: Role[] = [
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
     summary:
-      "Design products and internal tools that operators and customers open every day — calm UI, clear flows, no concept-only deliverables.",
+      "Design products and internal tools that operators and customers open every day - calm UI, clear flows, no concept-only deliverables.",
     about:
-      "Condax design work is judged by whether people can complete the job with less friction. As a Product Designer you own experience from problem framing through production-ready specs, working inside small delivery squads. You will design for density, clarity, and AI surfaces that stay trustworthy — and you will talk to clients and users directly.",
+      "Condax design work is judged by whether people can complete the job with less friction. As a Product Designer you own experience from problem framing through production-ready specs, working inside small delivery squads. You will design for density, clarity, and AI surfaces that stay trustworthy - and you will talk to clients and users directly.",
     youWill: [
       "Own UX and UI from brief to production-ready specifications and design QA.",
       "Design flows for products, internal tools, and AI review / copilot surfaces.",
@@ -374,16 +374,16 @@ export const roles: Role[] = [
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
     summary:
-      "Keep engagements pointed at outcomes — discovery, scope, sequencing, and honest calls between tools and custom software.",
+      "Keep engagements pointed at outcomes - discovery, scope, sequencing, and honest calls between tools and custom software.",
     about:
-      "Condax product managers protect clarity. You will run discovery, write scopes clients can accept or reject, sequence delivery, and keep quality ahead of process overhead. You sit between client stakeholders and the delivery squad — facilitating adopt-versus-build decisions, surfacing risk early, and making sure handover is part of the plan, not an afterthought.",
+      "Condax product managers protect clarity. You will run discovery, write scopes clients can accept or reject, sequence delivery, and keep quality ahead of process overhead. You sit between client stakeholders and the delivery squad - facilitating adopt-versus-build decisions, surfacing risk early, and making sure handover is part of the plan, not an afterthought.",
     youWill: [
       "Lead discovery and produce briefs / scopes with explicit outcomes and trade-offs.",
       "Facilitate buy vs build vs wait decisions with engineering and design.",
       "Own delivery cadence: demos, risk logs, stakeholder updates, and definition of done.",
       "Coordinate a remote international team without drowning people in process.",
       "Protect quality: push back on unjustified scope and under-specified AI features.",
-      "Plan handover — training, docs, and ownership — from the start of the engagement.",
+      "Plan handover - training, docs, and ownership - from the start of the engagement.",
     ],
     youMight: [
       "Led product or delivery work in software, consulting, or a studio.",
@@ -415,9 +415,9 @@ export const roles: Role[] = [
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
     summary:
-      "Run client engagements end to end — relationship, plan, risk, and the operating rhythm that keeps senior ICs effective.",
+      "Run client engagements end to end - relationship, plan, risk, and the operating rhythm that keeps senior ICs effective.",
     about:
-      "Small senior teams still need someone accountable for the engagement as a whole. As an Engagement / Delivery Lead you own the client relationship day to day, keep work sequenced, surface risk early, and make sure Condax delivers what was promised — including a clean exit. You are not a pure coordinator; you understand product and engineering enough to intervene when quality slips.",
+      "Small senior teams still need someone accountable for the engagement as a whole. As an Engagement / Delivery Lead you own the client relationship day to day, keep work sequenced, surface risk early, and make sure Condax delivers what was promised - including a clean exit. You are not a pure coordinator; you understand product and engineering enough to intervene when quality slips.",
     youWill: [
       "Own engagement health: plan, milestones, risks, and stakeholder communication.",
       "Translate client goals into a delivery shape the squad can execute.",
@@ -444,7 +444,7 @@ export const roles: Role[] = [
       },
       {
         id: "rituals",
-        label: "Which delivery rituals do you insist on for a remote senior team — and which do you refuse?",
+        label: "Which delivery rituals do you insist on for a remote senior team - and which do you refuse?",
       },
     ],
   },
@@ -455,7 +455,7 @@ export const roles: Role[] = [
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
     summary:
-      "Raise the quality bar for client products — risk-based testing, automation where it pays off, and release confidence without ceremony.",
+      "Raise the quality bar for client products - risk-based testing, automation where it pays off, and release confidence without ceremony.",
     about:
       "Condax ships software clients will operate. As a QA / Quality Engineer you embed with delivery squads to catch the failures that matter: regressions, broken handovers, fragile AI behaviors, and unclear acceptance criteria. You will prefer risk-based strategy and useful automation over checkbox-driven ceremony.",
     youWill: [
@@ -496,7 +496,7 @@ export const roles: Role[] = [
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
     summary:
-      "Turn delivery into durable enablement — docs, training, and policy language operators can use after Condax leaves.",
+      "Turn delivery into durable enablement - docs, training, and policy language operators can use after Condax leaves.",
     about:
       "Handover is part of the product. As a Technical Writer / Enablement Specialist you create the guides, runbooks, and training materials that make AI tools and custom software durable. You will work beside engineers and PMs, interview operators, and write in clear English that respects how people work day to day.",
     youWill: [
@@ -510,7 +510,7 @@ export const roles: Role[] = [
     youMight: [
       "Proven portfolio of technical documentation or enablement programs.",
       "Excellent written English and strong spoken English interview / facilitation skills for remote training.",
-      "Strong technical literacy — able to work with engineering teams and imperfect source material.",
+      "Strong technical literacy - able to work with engineering teams and imperfect source material.",
       "Comfortable facilitating short training sessions remotely.",
     ],
     nice: [

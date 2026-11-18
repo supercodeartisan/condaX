@@ -1,4 +1,4 @@
-/** Illustrative concept — internal operations platform. */
+/** Illustrative concept - internal operations platform. */
 export function MeridianOps({ className = "" }: { className?: string }) {
   const rows = [
     { id: "OP-204", work: "Vendor onboarding", owner: "A. Reyes", status: "In review", tone: "cobalt" },

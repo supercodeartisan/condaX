@@ -15,7 +15,7 @@ export default function CopilotsPage() {
         </BrowserFrame>
       }
       title="Assistants grounded in your organization’s data."
-      lede="Customer or internal copilots on your documents, tickets, and product context — retrieval, guardrails, and human handover you can explain to security and leadership."
+      lede="Customer or internal copilots on your documents, tickets, and product context - retrieval, guardrails, and human handover you can explain to security and leadership."
       cta="Scope a copilot pilot"
       statsHeading="Designed for production answers"
       statsLede="Not a branded chat box. The assistant is only as good as the corpus, access rules, and the workflow it sits inside."
@@ -26,7 +26,7 @@ export default function CopilotsPage() {
         { value: "Bounded", label: "Clear refusal and escalation paths" },
       ]}
       useCasesHeading="Copilots that earn trust"
-      useCasesLede="We start with one workflow — support, onboarding, sales enablement, or internal search — and expand only after operators trust the first release."
+      useCasesLede="We start with one workflow - support, onboarding, sales enablement, or internal search - and expand only after operators trust the first release."
       useCases={[
         {
           title: "Support deflection with citations",
@@ -36,7 +36,7 @@ export default function CopilotsPage() {
         {
           title: "Internal knowledge search",
           audience: "Practitioners & operators",
-          text: "Search across wiki, policies, and code with the same access boundaries people already have — not a dump of everything into one prompt.",
+          text: "Search across wiki, policies, and code with the same access boundaries people already have - not a dump of everything into one prompt.",
         },
         {
           title: "Sales and onboarding assistants",
@@ -46,15 +46,15 @@ export default function CopilotsPage() {
         {
           title: "Engineering and ops copilots",
           audience: "Technical operators",
-          text: "Runbooks, incident context, and repository-aware assistance — scoped corpora and audit logs for every response.",
+          text: "Runbooks, incident context, and repository-aware assistance - scoped corpora and audit logs for every response.",
         },
       ]}
       offeringsHeading="What we build"
-      offeringsLede="AI engineering alongside integration — model choice matters less than grounding, evaluation, and who may see what."
+      offeringsLede="AI engineering alongside integration - model choice matters less than grounding, evaluation, and who may see what."
       offerings={[
         {
           title: "Retrieval & corpus design",
-          text: "Chunking, metadata, and refresh so answers stay current — tied to the systems you already operate.",
+          text: "Chunking, metadata, and refresh so answers stay current - tied to the systems you already operate.",
         },
         {
           title: "Access & guardrails",
@@ -62,7 +62,7 @@ export default function CopilotsPage() {
         },
         {
           title: "Workflow embedding",
-          text: "Copilot inside helpdesk, CRM, or internal tools — not a separate tab people forget to open.",
+          text: "Copilot inside helpdesk, CRM, or internal tools - not a separate tab people forget to open.",
         },
         {
           title: "Evals & handover",
@@ -70,13 +70,13 @@ export default function CopilotsPage() {
         },
       ]}
       processHeading="From corpus to pilot"
-      processLede="A short path to a copilot your client stakeholders can approve — scoped data, measurable success, and operators named before go-live."
+      processLede="A short path to a copilot your client stakeholders can approve - scoped data, measurable success, and operators named before go-live."
       process={[
         {
           title: "Frame",
           duration: "1 week",
           summary:
-            "Name the workflow, the corpus, and what “good” looks like. We document risks — hallucination, access leakage, and vendor constraints — before model selection.",
+            "Name the workflow, the corpus, and what “good” looks like. We document risks - hallucination, access leakage, and vendor constraints - before model selection.",
           outcomes: ["Success criteria and refusal policy", "Data inventory and retention rules", "Buy vs build on assistant shell"],
           weDo: [
             "Map sources, auth, and refresh cadence",
@@ -91,7 +91,7 @@ export default function CopilotsPage() {
         },
         {
           title: "Ground",
-          duration: "1–2 weeks",
+          duration: "1-2 weeks",
           summary:
             "Build retrieval on approved data, wire access rules, and stand up a thin UI or channel integration for a narrow audience.",
           outcomes: ["Indexed corpus with metadata", "Role-scoped retrieval paths", "Baseline eval set from real tickets or FAQs"],
@@ -108,7 +108,7 @@ export default function CopilotsPage() {
         },
         {
           title: "Pilot",
-          duration: "2–4 weeks",
+          duration: "2-4 weeks",
           summary:
             "Named operators use the assistant on live work. We coach in the workflow, review logs, and cut paths that do not meet the success criteria.",
           outcomes: ["Usage and quality metrics", "Refined prompts and retrieval", "Escalation playbook"],
@@ -125,7 +125,7 @@ export default function CopilotsPage() {
         },
         {
           title: "Operate",
-          duration: "1–2 weeks",
+          duration: "1-2 weeks",
           summary:
             "Handover with runbooks, eval harness, and ownership inside your organization. We stay only if you want ongoing tuning.",
           outcomes: ["Operator documentation", "Log and eval access", "Optional partnership for expansion"],
@@ -143,18 +143,18 @@ export default function CopilotsPage() {
       ]}
       showPlans
       closingTitle="Start with one workflow, one corpus."
-      closingLede="Tell us where answers break down today — support queue, internal search, or customer onboarding. We will propose a pilot scope, eval approach, and timeline band."
+      closingLede="Tell us where answers break down today - support queue, internal search, or customer onboarding. We will propose a pilot scope, eval approach, and timeline band."
       closingCta="Discuss a copilot pilot"
       stats={[
         {
           value: "Grounded",
           label: "Your data, not generic chat",
-          text: "Value comes from corpus design, retrieval, and workflow — not the model logo on the login screen.",
+          text: "Value comes from corpus design, retrieval, and workflow - not the model logo on the login screen.",
         },
         {
           value: "Scoped",
           label: "One job first",
-          text: "Support, sales, or internal search — not organization-wide AI deployment by default.",
+          text: "Support, sales, or internal search - not organization-wide AI deployment by default.",
         },
         {
           value: "Observable",
@@ -164,7 +164,7 @@ export default function CopilotsPage() {
         {
           value: "Handover",
           label: "Operators can run it",
-          text: "Eval sets, guardrails, and documentation — we do not leave an opaque black box.",
+          text: "Eval sets, guardrails, and documentation - we do not leave an opaque black box.",
         },
       ]}
     />

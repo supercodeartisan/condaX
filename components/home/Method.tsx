@@ -10,7 +10,7 @@ import { cn } from "@/lib/cn";
 const steps = [
   {
     title: "Discover",
-    text: "Understand the business, users, challenges, and objectives — before prescribing a stack.",
+    text: "Understand the business, users, challenges, and objectives - before prescribing a stack.",
   },
   {
     title: "Define",
@@ -26,7 +26,7 @@ const steps = [
   },
   {
     title: "Evolve",
-    text: "Deploy, improve, scale, and support — with ownership transferred to your operators.",
+    text: "Deploy, improve, scale, and support - with ownership transferred to your operators.",
   },
 ];
 

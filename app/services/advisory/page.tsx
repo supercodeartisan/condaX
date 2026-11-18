@@ -10,19 +10,19 @@ export default function AdvisoryPage() {
       lede="Short paid sessions and written recommendations when leadership is deciding between AI tools, a custom product, and deferring action."
       cta="Book a session"
       processHeading="Engagement process"
-      processLede="Advisory is a decision aid — structured for a defined outcome, not ongoing general advisory by default. You leave with a written recommendation and a next paid step only if one is justified."
+      processLede="Advisory is a decision aid - structured for a defined outcome, not ongoing general advisory by default. You leave with a written recommendation and a next paid step only if one is justified."
       offerings={[
         { title: "Adopt vs build", text: "Whether general-purpose AI tools cover the job, or you need software of your own." },
         { title: "Stack review", text: "What you already operate, what to discontinue, and what is worth adding." },
         { title: "Risk & data", text: "Vendors, tenancy, and a policy that remains enforceable under informal early usage." },
-        { title: "Roadmap", text: "A sequence: pilot, then product, then stop — with owners attached." },
+        { title: "Roadmap", text: "A sequence: pilot, then product, then stop - with owners attached." },
       ]}
       process={[
         {
           title: "Brief",
-          duration: "1–2 days",
+          duration: "1-2 days",
           summary:
-            "We lock the decision that is stuck, who has to live with it, and what “done” means for this advisory — before we dig in.",
+            "We lock the decision that is stuck, who has to live with it, and what “done” means for this advisory - before we dig in.",
           outcomes: [
             "Decision statement and stakeholders",
             "Constraints and time box",
@@ -41,9 +41,9 @@ export default function AdvisoryPage() {
         },
         {
           title: "Read",
-          duration: "2–5 days",
+          duration: "2-5 days",
           summary:
-            "We review your stack, workflows, and constraints so the session is working time — not open-ended discovery on the call.",
+            "We review your stack, workflows, and constraints so the session is working time - not open-ended discovery on the call.",
           outcomes: [
             "Prepared reading of current state",
             "Hypotheses and open questions",
@@ -83,9 +83,9 @@ export default function AdvisoryPage() {
         },
         {
           title: "Write-up",
-          duration: "2–5 days",
+          duration: "2-5 days",
           summary:
-            "A written recommendation: adopt, build, or defer — with the constraints, the sequence, and the next paid step only if it is justified.",
+            "A written recommendation: adopt, build, or defer - with the constraints, the sequence, and the next paid step only if it is justified.",
           outcomes: [
             "Decision memo leadership can circulate",
             "Roadmap sketch with owners",
@@ -107,7 +107,7 @@ export default function AdvisoryPage() {
         { value: "Hours → days", label: "Typical advisory", text: "A decision aid, structured for a defined outcome." },
         { value: "One recommendation", label: "Adopt, build, or defer", text: "We will recommend that you do not hire us to build when that is the better path." },
         { value: "Written", label: "You leave with a memo", text: "A recommendation you can share with leadership." },
-        { value: "$1k–$4k", label: "Per session band", text: "Quoted before we start. See engagement options for pilots and builds." },
+        { value: "$1k-$4k", label: "Per session band", text: "Quoted before we start. See engagement options for pilots and builds." },
       ]}
     />
   );

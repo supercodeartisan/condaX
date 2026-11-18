@@ -8,7 +8,7 @@ const paths = [
     label: "Advisory",
     title: "Discovery and pilots",
     description:
-      "For organizations that need expert guidance before committing to a larger build — clarity first, then investment.",
+      "For organizations that need expert guidance before committing to a larger build - clarity first, then investment.",
     items: [
       "Technical discovery",
       "Architecture advisory",
@@ -25,7 +25,7 @@ const paths = [
     label: "Delivery",
     title: "Product engineering",
     description:
-      "For organizations that need an engineering partner to deliver AI systems, automation, or a substantial product — and transfer ownership cleanly.",
+      "For organizations that need an engineering partner to deliver AI systems, automation, or a substantial product - and transfer ownership cleanly.",
     items: [
       "Customer AI and copilots",
       "Workflow automation",

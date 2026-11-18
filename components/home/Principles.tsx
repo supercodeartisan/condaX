@@ -6,7 +6,7 @@ import { ArchitectureVisual } from "@/components/visuals/ArchitectureVisual";
 const principles = [
   {
     title: "Product thinking before implementation",
-    text: "We clarify the job to be done before writing production code — adopt, build, or defer.",
+    text: "We clarify the job to be done before writing production code - adopt, build, or defer.",
   },
   {
     title: "Senior engineering ownership",
@@ -14,7 +14,7 @@ const principles = [
   },
   {
     title: "Practical AI",
-    text: "Models only where they earn their place — with retrieval, evaluation, and guardrails when needed.",
+    text: "Models only where they earn their place - with retrieval, evaluation, and guardrails when needed.",
   },
   {
     title: "Maintainable architecture",
@@ -43,7 +43,7 @@ export function Principles() {
               </h2>
               <p className="mt-5 max-w-[42ch] text-[17px] leading-relaxed text-neutral">
                 Credibility comes from engineering discipline, explicit trade-offs, and structured
-                handover — not from borrowed social proof.
+                handover - not from borrowed social proof.
               </p>
             </Reveal>
 
@@ -71,7 +71,7 @@ export function Principles() {
               <ArchitectureVisual className="border-0 shadow-none" />
             </div>
             <p className="mt-5 text-[13px] leading-relaxed text-muted">
-              Architecture stays legible — services, data, and AI layers with clear boundaries.
+              Architecture stays legible - services, data, and AI layers with clear boundaries.
             </p>
           </Reveal>
         </div>

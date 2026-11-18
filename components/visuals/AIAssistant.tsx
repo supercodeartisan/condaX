@@ -33,7 +33,7 @@ export function AIAssistant({ className = "" }: { className?: string }) {
                 1
               </span>
               <span>
-                <span className="font-medium text-ink">Northwind</span> — renewal in 6 days, open
+                <span className="font-medium text-ink">Northwind</span> - renewal in 6 days, open
                 escalation
               </span>
             </li>
@@ -42,7 +42,7 @@ export function AIAssistant({ className = "" }: { className?: string }) {
                 2
               </span>
               <span>
-                <span className="font-medium text-ink">Helix Labs</span> — billing dispute awaiting
+                <span className="font-medium text-ink">Helix Labs</span> - billing dispute awaiting
                 finance
               </span>
             </li>

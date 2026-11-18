@@ -1,4 +1,4 @@
-/** Illustrative concept — AI knowledge assistant product surface. */
+/** Illustrative concept - AI knowledge assistant product surface. */
 export function KiteAssistant({ className = "" }: { className?: string }) {
   return (
     <div

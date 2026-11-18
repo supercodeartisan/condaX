@@ -18,7 +18,7 @@ export function getStartDateBounds(now = new Date()) {
   return { min: toIsoDate(min), max: toIsoDate(max) };
 }
 
-/** DOB: age 18–80. */
+/** DOB: age 18-80. */
 export const DOB_MIN_AGE = 18;
 export const DOB_MAX_AGE = 80;
 

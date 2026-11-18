@@ -22,7 +22,7 @@ export function InsightsListing() {
       <h1 className="font-display text-[40px] font-light md:text-[56px]">Insights</h1>
       <p className="mt-3 max-w-[46ch] text-[16px] text-neutral">
         Practical notes on AI adoption, workflow automation, customer-facing assistants, and
-        governance — written for leaders making near-term technology decisions.
+        governance - written for leaders making near-term technology decisions.
       </p>
 
       <div className="mt-8 flex gap-2 overflow-x-auto pb-2">

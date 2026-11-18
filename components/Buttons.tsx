@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 
-/** Legacy pill CTA — remapped to Condax v2 cobalt system for internal pages. */
+/** Legacy pill CTA - remapped to Condax v2 cobalt system for internal pages. */
 export function PillLink({
   href,
   children,

@@ -1,6 +1,6 @@
 import { cn } from "@/lib/cn";
 
-/** Inline SVG marks — use these in the header once a direction is chosen. */
+/** Inline SVG marks - use these in the header once a direction is chosen. */
 export function LogoMarkC({ className }: { className?: string }) {
   return (
     <svg

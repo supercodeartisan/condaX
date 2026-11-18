@@ -21,7 +21,7 @@ export async function notifyContactInquiry(input: {
 }): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   if (!apiKey) {
-    console.warn("[contact] RESEND_API_KEY missing — skipped email notify");
+    console.warn("[contact] RESEND_API_KEY missing - skipped email notify");
     return;
   }
 
@@ -61,7 +61,7 @@ export async function notifyContactInquiry(input: {
   await resend.emails.send({
     from: getResendFrom(),
     to: [notifyTo()],
-    subject: `[Contact] ${input.scope} — ${input.name}`,
+    subject: `[Contact] ${input.scope} - ${input.name}`,
     text,
   });
 }
@@ -80,7 +80,7 @@ export async function notifyReferralCreated(input: {
 }): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   if (!apiKey) {
-    console.warn("[referral] RESEND_API_KEY missing — skipped email notify");
+    console.warn("[referral] RESEND_API_KEY missing - skipped email notify");
     return;
   }
 
@@ -115,7 +115,7 @@ export async function notifyReferralCreated(input: {
   await resend.emails.send({
     from: getResendFrom(),
     to: [notifyTo()],
-    subject: `[Referral] ${input.organization} — ${input.code}`,
+    subject: `[Referral] ${input.organization} - ${input.code}`,
     text,
   });
 }

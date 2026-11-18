@@ -1,12 +1,14 @@
 export type PersonLink = {
   label: string;
   href: string;
+  network: "linkedin" | "x";
 };
 
 export type Person = {
   name: string;
   role: string;
   bio: string;
+  focus: string[];
   initials: string;
   photo: string;
   featured?: boolean;
@@ -21,18 +23,23 @@ export const people: Person[] = [
     featured: true,
     initials: "RD",
     photo: "/images/about/people/rheden-david.webp",
-    bio: "Rheden leads Condax’s product and delivery direction — from adopt-versus-build calls through architecture and production handover. He stays close to the engineering work so recommendations stay practical, and clients always have a senior owner accountable for outcomes.",
-    links: [],
+    bio: "Leads Condax’s practice across AI strategy, product architecture, and delivery. Advises leadership on adopt-versus-build decisions and stays accountable through design, build, and production handover.",
+    focus: ["AI & product strategy", "System architecture", "Executive delivery ownership"],
   },
   {
     name: "Art Franco",
     role: "Senior Software Engineer",
     initials: "AF",
     photo: "/images/about/people/art-franco.webp",
-    bio: "Art builds the systems Condax ships — web products, internal tools, and AI-backed workflows with an eye on maintainability after handover. He focuses on clean implementation, reliable integrations, and the operational detail that keeps software usable in production.",
+    bio: "Designs and ships production systems for Condax clients - web platforms, internal tools, and AI-backed workflows. Emphasizes maintainable architecture, reliable integrations, and operational readiness after launch.",
+    focus: ["Full-stack platforms", "Integrations & automation", "Production reliability"],
     links: [
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/art-angelo-franco" },
-      { label: "X", href: "https://x.com/ArtFrancoaw2g" },
+      {
+        label: "LinkedIn",
+        network: "linkedin",
+        href: "https://www.linkedin.com/in/art-angelo-franco",
+      },
+      { label: "X", network: "x", href: "https://x.com/ArtFrancoaw2g" },
     ],
   },
 ];

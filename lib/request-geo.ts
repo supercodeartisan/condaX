@@ -38,5 +38,5 @@ export function formatRequestGeo(geo: {
   if (place && geo.ip) return `${place} · ${geo.ip}`;
   if (place) return place;
   if (geo.ip) return geo.ip;
-  return "—";
+  return "-";
 }

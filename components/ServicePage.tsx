@@ -40,7 +40,7 @@ type Props = {
   closingTitle?: string;
   closingLede?: string;
   closingCta?: string;
-  /** Optional custom product/diagram composition — prefer over stock photography */
+  /** Optional custom product/diagram composition - prefer over stock photography */
   visual?: React.ReactNode;
 };
 

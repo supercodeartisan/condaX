@@ -44,7 +44,7 @@ export function TurnstileField({ siteKey }: { siteKey: string }) {
       }
       hostRef.current.innerHTML = "";
       setToken("");
-      // Disable Turnstile's built-in field — it would create a second
+      // Disable Turnstile's built-in field - it would create a second
       // cf-turnstile-response and FormData.get() would often read our empty one first.
       widgetId.current = window.turnstile.render(hostRef.current, {
         sitekey: siteKey,
@@ -130,7 +130,7 @@ export function readTurnstileToken(form: HTMLFormElement): string {
   return "";
 }
 
-/** Invisible honeypot — leave empty. */
+/** Invisible honeypot - leave empty. */
 export function HoneypotField() {
   return (
     <div

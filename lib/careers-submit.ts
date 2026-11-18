@@ -78,7 +78,7 @@ export async function submitCareerApplication(
   if (hasBlob) {
     try {
       const safeName = cvCheck.file.name.replace(/[^\w.\-()+ ]+/g, "_").slice(0, 120);
-      // Store was created as Private — must upload with access: "private".
+      // Store was created as Private - must upload with access: "private".
       const blob = await put(`careers-cvs/${Date.now()}-${safeName}`, cvCheck.file, {
         access: "private",
         addRandomSuffix: true,

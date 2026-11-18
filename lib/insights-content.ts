@@ -15,14 +15,14 @@ export const insightBodies: Record<string, InsightSection[]> = {
       heading: "Start with the job, not the model",
       paragraphs: [
         "Write the job in one sentence: who does it, how often, what “done” looks like, and what breaks when it fails. If you cannot name the job, you are not ready to adopt or build.",
-        "Then map where the work already lives — inbox, spreadsheet, CRM, codebase, customer chat. Tools win when the job fits a generic surface. Builds win when the job is trapped in your data, permissions, or process.",
+        "Then map where the work already lives - inbox, spreadsheet, CRM, codebase, customer chat. Tools win when the job fits a generic surface. Builds win when the job is trapped in your data, permissions, or process.",
       ],
     },
     {
       heading: "When a tool is enough",
       paragraphs: [
-        "Choose adopt when a well-configured product covers most of the job, when operators will live in that product anyway, and when the risk is mostly usage policy — not missing workflow.",
-        "Examples: drafting and summarizing in a managed workspace, coding assistance in an IDE, research with clear source rules. The engagement is rollout, training, and guardrails — not a custom UI.",
+        "Choose adopt when a well-configured product covers most of the job, when operators will live in that product anyway, and when the risk is mostly usage policy - not missing workflow.",
+        "Examples: drafting and summarizing in a managed workspace, coding assistance in an IDE, research with clear source rules. The engagement is rollout, training, and guardrails - not a custom UI.",
       ],
     },
     {
@@ -35,14 +35,14 @@ export const insightBodies: Record<string, InsightSection[]> = {
     {
       heading: "A decision you can approve or decline",
       paragraphs: [
-        "A useful recommendation is short: adopt, build, or defer — with cost, timeline, and what you give up. If the honest answer is defer, that is still a delivery. Shipping the wrong system is more expensive than a delayed start.",
+        "A useful recommendation is short: adopt, build, or defer - with cost, timeline, and what you give up. If the honest answer is defer, that is still a delivery. Shipping the wrong system is more expensive than a delayed start.",
       ],
     },
   ],
   "rollout-without-leaking-data": [
     {
       paragraphs: [
-        "Handing everyone a copilot without tenancy rules is how confidential work ends up in the wrong place. A rollout that sustains treats data boundaries as part of the product — not a footnote after training day.",
+        "Handing everyone a copilot without tenancy rules is how confidential work ends up in the wrong place. A rollout that sustains treats data boundaries as part of the product - not a footnote after training day.",
       ],
     },
     {
@@ -56,7 +56,7 @@ export const insightBodies: Record<string, InsightSection[]> = {
       heading: "Write a policy the organization can enforce",
       paragraphs: [
         "A usable policy names: what may be pasted, what never leaves the company, which tools are approved, and who to ask when unsure. Keep it short enough to read in five minutes.",
-        "Pair the policy with examples from your real work — contracts, customer tickets, source code — so people do not have to invent judgment under deadline pressure.",
+        "Pair the policy with examples from your real work - contracts, customer tickets, source code - so people do not have to invent judgment under deadline pressure.",
       ],
     },
     {
@@ -70,7 +70,7 @@ export const insightBodies: Record<string, InsightSection[]> = {
   "copilot-vs-chatgpt": [
     {
       paragraphs: [
-        "A generic chat interface is excellent at open-ended drafting. It is a weak product when operators need grounded answers, citations, permissions, and a place to act — approve, reject, file, assign.",
+        "A generic chat interface is excellent at open-ended drafting. It is a weak product when operators need grounded answers, citations, permissions, and a place to act - approve, reject, file, assign.",
         "A custom copilot is worth the build when those product requirements are the job. It is not worth the build when a managed tool already covers the work with acceptable risk.",
       ],
     },
@@ -85,7 +85,7 @@ export const insightBodies: Record<string, InsightSection[]> = {
       heading: "Signals you should stay on a generic tool",
       paragraphs: [
         "The job is mostly writing or ideation with public or low-sensitivity context. Usage volume is low. Nobody will maintain retrieval quality after launch.",
-        "In those cases we help you adopt and govern the tool — and we will recommend that path even when a custom build would appear more ambitious in a presentation.",
+        "In those cases we help you adopt and govern the tool - and we will recommend that path even when a custom build would appear more ambitious in a presentation.",
       ],
     },
     {
@@ -106,13 +106,13 @@ export const insightBodies: Record<string, InsightSection[]> = {
       heading: "Anchor reviews to real ownership",
       paragraphs: [
         "Name three roles before the first review: a business owner for use cases, a security or data owner for boundaries, and an engineering owner for integrations. Without named owners, governance becomes a shared inbox nobody monitors.",
-        "Each quarter, those owners confirm what is in production, what is piloting, and what was retired. Retired tools matter as much as new ones — shadow usage often returns through forgotten licenses.",
+        "Each quarter, those owners confirm what is in production, what is piloting, and what was retired. Retired tools matter as much as new ones - shadow usage often returns through forgotten licenses.",
       ],
     },
     {
       heading: "What each review should cover",
       paragraphs: [
-        "Start with inventory: approved tools, connected systems, and teams with access. Then review incidents or near-misses — pasted customer data, wrong citations sent externally, or automations that bypassed approval.",
+        "Start with inventory: approved tools, connected systems, and teams with access. Then review incidents or near-misses - pasted customer data, wrong citations sent externally, or automations that bypassed approval.",
         "Close with deltas: policy updates, training gaps, and vendor changes. If nothing changed, the review should still record that explicitly so auditors see continuity, not neglect.",
       ],
     },
@@ -120,7 +120,7 @@ export const insightBodies: Record<string, InsightSection[]> = {
       heading: "Keep artifacts short and operational",
       paragraphs: [
         "One-page summaries beat long governance binders. Link to the live policy, the access request process, and the escalation path when someone is unsure.",
-        "Store decisions where engineers and operators already work — ticket comments, internal wikis, or release notes — so governance is visible in the workflow, not buried in a folder.",
+        "Store decisions where engineers and operators already work - ticket comments, internal wikis, or release notes - so governance is visible in the workflow, not buried in a folder.",
       ],
     },
     {
@@ -135,7 +135,7 @@ export const insightBodies: Record<string, InsightSection[]> = {
     {
       paragraphs: [
         "Customer-facing assistants fail in public. A wrong discount, an outdated policy quote, or an overconfident answer can reach thousands of inboxes before a human notices.",
-        "Guardrails are not limitations on the model — they are product requirements: what the assistant may suggest, what it must escalate, and how operators override it without fighting the UI.",
+        "Guardrails are not limitations on the model - they are product requirements: what the assistant may suggest, what it must escalate, and how operators override it without fighting the UI.",
       ],
     },
     {
@@ -148,14 +148,14 @@ export const insightBodies: Record<string, InsightSection[]> = {
     {
       heading: "Escalation paths customers and staff can trust",
       paragraphs: [
-        "When the assistant is uncertain, it should hand off with context — customer identity, intent, cited sources, and what was already attempted. Operators should not re-read an entire chat to understand the situation.",
+        "When the assistant is uncertain, it should hand off with context - customer identity, intent, cited sources, and what was already attempted. Operators should not re-read an entire chat to understand the situation.",
         "Customers should see a clear signal when a human takes over, and roughly when to expect a response. Ambiguous handoffs erode trust faster than slow replies.",
       ],
     },
     {
       heading: "Content and brand boundaries",
       paragraphs: [
-        "Tie answers to corpora you maintain: help center articles, approved macros, product changelogs. Block or flag topics your counsel has restricted — competitors, medical claims, financial advice — with a consistent customer-safe message.",
+        "Tie answers to corpora you maintain: help center articles, approved macros, product changelogs. Block or flag topics your counsel has restricted - competitors, medical claims, financial advice - with a consistent customer-safe message.",
         "Review tone guidelines the same way you review security: short, example-driven, and referenced in evaluation sets.",
       ],
     },
@@ -185,14 +185,14 @@ export const insightBodies: Record<string, InsightSection[]> = {
       heading: "Design checkpoints operators will use",
       paragraphs: [
         "A checkpoint should arrive with context: extracted fields, confidence scores, links to source records, and a suggested action. Asking someone to open three systems to decide is how checkpoints get bypassed.",
-        "Default safe actions when time expires — hold, route to a senior queue, or request more data — rather than silently proceeding.",
+        "Default safe actions when time expires - hold, route to a senior queue, or request more data - rather than silently proceeding.",
       ],
     },
     {
       heading: "Measure automation with quality, not only speed",
       paragraphs: [
         "Track touchless rate alongside exception rate, rework rate, and customer contact rate after automation. A high touchless rate with rising complaints is a failing design.",
-        "Review checkpoints quarterly. As rules mature, you can narrow human involvement — but only with evidence, not optimism.",
+        "Review checkpoints quarterly. As rules mature, you can narrow human involvement - but only with evidence, not optimism.",
       ],
     },
     {
@@ -206,13 +206,13 @@ export const insightBodies: Record<string, InsightSection[]> = {
     {
       paragraphs: [
         "Pilots often end with enthusiasm instead of evidence. Sponsors ask for scale; operators are unsure the tool still fits; security has open questions that were never closed.",
-        "Useful pilot metrics connect usage, quality, and risk so leadership can approve scale, extend, or stop — on the same page.",
+        "Useful pilot metrics connect usage, quality, and risk so leadership can approve scale, extend, or stop - on the same page.",
       ],
     },
     {
       heading: "Adoption that reflects real work",
       paragraphs: [
-        "Count weekly active users in the target role, not everyone who attended training. Measure tasks completed with the tool in the system of record — tickets closed, drafts accepted, code merged — not generic session time.",
+        "Count weekly active users in the target role, not everyone who attended training. Measure tasks completed with the tool in the system of record - tickets closed, drafts accepted, code merged - not generic session time.",
         "Compare against a pre-pilot baseline for the same team. Flat adoption after six weeks is a signal to fix workflow fit, not to buy more licenses.",
       ],
     },
@@ -233,7 +233,7 @@ export const insightBodies: Record<string, InsightSection[]> = {
     {
       heading: "Scale, extend, or stop",
       paragraphs: [
-        "Recommend scale when adoption, quality, and governance meet thresholds agreed at kickoff. Extend the pilot when one metric lags but the trajectory is clear. Stop when the tool does not change the job — that outcome saves more than a forced rollout.",
+        "Recommend scale when adoption, quality, and governance meet thresholds agreed at kickoff. Extend the pilot when one metric lags but the trajectory is clear. Stop when the tool does not change the job - that outcome saves more than a forced rollout.",
       ],
     },
   ],
@@ -241,7 +241,7 @@ export const insightBodies: Record<string, InsightSection[]> = {
     {
       paragraphs: [
         "Customer support AI lives or dies on retrieval. Models can sound polished while citing the wrong article, an outdated release note, or a internal-only page that should never surface externally.",
-        "Retrieval quality is an engineering and content discipline — not a one-time embedding job.",
+        "Retrieval quality is an engineering and content discipline - not a one-time embedding job.",
       ],
     },
     {
@@ -276,7 +276,7 @@ export const insightBodies: Record<string, InsightSection[]> = {
     {
       paragraphs: [
         "Intake is where requests multiply: email, forms, chat, partner portals. Teams respond by adding headcount or spreadsheets until SLAs slip.",
-        "Routing automation works when classification, priority, and ownership are explicit — and when exceptions have a visible path instead of a black hole.",
+        "Routing automation works when classification, priority, and ownership are explicit - and when exceptions have a visible path instead of a black hole.",
       ],
     },
     {
@@ -289,7 +289,7 @@ export const insightBodies: Record<string, InsightSection[]> = {
     {
       heading: "Classification with human-readable reasons",
       paragraphs: [
-        "Use labels operators understand — billing, access, outage, sales inquiry — not opaque model IDs. Store the model’s rationale and confidence so reviewers can correct routing and feed that signal back into rules or training data.",
+        "Use labels operators understand - billing, access, outage, sales inquiry - not opaque model IDs. Store the model’s rationale and confidence so reviewers can correct routing and feed that signal back into rules or training data.",
         "Keep a small set of stable categories. Taxonomies that change weekly make automation brittle and reporting useless.",
       ],
     },
@@ -310,7 +310,7 @@ export const insightBodies: Record<string, InsightSection[]> = {
   "automation-roi-first-90-days": [
     {
       paragraphs: [
-        "Automation programs stall when success is defined as “we connected the tools.” ROI shows up when one workflow moves faster with fewer errors — and when you can show the baseline you beat.",
+        "Automation programs stall when success is defined as “we connected the tools.” ROI shows up when one workflow moves faster with fewer errors - and when you can show the baseline you beat.",
         "Condax scopes first automations to a 90-day window: baseline, build, measure, then decide whether to expand.",
       ],
     },
@@ -323,13 +323,13 @@ export const insightBodies: Record<string, InsightSection[]> = {
     {
       heading: "Ship one end-to-end path",
       paragraphs: [
-        "Automate acknowledgment, classification, and routing first — with a human checkpoint where judgment still matters. Avoid expanding connectors until the first path is stable under live volume.",
+        "Automate acknowledgment, classification, and routing first - with a human checkpoint where judgment still matters. Avoid expanding connectors until the first path is stable under live volume.",
       ],
     },
     {
       heading: "Go / no-go metrics",
       paragraphs: [
-        "Agree thresholds in writing: time saved per item, exception rate, and operator trust after four weeks. Flat metrics mean fix the workflow fit — not buy another platform.",
+        "Agree thresholds in writing: time saved per item, exception rate, and operator trust after four weeks. Flat metrics mean fix the workflow fit - not buy another platform.",
       ],
     },
   ],
@@ -373,13 +373,13 @@ export const insightBodies: Record<string, InsightSection[]> = {
     {
       heading: "Design the exception path",
       paragraphs: [
-        "Every automated step needs a visible queue when confidence is low or rules fail. Operators should see why something stopped — not dig through logs.",
+        "Every automated step needs a visible queue when confidence is low or rules fail. Operators should see why something stopped - not dig through logs.",
       ],
     },
     {
       heading: "Revisit after real volume",
       paragraphs: [
-        "Checkpoints that made sense at launch may be removable after four weeks of clean data — or may need to move earlier. Treat the loop map as a living artifact.",
+        "Checkpoints that made sense at launch may be removable after four weeks of clean data - or may need to move earlier. Treat the loop map as a living artifact.",
       ],
     },
   ],
@@ -387,7 +387,7 @@ export const insightBodies: Record<string, InsightSection[]> = {
     {
       paragraphs: [
         "Enterprise AI procurement moved faster than security playbooks. Organizations sign pilots on standard terms and only later discover training on customer data, unclear subprocessors, or logging they cannot export.",
-        "Due diligence should fit procurement timelines — structured, repeatable, and shared with legal early.",
+        "Due diligence should fit procurement timelines - structured, repeatable, and shared with legal early.",
       ],
     },
     {
@@ -414,7 +414,7 @@ export const insightBodies: Record<string, InsightSection[]> = {
     {
       heading: "Operational fit and exit",
       paragraphs: [
-        "Evaluate API limits, incident communication, and support for your deployment model — SaaS, VPC, or self-hosted. Ask what happens on non-renewal: data export formats, deletion timelines, and model-specific lock-in.",
+        "Evaluate API limits, incident communication, and support for your deployment model - SaaS, VPC, or self-hosted. Ask what happens on non-renewal: data export formats, deletion timelines, and model-specific lock-in.",
         "Condax uses this questionnaire in advisory work before build commitments. The answers often determine adopt versus build more clearly than a feature matrix.",
       ],
     },

@@ -10,10 +10,10 @@ export default function CustomAppsPage() {
       eyebrow="Solution · Customer-facing products"
       visual={<SaaSDashboard />}
       title="Web and mobile products built for your customers."
-      lede="When the application is revenue infrastructure — not an internal workaround — we design, build, and ship a custom product. AI and automation appear only when they improve the customer experience with measurable outcomes."
+      lede="When the application is revenue infrastructure - not an internal workaround - we design, build, and ship a custom product. AI and automation appear only when they improve the customer experience with measurable outcomes."
       cta="Scope a product release"
       statsHeading="Shipped like a product, not a project"
-      statsLede="Scoped releases, production discipline, and handover your client operators can extend — optional partnership for iteration after launch."
+      statsLede="Scoped releases, production discipline, and handover your client operators can extend - optional partnership for iteration after launch."
       outcomeStripHeading="Launch criteria"
       outcomeStrip={[
         { value: "Production", label: "Auth, monitoring, backups" },
@@ -21,17 +21,17 @@ export default function CustomAppsPage() {
         { value: "Optional AI", label: "Features that earn retention" },
       ]}
       useCasesHeading="Products we deliver"
-      useCasesLede="Web and mobile experiences where the brand, data, and workflow cannot be rented from a template — with customer AI only when it serves the user journey."
+      useCasesLede="Web and mobile experiences where the brand, data, and workflow cannot be rented from a template - with customer AI only when it serves the user journey."
       useCases={[
         {
           title: "Customer portals",
           audience: "B2B & regulated markets",
-          text: "Self-service accounts, documents, and status — integrated with your core systems and identity provider.",
+          text: "Self-service accounts, documents, and status - integrated with your core systems and identity provider.",
         },
         {
           title: "Mobile field apps",
           audience: "Operators on the move",
-          text: "Offline-tolerant workflows, capture, and sync — native or cross-platform when the job belongs on a phone.",
+          text: "Offline-tolerant workflows, capture, and sync - native or cross-platform when the job belongs on a phone.",
         },
         {
           title: "Embedded assistants",
@@ -45,7 +45,7 @@ export default function CustomAppsPage() {
         },
       ]}
       offeringsHeading="Delivery scope"
-      offeringsLede="Integrated design and engineering from discovery through launch — same owners through UAT and go-live."
+      offeringsLede="Integrated design and engineering from discovery through launch - same owners through UAT and go-live."
       offerings={[
         {
           title: "Product discovery",
@@ -65,11 +65,11 @@ export default function CustomAppsPage() {
         },
       ]}
       processHeading="From concept to customer release"
-      processLede="Aligned with our custom products engagement model — framed for customer-facing revenue software and the stakeholders who approve spend."
+      processLede="Aligned with our custom products engagement model - framed for customer-facing revenue software and the stakeholders who approve spend."
       process={[
         {
           title: "Frame",
-          duration: "1–2 weeks",
+          duration: "1-2 weeks",
           summary:
             "Pressure-test the product bet: market, differentiation, and whether a configured platform could suffice. We document the recommendation before build funding.",
           outcomes: ["Product thesis and success metrics", "Buy vs build memo", "Release zero scope"],
@@ -86,9 +86,9 @@ export default function CustomAppsPage() {
         },
         {
           title: "Define",
-          duration: "2–4 weeks",
+          duration: "2-4 weeks",
           summary:
-            "Flows, data model, and release zero acceptance criteria — including where AI features are in or out of v1.",
+            "Flows, data model, and release zero acceptance criteria - including where AI features are in or out of v1.",
           outcomes: ["Scoped release with criteria", "Architecture and integration list", "Quoted delivery band"],
           weDo: [
             "Design and validate critical journeys",
@@ -120,7 +120,7 @@ export default function CustomAppsPage() {
         },
         {
           title: "Launch & hand over",
-          duration: "1–2 weeks",
+          duration: "1-2 weeks",
           summary:
             "Production cutover, documentation, and optional partnership. Your client operators receive what they need to operate and extend.",
           outcomes: ["Handover and runbooks", "Vendor and access inventory", "Partnership proposal if desired"],
@@ -144,7 +144,7 @@ export default function CustomAppsPage() {
         {
           value: "Quoted",
           label: "Per product release",
-          text: "Defined scope and acceptance criteria — not an open-ended build.",
+          text: "Defined scope and acceptance criteria - not an open-ended build.",
         },
         {
           value: "Design + eng",

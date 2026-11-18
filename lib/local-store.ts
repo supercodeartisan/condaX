@@ -38,7 +38,7 @@ export async function saveCvLocally(
   const stored = `${Date.now()}-${randomUUID().slice(0, 8)}-${safe}`;
   const buf = Buffer.from(await file.arrayBuffer());
   await writeFile(path.join(CV_DIR, stored), buf);
-  // Relative URL — avoids http://0.0.0.0:3000 when using `dev:lan`
+  // Relative URL - avoids http://0.0.0.0:3000 when using `dev:lan`
   return {
     url: `/api/local-cv/${encodeURIComponent(stored)}`,
     filename: file.name,

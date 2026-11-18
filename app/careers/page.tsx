@@ -24,7 +24,7 @@ export default function CareersPage() {
         <p className="mt-6 max-w-[48ch] text-[18px] text-px-white-64">
           Condax hires engineers, designers, and product professionals for AI enablement and custom
           products. Roles are remote and open internationally. We look for strong technical craft and
-          strong English interview and communication skills — both are required for client delivery.
+          strong English interview and communication skills - both are required for client delivery.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <PillLink href="#open-roles" variant="solid">
@@ -61,7 +61,7 @@ export default function CareersPage() {
         <h2 className="font-display text-[36px] font-light md:text-[48px]">How we hire</h2>
         <p className="mt-3 max-w-[52ch] text-px-white-48">
           A structured process designed for senior remote candidates. Typical end-to-end timeline is
-          two to four weeks. We tell you the format of each step before it happens — and we reply
+          two to four weeks. We tell you the format of each step before it happens - and we reply
           either way.
         </p>
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-5">

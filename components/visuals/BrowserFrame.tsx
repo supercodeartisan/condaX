@@ -60,7 +60,7 @@ function WindowsChrome({ title, url }: { title: string; url?: string }) {
           <span className="grid size-4 place-items-center rounded-[2px] bg-cobalt text-[8px] font-bold text-white">
             {title.slice(0, 1)}
           </span>
-          <span className="truncate text-[11px] text-[#323130]">{title} — Microsoft Edge</span>
+          <span className="truncate text-[11px] text-[#323130]">{title} - Microsoft Edge</span>
         </div>
         <div className="flex shrink-0 items-center text-[#323130]" aria-hidden>
           <span className="grid h-7 w-10 place-items-center text-[14px] leading-none">─</span>

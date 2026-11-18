@@ -91,7 +91,7 @@ export function WorkScreenshot({
 }: {
   slug: string;
   className?: string;
-  /** @deprecated Full pages are always shown — no crop. */
+  /** @deprecated Full pages are always shown - no crop. */
   compact?: boolean;
 }) {
   const entry = catalog[slug] ?? catalog.kite;

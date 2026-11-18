@@ -15,7 +15,7 @@ export default function InternalToolsPage() {
         </BrowserFrame>
       }
       title="Internal applications for daily operations."
-      lede="Custom tools for intake, operations, and reporting that retire the spreadsheet-and-inbox stack — with AI only where it removes copying, drafting, or search friction."
+      lede="Custom tools for intake, operations, and reporting that retire the spreadsheet-and-inbox stack - with AI only where it removes copying, drafting, or search friction."
       cta="Map your operations"
       statsHeading="Built for operators, not demos"
       statsLede="If the release does not change how work moves through your organization within the first cycle, we question the build."
@@ -26,7 +26,7 @@ export default function InternalToolsPage() {
         { value: "AI in flow", label: "Drafts and search behind the same login" },
       ]}
       useCasesHeading="Operations we replace"
-      useCasesLede="Each engagement targets a defined process — intake, fulfillment, compliance, or reporting — with permissions that match how your organization is structured."
+      useCasesLede="Each engagement targets a defined process - intake, fulfillment, compliance, or reporting - with permissions that match how your organization is structured."
       useCases={[
         {
           title: "Intake and routing",
@@ -36,7 +36,7 @@ export default function InternalToolsPage() {
         {
           title: "Ops consoles",
           audience: "Floor & field operators",
-          text: "Live queues, assignments, and exceptions — designed for people who need status without opening five tools.",
+          text: "Live queues, assignments, and exceptions - designed for people who need status without opening five tools.",
         },
         {
           title: "Compliance and approvals",
@@ -46,7 +46,7 @@ export default function InternalToolsPage() {
         {
           title: "Reporting and exports",
           audience: "Leadership & finance",
-          text: "Scheduled and on-demand views tied to the same system of record — not manual sheet merges every Friday.",
+          text: "Scheduled and on-demand views tied to the same system of record - not manual sheet merges every Friday.",
         },
       ]}
       offeringsHeading="Capabilities in the build"
@@ -54,7 +54,7 @@ export default function InternalToolsPage() {
       offerings={[
         {
           title: "Process discovery",
-          text: "Walk the real workflow with practitioners — states, handoffs, and exceptions — before screens are drawn.",
+          text: "Walk the real workflow with practitioners - states, handoffs, and exceptions - before screens are drawn.",
         },
         {
           title: "Role-based access",
@@ -62,11 +62,11 @@ export default function InternalToolsPage() {
         },
         {
           title: "Integrations",
-          text: "CRM, ERP, identity, and chat — connected with defined ownership and failure behavior.",
+          text: "CRM, ERP, identity, and chat - connected with defined ownership and failure behavior.",
         },
         {
           title: "AI assistance",
-          text: "Summaries, classifications, and search across records — logged and bounded like any other feature.",
+          text: "Summaries, classifications, and search across records - logged and bounded like any other feature.",
         },
       ]}
       processHeading="From inbox chaos to one system"
@@ -74,9 +74,9 @@ export default function InternalToolsPage() {
       process={[
         {
           title: "Map",
-          duration: "1–2 weeks",
+          duration: "1-2 weeks",
           summary:
-            "Document the current path — tools, roles, and pain — and cut scope to the smallest release that retires one major workaround.",
+            "Document the current path - tools, roles, and pain - and cut scope to the smallest release that retires one major workaround.",
           outcomes: ["Process map and pain priorities", "MVP feature list with acceptance criteria", "Integration inventory"],
           weDo: [
             "Facilitate workshops with practitioners",
@@ -91,9 +91,9 @@ export default function InternalToolsPage() {
         },
         {
           title: "Design",
-          duration: "2–3 weeks",
+          duration: "2-3 weeks",
           summary:
-            "Interfaces for daily use — fast paths for operators, clear approval surfaces for stakeholders, empty states that teach the process.",
+            "Interfaces for daily use - fast paths for operators, clear approval surfaces for stakeholders, empty states that teach the process.",
           outcomes: ["Key flows and UI package", "Accessibility and mobile constraints", "Content model for requests and records"],
           weDo: [
             "Test prototypes with real operators",
@@ -125,7 +125,7 @@ export default function InternalToolsPage() {
         },
         {
           title: "Hand over",
-          duration: "1–2 weeks",
+          duration: "1-2 weeks",
           summary:
             "Named owners inside your organization receive repos, runbooks, and training. Optional partnership if you want iteration without hiring a full internal squad.",
           outcomes: ["Handover pack and on-call basics", "Admin and operator training", "Roadmap for phase two"],

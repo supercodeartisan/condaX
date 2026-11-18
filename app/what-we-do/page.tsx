@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "What we do" };
 const modes = [
   {
     title: "Adopt AI tools",
-    text: "Select the stack, place it in daily work, train operators, and establish governance — with deployment and policy, not license procurement alone.",
+    text: "Select the stack, place it in daily work, train operators, and establish governance - with deployment and policy, not license procurement alone.",
   },
   {
     title: "Build a custom product",
@@ -21,10 +21,10 @@ const modes = [
 ];
 
 const impacts = [
-  ["Documented decisions", "Adopt, build, or defer — written down, with the trade-offs attached."],
+  ["Documented decisions", "Adopt, build, or defer - written down, with the trade-offs attached."],
   ["In the workflow", "Tools and products land where the work already happens. Handover is part of the engagement."],
   ["Careful with data", "Your tenancy, your vendors, your access rules. We treat model vendors as subprocessors with defined data boundaries."],
-  ["Senior ownership", "You work with people who can decide and deliver — then leave your operators able to run the result."],
+  ["Senior ownership", "You work with people who can decide and deliver - then leave your operators able to run the result."],
 ];
 
 const expertise = [
@@ -105,7 +105,7 @@ export default function WhatWeDoPage() {
             </div>
           </div>
           <p className="max-w-[34ch] text-[15px] leading-relaxed text-white/60 md:text-right">
-            Three modes of work — adopt what exists, build what must be custom, or embed AI into the
+            Three modes of work - adopt what exists, build what must be custom, or embed AI into the
             systems you already run.
           </p>
         </div>

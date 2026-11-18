@@ -12,19 +12,19 @@ export default function AiForTeamsPage() {
       lede="We help you select the stack, place it in daily workflows, train operators, and establish governance they can apply consistently."
       cta="Start an AI pilot"
       processHeading="Engagement process"
-      processLede="From mapping real work to operators who can run the tools independently. Typical first pilots land in weeks — not multi-year transformation programs."
+      processLede="From mapping real work to operators who can run the tools independently. Typical first pilots land in weeks - not multi-year transformation programs."
       offerings={[
-        { title: "Tool selection", text: "Vendor selection aligned to workload, risk, and data requirements — not market momentum." },
+        { title: "Tool selection", text: "Vendor selection aligned to workload, risk, and data requirements - not market momentum." },
         { title: "Rollout", text: "Accounts, prompts, and working sessions so operators use the tools on live work, not presentation-only demos." },
         { title: "Policy & data", text: "What may leave the company, what stays in your tenancy, and who is authorized to share what." },
-        { title: "Enablement", text: "Short training for operators, managers, and builders — applied to live work, not presentation-only sessions." },
+        { title: "Enablement", text: "Short training for operators, managers, and builders - applied to live work, not presentation-only sessions." },
       ]}
       process={[
         {
           title: "Map",
-          duration: "3–5 days",
+          duration: "3-5 days",
           summary:
-            "We learn where work happens — systems, handoffs, and the tools you already operate — before anyone procures another license.",
+            "We learn where work happens - systems, handoffs, and the tools you already operate - before anyone procures another license.",
           outcomes: [
             "Current-state map of the jobs AI should touch",
             "Inventory of existing tools, access, and friction",
@@ -43,9 +43,9 @@ export default function AiForTeamsPage() {
         },
         {
           title: "Choose",
-          duration: "3–7 days",
+          duration: "3-7 days",
           summary:
-            "A small stack beats a catalogue. We recommend one or two tools that cover the real jobs — and say clearly what to ignore.",
+            "A small stack beats a catalogue. We recommend one or two tools that cover the real jobs - and say clearly what to ignore.",
           outcomes: [
             "Recommended tool stack with rationale",
             "Buy vs wait notes for each major option",
@@ -64,7 +64,7 @@ export default function AiForTeamsPage() {
         },
         {
           title: "Pilot",
-          duration: "2–4 weeks",
+          duration: "2-4 weeks",
           summary:
             "A named group uses the tools on live work. We coach in the workflow, measure against the success criteria, and discontinue approaches that do not meet them.",
           outcomes: [
@@ -85,7 +85,7 @@ export default function AiForTeamsPage() {
         },
         {
           title: "Policy",
-          duration: "1–2 weeks",
+          duration: "1-2 weeks",
           summary:
             "Before you scale licenses, we write what may leave the company, what stays in tenancy, and who is allowed to paste what.",
           outcomes: [
@@ -106,9 +106,9 @@ export default function AiForTeamsPage() {
         },
         {
           title: "Train",
-          duration: "1–2 weeks",
+          duration: "1-2 weeks",
           summary:
-            "Short enablement for operators, managers, and builders — so adoption survives after Condax steps back.",
+            "Short enablement for operators, managers, and builders - so adoption survives after Condax steps back.",
           outcomes: [
             "Role-based training sessions delivered",
             "Prompt / workflow playbooks for daily use",
@@ -127,7 +127,7 @@ export default function AiForTeamsPage() {
         },
         {
           title: "Handover",
-          duration: "2–5 days",
+          duration: "2-5 days",
           summary:
             "Playbooks, owners, and a clear next step: stay on tools, extend the rollout, or scope a custom build.",
           outcomes: [

@@ -119,7 +119,7 @@ export function ApplyForm({
         <CalendarDatePicker
           name="dob"
           label="Date of birth *"
-          hint="Pick day, month, and year on the calendar. Applicants must be 18–80."
+          hint="Pick day, month, and year on the calendar. Applicants must be 18-80."
           min={dobBounds.min}
           max={dobBounds.max}
           initialViewDate={`${new Date().getFullYear() - 25}-01-01`}
@@ -131,7 +131,7 @@ export function ApplyForm({
           Location
         </legend>
         <p className="text-[13px] leading-relaxed text-neutral">
-          Roles are remote and open internationally. We use location for scheduling and compliance —
+          Roles are remote and open internationally. We use location for scheduling and compliance -
           not for exclusion of qualified applicants.
         </p>
         <div className="grid gap-4 sm:grid-cols-2">
