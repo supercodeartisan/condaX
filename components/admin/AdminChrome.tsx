@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { AdminNotifications } from "@/components/admin/AdminNotifications";
 import { cn } from "@/lib/cn";
 
 const links = [
@@ -61,6 +62,7 @@ export function AdminChrome({
           </div>
 
           <div className="flex shrink-0 items-center gap-2">
+            {authed ? <AdminNotifications /> : null}
             <Link
               href="/"
               className="hidden rounded-full px-3 py-1.5 text-[13px] text-neutral hover:text-ink sm:inline"
