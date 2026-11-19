@@ -20,13 +20,27 @@ function prune(now: number) {
   }
 }
 
+/**
+ * Prefer platform-provided client IP (harder to spoof) over raw X-Forwarded-For.
+ * Vercel sets x-vercel-forwarded-for / x-real-ip from the edge connection.
+ */
 export function clientIp(request: Request): string {
+  const vercel = request.headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim();
+  if (vercel) return vercel;
+
+  const realIp = request.headers.get("x-real-ip")?.trim();
+  if (realIp) return realIp;
+
+  // Last resort: right-most XFF hop is typically the proxy closest to the app.
+  // Prefer it over the left-most (often client-controlled) when not on Vercel.
   const forwarded = request.headers.get("x-forwarded-for");
   if (forwarded) {
-    const first = forwarded.split(",")[0]?.trim();
-    if (first) return first;
+    const parts = forwarded.split(",").map((p) => p.trim()).filter(Boolean);
+    const last = parts[parts.length - 1];
+    if (last) return last;
   }
-  return request.headers.get("x-real-ip")?.trim() || "unknown";
+
+  return "unknown";
 }
 
 export function rateLimit(

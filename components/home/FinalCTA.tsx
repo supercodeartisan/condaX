@@ -12,8 +12,7 @@ export function FinalCTA() {
       <Container className="relative py-28 md:py-36 lg:py-44">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <Reveal>
-            <p className="text-[12px] tracking-[0.14em] text-white/45 uppercase">Next step</p>
-            <h2 className="font-display display-hero mt-5 max-w-[11ch] text-[48px] font-medium tracking-tight md:text-[68px] lg:text-[80px]">
+            <h2 className="font-display display-hero max-w-[11ch] text-[48px] font-medium tracking-tight md:text-[68px] lg:text-[80px]">
               Ready to automate the next workflow?
             </h2>
           </Reveal>

@@ -109,7 +109,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <ButtonLink href="/get-in-touch" className="max-sm:hidden" arrow>
+          <ButtonLink href="/get-in-touch" className="group max-sm:hidden" arrow>
             Contact
           </ButtonLink>
           <button
@@ -175,6 +175,11 @@ function NavTrigger({
 function ServicesPanel() {
   return (
     <div className="overflow-hidden rounded-2xl border border-hairline bg-surface shadow-[0_24px_80px_rgba(17,17,16,0.08)]">
+      <div className="border-b border-hairline px-5 py-3">
+        <p className="text-[12px] font-medium tracking-[0.12em] text-cobalt uppercase">
+          How we engage
+        </p>
+      </div>
       <div className="grid grid-cols-[1.1fr_0.9fr]">
         <div className="flex flex-col gap-1 p-3">
           {nav.services.map((item) => (
@@ -194,7 +199,7 @@ function ServicesPanel() {
         >
           <div className="eyebrow">What we do</div>
           <p className="font-display mt-3 text-[22px] leading-snug font-medium tracking-tight text-ink">
-            Product and AI engineering - from initial scope through production handover.
+            Choose an engagement model - then a product shape under Solutions.
           </p>
           <span className="mt-6 inline-flex text-[14px] font-medium text-cobalt group-hover:underline">
             Our approach
@@ -207,8 +212,13 @@ function ServicesPanel() {
 
 function SolutionsPanel() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-hairline bg-surface p-3 shadow-[0_24px_80px_rgba(17,17,16,0.08)]">
-      <div className="grid grid-cols-2 gap-2">
+    <div className="overflow-hidden rounded-2xl border border-hairline bg-surface shadow-[0_24px_80px_rgba(17,17,16,0.08)]">
+      <div className="border-b border-hairline px-5 py-3">
+        <p className="text-[12px] font-medium tracking-[0.12em] text-cobalt uppercase">
+          What we ship
+        </p>
+      </div>
+      <div className="grid grid-cols-2 gap-2 p-3">
         {nav.solutions.map((item) => (
           <Link
             key={item.href}

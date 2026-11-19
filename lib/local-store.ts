@@ -107,8 +107,9 @@ export function localCvPath(filename: string): string | null {
   return path.join(CV_DIR, base);
 }
 
+/** Filesystem `.data/` store — development only. Never enabled in production builds. */
 export function isLocalDevStoreEnabled(): boolean {
-  return process.env.NODE_ENV !== "production" || process.env.CAREERS_LOCAL_STORE === "1";
+  return process.env.NODE_ENV !== "production";
 }
 
 async function readJsonFile<T>(file: string): Promise<T[]> {

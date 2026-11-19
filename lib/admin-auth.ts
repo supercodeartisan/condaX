@@ -11,10 +11,19 @@ export function getAdminPassword(): string | null {
 }
 
 function sessionSecret(): string | null {
+  const dedicated = process.env.ADMIN_SESSION_SECRET?.trim();
+  if (dedicated) return dedicated;
+
   const password = getAdminPassword();
   if (!password) return null;
-  // Prefer dedicated secret; fall back to password-derived material.
-  return process.env.ADMIN_SESSION_SECRET?.trim() || `condax-admin:${password}`;
+
+  // Dev fallback only — production should set ADMIN_SESSION_SECRET.
+  if (process.env.NODE_ENV === "production") {
+    console.warn(
+      "[admin-auth] ADMIN_SESSION_SECRET is unset; set a long random value in production.",
+    );
+  }
+  return `condax-admin:${password}`;
 }
 
 function sign(payload: string, secret: string): string {
@@ -41,10 +50,6 @@ export function verifyAdminSessionToken(token: string | undefined | null): boole
   if (!token) return false;
   const secret = sessionSecret();
   if (!secret) return false;
-
-  // Legacy: cookie previously stored the raw password - accept once, then re-login upgrades.
-  const password = getAdminPassword();
-  if (password && safeEqual(token, password)) return true;
 
   const parts = token.split(".");
   if (parts.length !== 3) return false;

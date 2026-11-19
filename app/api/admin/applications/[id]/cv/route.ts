@@ -56,6 +56,7 @@ export async function GET(
           "Content-Type": contentTypeFor(filename),
           "Content-Length": String(data.byteLength),
           "Content-Disposition": disposition,
+          "X-Content-Type-Options": "nosniff",
           "Cache-Control": "private, no-store",
         },
       });

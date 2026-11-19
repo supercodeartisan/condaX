@@ -16,12 +16,12 @@ export default function WorkPage() {
   return (
     <main id="main-content" className="pt-36 lg:pt-40">
       <div className="paddings mx-auto max-w-[1720px] pt-12 pb-6">
-        <h1 className="font-display text-[40px] leading-[1.1] font-light sm:text-[56px] lg:text-[80px]">
-          Sample product work.
+        <h1 className="font-display text-[40px] leading-[1.1] font-medium tracking-tight text-ink sm:text-[56px] lg:text-[80px]">
+          Selected product work.
         </h1>
         <p className="mt-5 max-w-[52ch] text-[17px] text-neutral">
-          Customer AI, workflow automation, and enablement concepts - each with a product UI
-          screenshot. Live client case studies replace these samples when released.
+          A curated set of representative product concepts - customer AI, automation, operations, and
+          enablement. Live client case studies replace these samples when released.
         </p>
         <div className="mt-10 flex gap-2 overflow-x-auto pb-2">
           {workFilters.map((f) => (

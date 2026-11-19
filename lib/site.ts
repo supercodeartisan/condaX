@@ -20,9 +20,9 @@ export type ProcessStep = {
   title: string;
   summary: string;
   duration: string;
-  outcomes: string[];
-  weDo: string[];
-  youDo: string[];
+  outcomes?: string[];
+  weDo?: string[];
+  youDo?: string[];
 };
 
 export type OutcomeStripItem = {
@@ -41,42 +41,42 @@ export const nav = {
     {
       href: "/services/ai-for-teams",
       title: "AI for teams",
-      description: "Select, deploy, and govern AI tools aligned to operational workflows.",
+      description: "Engagement: select, deploy, and govern AI tools in real workflows.",
     },
     {
       href: "/services/custom-products",
       title: "Custom products",
-      description: "Software designed around your workflows, with AI where it adds measurable value.",
+      description: "Engagement: design and ship software when tools are not enough.",
     },
     {
       href: "/services/advisory",
       title: "Advisory",
-      description: "A clear recommendation: adopt a tool, build a product, or defer.",
+      description: "Engagement: a written recommend - adopt, build, or defer.",
     },
   ],
   solutions: [
     {
       href: "/solutions/copilots",
       title: "Copilots & chat",
-      description: "Assistants grounded in your data and operating context.",
+      description: "Product shape: assistants grounded in your data and context.",
       visual: "copilot",
     },
     {
       href: "/solutions/internal-tools",
       title: "Internal tools",
-      description: "Operations systems your people can run every day.",
+      description: "Product shape: operations systems people run every day.",
       visual: "internal",
     },
     {
       href: "/solutions/automations",
       title: "Automations",
-      description: "Intelligent workflow automation across intake, routing, and customer operations.",
+      description: "Product shape: workflow automation with visible checkpoints.",
       visual: "auto",
     },
     {
       href: "/solutions/custom-apps",
       title: "Custom apps",
-      description: "Customer-facing products with AI and automation built into the workflow.",
+      description: "Product shape: customer-facing web and mobile experiences.",
       visual: "apps",
     },
   ],
@@ -118,17 +118,17 @@ export const plans = {
     items: [
       {
         name: "AI pilot",
-        price: "Starting at $5k",
+        price: "Quoted per pilot",
         text: "Select tools, place them in the workflow, and transfer operational ownership cleanly.",
       },
       {
         name: "Discovery & scoping",
-        price: "Starting at $4k",
+        price: "Fixed engagement",
         text: "Adopt a tool or build custom software? A written recommendation and a build-ready brief.",
       },
       {
         name: "Advisory session",
-        price: "$1k-$4k per session",
+        price: "Quoted per session",
         text: "A structured working session on architecture, risk, or a pending technology decision.",
       },
     ],
@@ -144,7 +144,7 @@ export const plans = {
       },
       {
         name: "Monthly partnership",
-        price: "Starting at $4k/month",
+        price: "Retainer · by agreement",
         text: "Iteration, new automations, and support after the first release.",
       },
     ],
@@ -153,6 +153,7 @@ export const plans = {
 
 export const workFilters = ["All work", "AI for customers", "Automation", "AI enablement"];
 
+/** Flagship samples only - keep curated until live client cases replace them. */
 export const workItems = [
   {
     slug: "kite",
@@ -164,65 +165,10 @@ export const workItems = [
     chip: "Sample",
   },
   {
-    slug: "beacon",
-    name: "Beacon",
-    blurb:
-      "Guided customer onboarding that answers product questions from approved documentation.",
-    tags: ["Customer AI", "Onboarding"],
-    industry: "AI for customers",
-    chip: "Sample",
-  },
-  {
-    slug: "canvas",
-    name: "Canvas",
-    blurb:
-      "Sales and support copilot that drafts replies from CRM context and policy sources.",
-    tags: ["Customer AI", "Copilot"],
-    industry: "AI for customers",
-    chip: "Sample",
-  },
-  {
-    slug: "pulse",
-    name: "Pulse",
-    blurb:
-      "AI-assisted support triage that classifies intent, urgency, and ownership before a human steps in.",
-    tags: ["Automation", "Customer AI"],
-    industry: "Automation",
-    chip: "Sample",
-  },
-  {
     slug: "harbor",
     name: "Harbor",
-    blurb:
-      "Intake, routing, and status automation with clear human checkpoints.",
+    blurb: "Intake, routing, and status automation with clear human checkpoints.",
     tags: ["Automation"],
-    industry: "Automation",
-    chip: "Sample",
-  },
-  {
-    slug: "relay",
-    name: "Relay",
-    blurb:
-      "Order-to-fulfillment automation that reduces handoffs across CRM, warehouse, and customer email.",
-    tags: ["Automation", "Operations"],
-    industry: "Automation",
-    chip: "Sample",
-  },
-  {
-    slug: "ledger",
-    name: "Ledger",
-    blurb:
-      "Invoice intake automation - extract, validate, and route exceptions for finance review.",
-    tags: ["Automation", "Finance"],
-    industry: "Automation",
-    chip: "Sample",
-  },
-  {
-    slug: "signal",
-    name: "Signal",
-    blurb:
-      "Lead qualification and routing automation with scoring rules and CRM write-back.",
-    tags: ["Automation", "Sales"],
     industry: "Automation",
     chip: "Sample",
   },
@@ -436,44 +382,13 @@ export const faqs = [
   },
 ];
 
-export const comparison = [
-  [
-    "Starting point",
-    "Deploy general-purpose AI tools without adoption planning, governance, or success metrics.",
-    "A short pilot: the right tools, in the real workflow, with a documented policy.",
-  ],
-  [
-    "Adopt vs build",
-    "A strategy document without operational commitments.",
-    "A written recommendation: adopt a tool, build a product, or defer.",
-  ],
-  [
-    "Custom work",
-    "A thin chat interface without integration into core workflows.",
-    "Software that runs on your process and your data.",
-  ],
-  [
-    "Delivery",
-    "Long mobilization, heavy on-site presence, and slow time-to-value.",
-    "Senior owners from week one - async-friendly, aligned to your working day.",
-  ],
-  [
-    "Data",
-    "Ad hoc use of consumer tools without data controls.",
-    "Tenancy, vendors, and access agreed before the rollout.",
-  ],
-  [
-    "After launch",
-    "A presentation without operational transfer.",
-    "Your operators can run it - or we continue on a defined monthly scope.",
-  ],
-];
-
 export const sourceOptions = ["Word of mouth", "Google search", "AI search", "Social media", "Referral", "Other"];
 export const scopeOptions = [
   "Help using AI tools",
   "A custom product",
-  "Not sure - help me decide",
+  "Workflow automation & internal tools",
+  "Advisory / decision session",
+  "Copilot or customer AI",
 ];
 export const regionOptions = [
   "Americas",
@@ -482,4 +397,9 @@ export const regionOptions = [
   "Asia Pacific",
   "Other / worldwide",
 ];
-export const investmentOptions = ["Under $10k", "$10k-$40k", "$40k-$120k", "$120k+", "Not sure yet"];
+export const investmentOptions = [
+  "Exploring / not sure yet",
+  "Pilot or advisory-sized",
+  "Scoped product build",
+  "Ongoing partnership",
+];

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRightIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 
 /** Legacy pill CTA - remapped to Condax v2 cobalt system for internal pages. */
@@ -37,15 +38,7 @@ export function PillLink({
 export function Arrow() {
   return (
     <span className="grid size-5 place-items-center rounded-full">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
-        <path
-          d="M3 7h8M8 3l4 4-4 4"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+      <ArrowRightIcon />
     </span>
   );
 }

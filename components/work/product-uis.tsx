@@ -82,7 +82,17 @@ export function KiteUi({ className = "" }: ShellProps) {
           </div>
           <div className="mt-4 flex items-center gap-2 rounded-full border border-white/10 bg-[#0f1419] px-3 py-2">
             <span className="flex-1 text-[11px] text-white/35">Ask across policies, tickets, docs…</span>
-            <span className="grid size-7 place-items-center rounded-full bg-cobalt text-[11px]">↑</span>
+            <span className="grid size-7 place-items-center rounded-full bg-cobalt text-white">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
+                <path
+                  d="M6 9.5v-7M3 5l3-3 3 3"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
           </div>
         </div>
         <div className="bg-[#121820] p-4">
@@ -143,7 +153,7 @@ export function BeaconUi({ className = "" }: ShellProps) {
           </div>
         </div>
         <div className="text-right text-[11px] text-neutral">
-          <div className="font-medium text-ink">Acme Cloud · Pilot</div>
+          <div className="font-medium text-ink">Verdant Retail · Pilot</div>
           <div>Owner: Morgan · Day 4 of 10</div>
         </div>
       </div>
@@ -254,8 +264,8 @@ export function CanvasUi({ className = "" }: ShellProps) {
           <div className="border-b border-hairline px-4 py-3">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div>
-                <div className="text-[13px] font-medium">Re: Renewal - Acme Logistics</div>
-                <div className="text-[10px] text-muted">To: jordan@acme.co · Thread · 4 messages</div>
+                <div className="text-[13px] font-medium">Re: Renewal - Northline Freight</div>
+                <div className="text-[10px] text-muted">To: jordan@northlinefreight.com · Thread · 4 messages</div>
               </div>
               <span className="rounded-full bg-cobalt/10 px-2.5 py-1 text-[10px] font-medium text-cobalt">
                 AI draft ready
@@ -293,7 +303,7 @@ export function CanvasUi({ className = "" }: ShellProps) {
         </div>
         <aside className="hidden border-l border-hairline bg-paper p-3 sm:block">
           <div className="text-[9px] tracking-[0.12em] text-muted uppercase">CRM context</div>
-          <div className="mt-2 text-[13px] font-medium">Acme Logistics</div>
+          <div className="mt-2 text-[13px] font-medium">Northline Freight</div>
           <div className="mt-1 text-[10px] text-neutral">ARR $48k · Renewal in 18 days</div>
           <div className="mt-4 space-y-2">
             {[
@@ -483,7 +493,7 @@ export function RelayUi({ className = "" }: ShellProps) {
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <div className="text-[13px] font-medium">Relay · Order to fulfillment</div>
-            <div className="text-[10px] text-muted">ORD-10492 · Acme Logistics · 48 line items</div>
+            <div className="text-[10px] text-muted">ORD-10492 · Northline Freight · 48 line items</div>
           </div>
           <div className="flex gap-2 text-[10px]">
             <span className="rounded-full border border-hairline px-2.5 py-1">ETA 2.1 days</span>

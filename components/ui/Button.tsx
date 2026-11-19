@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRightIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 
 const base =
@@ -33,7 +34,7 @@ export function ButtonLink({
   return (
     <Link href={href} className={cn(base, variants[variant], className)}>
       {children}
-      {arrow ? <ArrowIcon /> : null}
+      {arrow ? <ArrowRightIcon className="transition-transform duration-300 group-hover:translate-x-0.5" /> : null}
     </Link>
   );
 }
@@ -51,19 +52,5 @@ export function Button({
     <button type={type} className={cn(base, variants[variant], className)} {...props}>
       {children}
     </button>
-  );
-}
-
-function ArrowIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
-      <path
-        d="M3 7h8M8 3l4 4-4 4"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   );
 }

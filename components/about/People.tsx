@@ -9,7 +9,7 @@ export function People() {
         Who leads the work
       </h2>
 
-      <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 xl:grid-cols-4">
+      <ul className="mt-10 grid max-w-[52rem] grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
         {people.map((person) => (
           <li key={person.name} className="min-w-0">
             <PersonCard person={person} />

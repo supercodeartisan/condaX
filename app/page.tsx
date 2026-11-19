@@ -1,11 +1,9 @@
 import { Capabilities } from "@/components/home/Capabilities";
-import { CareersTeaser } from "@/components/home/CareersTeaser";
 import { Engagement } from "@/components/home/Engagement";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { Hero } from "@/components/home/Hero";
-import { InsightsPreview } from "@/components/home/InsightsPreview";
-import { Method } from "@/components/home/Method";
 import { Principles } from "@/components/home/Principles";
+import { SelectedWork } from "@/components/home/SelectedWork";
 
 export default function HomePage() {
   return (
@@ -14,9 +12,7 @@ export default function HomePage() {
       <Capabilities />
       <Engagement />
       <Principles />
-      <Method />
-      <InsightsPreview />
-      <CareersTeaser />
+      <SelectedWork />
       <FinalCTA />
     </main>
   );

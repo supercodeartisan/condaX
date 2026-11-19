@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PillLink } from "@/components/Buttons";
+import { BackLink } from "@/components/ui/BackLink";
 import { WorkScreenshot } from "@/components/work/WorkScreenshot";
 import { workCases } from "@/lib/work-cases";
 import { workItems } from "@/lib/site";
@@ -17,7 +17,8 @@ export default async function WorkCasePage({ params }: { params: Promise<{ slug:
 
   return (
     <main id="main-content" className="paddings mx-auto max-w-[1100px] pt-40 pb-24 lg:pt-44">
-      <p className="text-[13px] tracking-[0.14em] text-neutral uppercase">{item.industry}</p>
+      <BackLink href="/work">All work</BackLink>
+      <p className="mt-8 text-[13px] tracking-[0.14em] text-neutral uppercase">{item.industry}</p>
       <h1 className="font-display mt-4 text-[40px] leading-[1.12] font-light md:text-[56px]">
         {item.name}
       </h1>
@@ -94,9 +95,6 @@ export default async function WorkCasePage({ params }: { params: Promise<{ slug:
           Request a consultation
         </PillLink>
       </div>
-      <Link href="/work" className="mt-10 inline-block text-neutral hover:text-cobalt">
-        ← All work
-      </Link>
     </main>
   );
 }

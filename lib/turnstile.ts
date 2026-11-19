@@ -1,4 +1,4 @@
-/** Cloudflare Turnstile - optional; skipped when keys are not configured. */
+/** Cloudflare Turnstile — recommended in production; skipped in local when unset. */
 
 export function turnstileConfigured(): boolean {
   return Boolean(
@@ -11,11 +11,35 @@ export function getTurnstileSiteKey(): string | null {
   return process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() || null;
 }
 
+function turnstilePartialConfig(): boolean {
+  const hasSite = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim());
+  const hasSecret = Boolean(process.env.TURNSTILE_SECRET_KEY?.trim());
+  return hasSite !== hasSecret;
+}
+
 export async function verifyTurnstile(
   token: string | null | undefined,
   ip?: string,
 ): Promise<{ ok: true } | { ok: false; error: string }> {
-  if (!turnstileConfigured()) return { ok: true };
+  if (turnstilePartialConfig()) {
+    console.error(
+      "[turnstile] misconfigured: set both NEXT_PUBLIC_TURNSTILE_SITE_KEY and TURNSTILE_SECRET_KEY",
+    );
+    return {
+      ok: false,
+      error: "Security check is temporarily unavailable. Please try again later.",
+    };
+  }
+
+  if (!turnstileConfigured()) {
+    // Keep local/dev and pre-Turnstile deploys working; warn in production.
+    if (process.env.NODE_ENV === "production") {
+      console.warn(
+        "[turnstile] not configured in production — public forms rely on rate limits only. Set Turnstile keys.",
+      );
+    }
+    return { ok: true };
+  }
 
   const secret = process.env.TURNSTILE_SECRET_KEY!.trim();
   if (!token || !token.trim()) {

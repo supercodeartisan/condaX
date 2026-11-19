@@ -4,6 +4,7 @@ import {
   collectAnswers,
   emptyToNull,
   validateCvFile,
+  validateCvMagicBytes,
 } from "@/lib/careers-apply";
 import { notifyNewApplication } from "@/lib/careers-notify";
 import { insertApplication } from "@/lib/db";
@@ -68,6 +69,10 @@ export async function submitCareerApplication(
   const cvCheck = validateCvFile(formData.get("cv") as File | null);
   if (!cvCheck.ok) {
     return { ok: false, status: 400, error: cvCheck.error };
+  }
+  const magic = await validateCvMagicBytes(cvCheck.file);
+  if (!magic.ok) {
+    return { ok: false, status: 400, error: magic.error };
   }
 
   const answers = collectAnswers(formData);

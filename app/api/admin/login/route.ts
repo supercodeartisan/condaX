@@ -23,7 +23,7 @@ export async function POST(request: Request) {
   const password = getAdminPassword();
   if (!password) {
     return NextResponse.json(
-      { error: "ADMIN_PASSWORD is not configured on the server." },
+      { error: "Admin sign-in is not available right now." },
       { status: 503 },
     );
   }

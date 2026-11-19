@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { EmailLink } from "@/components/EmailLink";
+import { Logo } from "@/components/Logo";
 import { Container } from "@/components/ui/Container";
 import { footerNav, site } from "@/lib/site";
 
@@ -7,14 +9,21 @@ export function Footer() {
     <footer className="bg-night text-paper">
       <Container className="grid gap-14 py-16 lg:grid-cols-[1.3fr_1fr] lg:gap-20 lg:py-24">
         <div>
-          <p className="font-display text-[22px] font-semibold tracking-[-0.04em] text-paper">
-            {site.name}
-          </p>
+          <Logo tone="light" size="sm" className="brightness-0 invert" />
           <p className="mt-5 max-w-[34ch] text-[16px] leading-relaxed text-white/55">
             AI, automation, and product engineering consultancy. We design and ship software your
             organization can operate and maintain after handover.
           </p>
-          <p className="mt-8 text-[13px] text-white/40">Remote delivery. Global client base.</p>
+          <p className="mt-6 text-[14px] text-white/55">
+            <EmailLink
+              to={site.emails.contact}
+              subject="Condax inquiry"
+              className="transition-colors hover:text-white"
+            >
+              {site.emails.contact}
+            </EmailLink>
+          </p>
+          <p className="mt-3 text-[13px] text-white/40">Remote delivery. Global client base.</p>
         </div>
         <nav aria-label="Footer" className="grid grid-cols-2 gap-10 sm:grid-cols-3">
           <FooterCol title="Company" items={footerNav.company} />
@@ -28,9 +37,6 @@ export function Footer() {
             © {new Date().getFullYear()} {site.legalName}
           </p>
           <div className="flex flex-wrap gap-5">
-            <Link href="/careers" className="transition-colors hover:text-white">
-              Careers
-            </Link>
             <Link href="/get-in-touch" className="transition-colors hover:text-white">
               Contact
             </Link>

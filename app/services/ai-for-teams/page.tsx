@@ -2,157 +2,105 @@ import type { Metadata } from "next";
 import { ServicePage } from "@/components/ServicePage";
 import { AIAssistant } from "@/components/visuals/AIAssistant";
 
-export const metadata: Metadata = { title: "AI for teams" };
+export const metadata: Metadata = {
+  title: "AI for teams",
+  description:
+    "AI enablement for operators - tool selection, pilots, policy, and training so teams can run AI without Condax in the room.",
+};
+
+const scope = encodeURIComponent("Help using AI tools");
 
 export default function AiForTeamsPage() {
   return (
     <ServicePage
-      visual={<AIAssistant />}
+      visual={
+        <div className="mx-auto grid max-w-[720px] gap-4 md:grid-cols-[1.05fr_0.95fr] md:items-end">
+          <div className="rounded-[20px] border border-hairline bg-paper p-5 md:p-6">
+            <p className="text-[11px] tracking-[0.14em] text-muted uppercase">Pilot cohort</p>
+            <p className="font-display mt-3 text-[28px] font-medium tracking-tight text-ink">
+              Tools in the workflow
+            </p>
+            <ul className="mt-6 space-y-3 text-[14px] text-neutral">
+              <li className="flex justify-between border-b border-hairline pb-3">
+                <span>Writing & research</span>
+                <span className="text-cobalt">Live</span>
+              </li>
+              <li className="flex justify-between border-b border-hairline pb-3">
+                <span>Coding assistants</span>
+                <span className="text-cobalt">Live</span>
+              </li>
+              <li className="flex justify-between">
+                <span>Policy & tenancy</span>
+                <span className="text-muted">Draft</span>
+              </li>
+            </ul>
+          </div>
+          <AIAssistant />
+        </div>
+      }
       title="AI enablement for the people who run the work."
-      lede="We help you select the stack, place it in daily workflows, train operators, and establish governance they can apply consistently."
+      lede="Select the stack, place it in daily workflows, train operators, and leave governance they can apply without us in the room."
       cta="Start an AI pilot"
-      processHeading="Engagement process"
-      processLede="From mapping real work to operators who can run the tools independently. Typical first pilots land in weeks - not multi-year transformation programs."
+      ctaHref={`/get-in-touch?scope=${scope}`}
+      fit={{
+        bestWhen: [
+          "You already have licenses - or are about to buy - and need adoption that sticks.",
+          "Operators need clear rules for data, vendors, and what may leave the company.",
+          "Leadership wants a measured pilot before a broader rollout.",
+        ],
+        notFor: [
+          "Building a custom product when a tool cannot carry the job - that is Custom products.",
+          "Open-ended transformation programs without a named pilot group.",
+          "License procurement alone with no enablement or policy.",
+        ],
+      }}
+      offeringsHeading="What you get"
+      offeringsLede="A working pilot on live work, a practical policy, and operators who can continue without Condax."
       offerings={[
-        { title: "Tool selection", text: "Vendor selection aligned to workload, risk, and data requirements - not market momentum." },
-        { title: "Rollout", text: "Accounts, prompts, and working sessions so operators use the tools on live work, not presentation-only demos." },
-        { title: "Policy & data", text: "What may leave the company, what stays in your tenancy, and who is authorized to share what." },
-        { title: "Enablement", text: "Short training for operators, managers, and builders - applied to live work, not presentation-only sessions." },
+        {
+          title: "Tool selection",
+          text: "A short stack matched to workload, risk, and data requirements - not market momentum.",
+        },
+        {
+          title: "Pilot rollout",
+          text: "Accounts, prompts, and working sessions on live tasks - not presentation-only demos.",
+        },
+        {
+          title: "Policy & data",
+          text: "What may leave the company, what stays in your tenancy, and who is authorized to share what.",
+        },
+        {
+          title: "Enablement",
+          text: "Short, role-based training and playbooks your champions can reuse after handover.",
+        },
       ]}
+      processHeading="How it runs"
+      processLede="Typical first pilots land in weeks - a named group, a clear success bar, then policy and handover."
       process={[
         {
           title: "Map",
           duration: "3-5 days",
-          summary:
-            "We learn where work happens - systems, handoffs, and the tools you already operate - before anyone procures another license.",
-          outcomes: [
-            "Current-state map of the jobs AI should touch",
-            "Inventory of existing tools, access, and friction",
-            "Named pilot group and success bar",
-          ],
-          weDo: [
-            "Stakeholder interviews and workflow walkthroughs",
-            "Stack and vendor scan against your constraints",
-            "Draft pilot scope and risk flags",
-          ],
-          youDo: [
-            "Introduce owners of the target workflows",
-            "Share access to tools and sample (non-sensitive) work",
-            "Confirm what “good” looks like for the pilot",
-          ],
+          summary: "Locate the jobs AI should touch, the tools you already operate, and the pilot group.",
         },
         {
           title: "Choose",
           duration: "3-7 days",
-          summary:
-            "A small stack beats a catalogue. We recommend one or two tools that cover the real jobs - and say clearly what to ignore.",
-          outcomes: [
-            "Recommended tool stack with rationale",
-            "Buy vs wait notes for each major option",
-            "License and tenancy preferences written down",
-          ],
-          weDo: [
-            "Compare vendors on fit, cost, data posture, and adoption risk",
-            "Facilitate a short decision session with your leads",
-            "Produce a one-page recommendation you can circulate",
-          ],
-          youDo: [
-            "Decide who owns vendor and budget approvals",
-            "Surface security or legal constraints early",
-            "Approve the shortlist before rollout spend",
-          ],
+          summary: "Recommend one or two tools that cover the real work - and say clearly what to ignore.",
         },
         {
           title: "Pilot",
           duration: "2-4 weeks",
-          summary:
-            "A named group uses the tools on live work. We coach in the workflow, measure against the success criteria, and discontinue approaches that do not meet them.",
-          outcomes: [
-            "Pilot running on real tasks, not demos",
-            "Usage notes, wins, and drop-off points",
-            "Go / adjust / stop recommendation",
-          ],
-          weDo: [
-            "Configure accounts, prompts, and working patterns",
-            "Office hours and pairing on live work",
-            "Weekly readout against the success bar",
-          ],
-          youDo: [
-            "Protect calendar time for the pilot group",
-            "Bring real work into sessions",
-            "Nominate an internal champion for each tool",
-          ],
+          summary: "Operators use the tools on live work. We coach in-flow and measure against the success bar.",
         },
         {
-          title: "Policy",
+          title: "Govern & hand over",
           duration: "1-2 weeks",
-          summary:
-            "Before you scale licenses, we write what may leave the company, what stays in tenancy, and who is allowed to paste what.",
-          outcomes: [
-            "Practical AI / data policy your people can follow",
-            "Vendor and tenancy decisions recorded",
-            "Access roles and escalation path",
-          ],
-          weDo: [
-            "Draft policy language operators can use",
-            "Align with your security / legal reviewers",
-            "Translate rules into day-to-day do’s and don’ts",
-          ],
-          youDo: [
-            "Route the draft through security and legal",
-            "Confirm approved vendors and tenancy choices",
-            "Name the policy owner after we leave",
-          ],
-        },
-        {
-          title: "Train",
-          duration: "1-2 weeks",
-          summary:
-            "Short enablement for operators, managers, and builders - so adoption survives after Condax steps back.",
-          outcomes: [
-            "Role-based training sessions delivered",
-            "Prompt / workflow playbooks for daily use",
-            "Internal owners ready to coach peers",
-          ],
-          weDo: [
-            "Run focused workshops by role",
-            "Leave reusable materials, not a slide archive",
-            "Coach your champions to continue enablement",
-          ],
-          youDo: [
-            "Assemble the right audiences",
-            "Require attendance for the pilot cohort",
-            "Schedule follow-up practice on live work",
-          ],
-        },
-        {
-          title: "Handover",
-          duration: "2-5 days",
-          summary:
-            "Playbooks, owners, and a clear next step: stay on tools, extend the rollout, or scope a custom build.",
-          outcomes: [
-            "Handover pack with owners and playbooks",
-            "License and access checklist",
-            "Written next-step recommendation",
-          ],
-          weDo: [
-            "Compile docs, owners, and open risks",
-            "Final readout with leadership",
-            "Optional proposal for the next paid step",
-          ],
-          youDo: [
-            "Confirm internal ownership of each tool",
-            "Accept or reject the next-step recommendation",
-            "Close access Condax no longer needs",
-          ],
+          summary: "Write the policy people can follow, train champions, and leave owners named.",
         },
       ]}
-      stats={[
-        { value: "Weeks", label: "Typical first pilot", text: "Measured in weeks, not multi-year transformation programs." },
-        { value: "Your stack", label: "Tools you already operate", text: "We start with what you have, then fill the gaps." },
-        { value: "Your tenancy", label: "Data stays where you put it", text: "We do not train public models on your files." },
-        { value: "Handover", label: "Operators can run it", text: "Training and policy remain with the people who own the work." },
-      ]}
+      relatedWork={["atlas", "kite"]}
+      closingTitle="Share the workflows and tools in play."
+      closingLede="Open contact from the hero to start with AI enablement preselected. We reply with a pilot recommendation within one business day."
     />
   );
 }

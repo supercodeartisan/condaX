@@ -45,16 +45,21 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: guarded.error }, { status: 400 });
   }
 
+  const optional = (value: FormDataEntryValue | null) => {
+    const text = String(value ?? "").trim();
+    return text.length > 0 ? text : null;
+  };
+
   const parsed = contactInquirySchema.safeParse({
     name: String(formData.get("name") ?? ""),
     email: String(formData.get("email") ?? ""),
-    source: String(formData.get("source") ?? ""),
-    region: String(formData.get("region") ?? ""),
+    source: optional(formData.get("source")),
+    region: optional(formData.get("region")),
     description: String(formData.get("description") ?? ""),
     scope: String(formData.get("scope") ?? ""),
-    date: String(formData.get("date") ?? ""),
-    investment: String(formData.get("investment") ?? ""),
-    referralCode: String(formData.get("referralCode") ?? "") || null,
+    date: optional(formData.get("date")),
+    investment: optional(formData.get("investment")),
+    referralCode: optional(formData.get("referralCode")),
   });
 
   if (!parsed.success) {
@@ -89,13 +94,13 @@ export async function POST(request: Request) {
     };
   }
 
-  const payload = {
-    source: data.source,
-    region: data.region,
+  const payload: Record<string, string | null> = {
+    source: data.source ?? null,
+    region: data.region ?? null,
     description: data.description,
     scope: data.scope,
-    date: data.date,
-    investment: data.investment,
+    date: data.date ?? null,
+    investment: data.investment ?? null,
     referralCode: data.referralCode ?? null,
     referredOrganization: referralMeta?.organization ?? null,
     referrer: referralMeta?.referrer ?? null,

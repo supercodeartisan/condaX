@@ -6,7 +6,13 @@ import { FormSecurityFields } from "@/components/FormSecurityFields";
 import { readTurnstileToken } from "@/components/TurnstileField";
 import { investmentOptions, regionOptions, scopeOptions, sourceOptions } from "@/lib/site";
 
-export function ContactForm({ referralCode }: { referralCode?: string }) {
+export function ContactForm({
+  referralCode,
+  defaultScope,
+}: {
+  referralCode?: string;
+  defaultScope?: string;
+}) {
   const [sent, setSent] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -55,11 +61,16 @@ export function ContactForm({ referralCode }: { referralCode?: string }) {
         </p>
       ) : null}
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Name *" name="name" />
-        <Field label="Email *" name="email" type="email" />
+        <Field label="Name *" name="name" required />
+        <Field label="Email *" name="email" type="email" required />
       </div>
-      <Select label="How did you hear about Condax? *" name="source" options={sourceOptions} />
-      <Select label="Where is your organization based? *" name="region" options={regionOptions} />
+      <Select
+        label="What do you need? *"
+        name="scope"
+        options={scopeOptions}
+        required
+        defaultValue={defaultScope && scopeOptions.includes(defaultScope) ? defaultScope : ""}
+      />
       <label className="relative block">
         <span className="sr-only">Describe your request</span>
         <textarea
@@ -70,9 +81,10 @@ export function ContactForm({ referralCode }: { referralCode?: string }) {
           className="w-full resize-none rounded-2xl border border-hairline bg-surface px-4 py-4 text-[15px] text-charcoal outline-none placeholder:text-muted focus:border-cobalt"
         />
       </label>
-      <Select label="What do you need? *" name="scope" options={scopeOptions} />
-      <Field label="Any key milestones or ideal start date? *" name="date" />
-      <Select label="Expected investment (USD) *" name="investment" options={investmentOptions} />
+      <Select label="How did you hear about Condax?" name="source" options={sourceOptions} />
+      <Select label="Where is your organization based?" name="region" options={regionOptions} />
+      <Field label="Any key milestones or ideal start date?" name="date" />
+      <Select label="Expected investment band" name="investment" options={investmentOptions} />
       <FormSecurityFields />
       <button
         type="submit"
@@ -112,14 +124,24 @@ export function ContactForm({ referralCode }: { referralCode?: string }) {
   );
 }
 
-function Field({ label, name, type = "text" }: { label: string; name: string; type?: string }) {
+function Field({
+  label,
+  name,
+  type = "text",
+  required = false,
+}: {
+  label: string;
+  name: string;
+  type?: string;
+  required?: boolean;
+}) {
   return (
     <label className="block">
       <span className="sr-only">{label}</span>
       <input
         name={name}
         type={type}
-        required
+        required={required}
         placeholder={label}
         className="w-full rounded-2xl border border-hairline bg-surface px-4 py-4 text-[15px] text-charcoal outline-none placeholder:text-muted focus:border-cobalt"
       />
@@ -127,17 +149,29 @@ function Field({ label, name, type = "text" }: { label: string; name: string; ty
   );
 }
 
-function Select({ label, name, options }: { label: string; name: string; options: string[] }) {
+function Select({
+  label,
+  name,
+  options,
+  defaultValue = "",
+  required = false,
+}: {
+  label: string;
+  name: string;
+  options: string[];
+  defaultValue?: string;
+  required?: boolean;
+}) {
   return (
     <label className="block">
       <span className="sr-only">{label}</span>
       <select
         name={name}
-        required
-        defaultValue=""
+        required={required}
+        defaultValue={defaultValue}
         className="w-full appearance-none rounded-2xl border border-hairline bg-surface px-4 py-4 text-[15px] text-charcoal outline-none focus:border-cobalt"
       >
-        <option value="" disabled>
+        <option value="" disabled={required}>
           {label}
         </option>
         {options.map((o) => (

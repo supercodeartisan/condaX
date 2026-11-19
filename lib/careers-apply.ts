@@ -145,3 +145,46 @@ export function validateCvFile(
   }
   return { ok: true, file };
 }
+
+/** Confirm file bytes match PDF / DOC / DOCX signatures (not just client MIME). */
+export async function validateCvMagicBytes(
+  file: File,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  const header = new Uint8Array(await file.slice(0, 8).arrayBuffer());
+  if (header.length < 4) {
+    return { ok: false, error: "CV file appears to be empty or corrupt." };
+  }
+
+  const lower = file.name.toLowerCase();
+  const isPdf =
+    header[0] === 0x25 &&
+    header[1] === 0x50 &&
+    header[2] === 0x44 &&
+    header[3] === 0x46; // %PDF
+  const isOle =
+    header[0] === 0xd0 &&
+    header[1] === 0xcf &&
+    header[2] === 0x11 &&
+    header[3] === 0xe0; // legacy .doc
+  const isZip =
+    header[0] === 0x50 && header[1] === 0x4b; // DOCX is a ZIP container (PK)
+
+  if (lower.endsWith(".pdf") || file.type === "application/pdf") {
+    if (!isPdf) return { ok: false, error: "CV must be a valid PDF file." };
+    return { ok: true };
+  }
+  if (lower.endsWith(".docx") || file.type.includes("openxmlformats")) {
+    if (!isZip) return { ok: false, error: "CV must be a valid Word (.docx) file." };
+    return { ok: true };
+  }
+  if (lower.endsWith(".doc") || file.type === "application/msword") {
+    if (!isOle && !isZip) {
+      return { ok: false, error: "CV must be a valid Word (.doc) file." };
+    }
+    return { ok: true };
+  }
+
+  // Extension missing / odd MIME but allowed by name check — accept known signatures.
+  if (isPdf || isOle || isZip) return { ok: true };
+  return { ok: false, error: "CV must be a PDF or Word document." };
+}

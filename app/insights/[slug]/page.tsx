@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { InsightCard } from "@/components/InsightCard";
+import { BackLink } from "@/components/ui/BackLink";
 import { insightBodies } from "@/lib/insights-content";
 import { insights } from "@/lib/site";
 
@@ -14,11 +14,15 @@ export default async function InsightArticlePage({ params }: { params: Promise<{
   if (!item) notFound();
   const body = insightBodies[slug];
   if (!body) notFound();
-  const related = insights.filter((i) => i.slug !== slug);
+  const related = insights
+    .filter((i) => i.slug !== slug)
+    .sort((a, b) => Number(a.topic !== item.topic) - Number(b.topic !== item.topic))
+    .slice(0, 3);
 
   return (
     <main id="main-content" className="paddings mx-auto max-w-[820px] pt-40 pb-24 lg:pt-44">
-      <div className="flex flex-wrap gap-3 text-[13px] text-neutral">
+      <BackLink href="/insights">All insights</BackLink>
+      <div className="mt-8 flex flex-wrap gap-3 text-[13px] text-neutral">
         <span>{item.type}</span>
         <span aria-hidden>·</span>
         <span>{item.topic}</span>
@@ -55,9 +59,6 @@ export default async function InsightArticlePage({ params }: { params: Promise<{
           <InsightCard key={r.slug} item={r} showCover={false} />
         ))}
       </section>
-      <Link href="/insights" className="mt-10 inline-block text-neutral hover:text-cobalt">
-        ← All insights
-      </Link>
     </main>
   );
 }

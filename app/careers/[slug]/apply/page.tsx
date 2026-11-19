@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ApplyForm } from "@/components/ApplyForm";
+import { BackLink } from "@/components/ui/BackLink";
 import { getRole, roles } from "@/lib/careers";
 
 export function generateStaticParams() {
@@ -25,9 +25,7 @@ export default async function ApplyPage({ params }: { params: Promise<{ slug: st
 
   return (
     <main id="main-content" className="paddings mx-auto max-w-[820px] pt-40 pb-24 lg:pt-44">
-      <Link href={`/careers/${role.slug}`} className="text-[14px] text-neutral hover:text-cobalt">
-        ← {role.title}
-      </Link>
+      <BackLink href={`/careers/${role.slug}`}>{role.title}</BackLink>
       <h1 className="font-display mt-8 text-[40px] leading-[1.1] font-light md:text-[52px]">
         Apply · {role.title}
       </h1>

@@ -25,11 +25,20 @@ const ibmPlex = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: {
     default: `${site.name} · Digital products & AI engineering`,
     template: `%s · ${site.name}`,
   },
   description: site.description,
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: site.url,
+    siteName: site.name,
+    title: `${site.name} · Digital products & AI engineering`,
+    description: site.description,
+  },
   icons: {
     icon: "/logo.png",
     apple: "/logo.png",

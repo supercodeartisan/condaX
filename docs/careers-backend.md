@@ -14,9 +14,10 @@
 2. In Neon SQL Editor, run `db/schema.sql`.
 3. In Vercel, create a Blob store → copy `BLOB_READ_WRITE_TOKEN`.
 4. Create a Resend API key → set `RESEND_API_KEY`, `RESEND_FROM`, `CAREERS_TO`.
-5. Set a strong `ADMIN_PASSWORD`.
-6. Set `NEXT_PUBLIC_SITE_URL` to your production domain.
-7. Deploy on Vercel; point GoDaddy DNS to Vercel.
+5. Set a strong `ADMIN_PASSWORD` and a random `ADMIN_SESSION_SECRET` (`openssl rand -base64 48`).
+6. Set Cloudflare Turnstile keys (`NEXT_PUBLIC_TURNSTILE_SITE_KEY` + `TURNSTILE_SECRET_KEY`).
+7. Set `NEXT_PUBLIC_SITE_URL` to your production domain.
+8. Deploy on Vercel; point GoDaddy DNS to Vercel.
 
 ## Flow
 
@@ -30,8 +31,12 @@ In development, if `DATABASE_URL` / `BLOB_READ_WRITE_TOKEN` are missing, the app
 applications in `.data/applications.json` and CVs in `.data/cvs/`.
 
 ```bash
-# optional: set only admin password
-echo ADMIN_PASSWORD=condax-dev-admin > .env.local
+# optional: set only admin credentials for local review
+# Use a password you will not reuse in production.
+cat > .env.local <<'EOF'
+ADMIN_PASSWORD=replace-me-local-only
+ADMIN_SESSION_SECRET=replace-me-local-session-secret
+EOF
 
 npm run dev:lan
 ```
@@ -39,7 +44,8 @@ npm run dev:lan
 1. Find your LAN IP (Windows: `ipconfig` → IPv4).
 2. Partner opens `http://YOUR_LAN_IP:3000/careers`.
 3. You review at `http://YOUR_LAN_IP:3000/admin/applications` (same Wi‑Fi / network).
-4. Allow Node through Windows Firewall if the partner cannot connect.
+4. CV files stay private — open them from the admin UI after signing in.
+5. Allow Node through Windows Firewall if the partner cannot connect.
 
 ## Production DB (before real domain launch)
 

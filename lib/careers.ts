@@ -4,13 +4,16 @@ export type Role = {
   team: string;
   location: string;
   type: string;
+  experience: string;
+  reportsTo: string;
   summary: string;
-  /** Longer role narrative for the JD page */
-  about: string;
+  /** Multi-paragraph role narrative */
+  about: string[];
+  /** Outcomes this role is hired to drive */
+  impact: string[];
   youWill: string[];
   youMight: string[];
   nice: string[];
-  /** Optional role-specific application questions */
   applyQuestions: { id: string; label: string; hint?: string }[];
 };
 
@@ -19,7 +22,7 @@ export const hiringProcess = [
     step: "01",
     title: "Application review",
     duration: "3-5 business days",
-    text: "We read your CV, LinkedIn, and answers against the role - looking for clear technical depth and evidence you can explain your work. Strong fits move forward; everyone hears back either way.",
+    text: "We read your CV, LinkedIn, and answers against the role - looking for clear senior depth and evidence you can explain your work. Strong fits move forward; everyone hears back either way.",
   },
   {
     step: "02",
@@ -29,18 +32,12 @@ export const hiringProcess = [
   },
   {
     step: "03",
-    title: "Practical assessment",
-    duration: "60-90 minutes",
-    text: "Role-specific and grounded in real work - portfolio deep-dive, pairing, architecture discussion, or a short case. Strong technical skill is non-negotiable. We share the format in advance; no trick puzzles.",
+    title: "Leadership conversation",
+    duration: "45-60 minutes",
+    text: "A conversation with Condax leadership (CTO or CEO). We cover technical judgment, ownership, client communication, and how you would operate on a small senior remote team.",
   },
   {
     step: "04",
-    title: "Team & ways of working",
-    duration: "45-60 minutes",
-    text: "Meet people you would deliver with. We cover async habits, client communication in English, ownership, and how decisions get made on a distributed team.",
-  },
-  {
-    step: "05",
     title: "Offer & onboarding",
     duration: "Usually within a few days",
     text: "Compensation, start date, equipment, and first-week plan. Typical end-to-end timeline is two to four weeks when calendars align.",
@@ -57,15 +54,16 @@ export const whyJoin = [
     text: "Clients and colleagues across regions. Location is not a hiring filter.",
   },
   {
-    title: "Senior bar, small team",
-    text: "Flat structure. Direct client contact. We hire senior contributors who operate with minimal overhead.",
+    title: "Senior bar only",
+    text: "We hire engineers with over five years of production experience. Flat structure. Direct client contact.",
   },
   {
     title: "Craft and communication",
-    text: "Strong technical skill and clear English - interviews, demos, and async writing. You work with clients directly, not behind a coordination layer.",
+    text: "Strong technical skill and clear English - interviews, demos, and async writing. You work with clients directly.",
   },
 ];
 
+/** Open roles - senior engineers only (5+ years production experience). */
 export const roles: Role[] = [
   {
     slug: "senior-full-stack-engineer",
@@ -73,32 +71,43 @@ export const roles: Role[] = [
     team: "Engineering",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    experience: "5+ years production",
+    reportsTo: "CTO",
     summary:
       "Own end-to-end delivery of custom web products, internal tools, and production AI features for international clients.",
-    about:
-      "Condax engages when a team needs software that operators will run in production - SaaS products, internal platforms, and carefully scoped AI features. As a Senior Full-Stack Engineer you own slices of that work from brief to handover: architecture choices, implementation, quality, and the written trail that lets the client’s team continue without us. You will work in small squads with design and product, talk to clients in English, and prefer maintainable systems over demonstration-led delivery.",
+    about: [
+      "Condax is a small AI, automation, and product engineering consultancy. We help organizations adopt AI tools, automate workflows, and ship custom software - then hand ownership to the people who will run it.",
+      "As a Senior Full-Stack Engineer you are accountable for a delivery slice from brief through production: architecture trade-offs, implementation quality, observability, and the written trail that lets a client team continue without us. You will work in tight squads, speak with clients in English, and prefer systems that stay maintainable after handover over demos that impress for a week.",
+      "This is a senior IC role. We expect over five years building and operating production software, comfort with ambiguous scope, and the judgment to say when a feature - including an LLM feature - does not belong in v1.",
+    ],
+    impact: [
+      "Ship production releases clients can operate, not prototypes that stall after kickoff.",
+      "Raise the engineering bar across TypeScript, React/Next.js, APIs, and deployment discipline.",
+      "Leave clear runbooks, decisions, and ownership so Condax can exit cleanly.",
+    ],
     youWill: [
-      "Lead feature delivery across API, data model, UI, deployment, and observability.",
-      "Ship production TypeScript applications (typically React / Next.js and a solid backend or BFF).",
-      "Integrate model-backed capabilities where they earn their place - with evals, logging, and human checkpoints.",
-      "Write handover docs, runbooks, and short decision records so ownership can leave Condax cleanly.",
-      "Participate in client demos, trade-off conversations, and status updates in English.",
-      "Uphold engineering standards: reviews, testing strategy, and secure handling of client data.",
-      "Collaborate async across time zones with clear written updates and predictable overlap windows.",
+      "Lead feature delivery across data model, API, UI, deployment, and observability for a scoped engagement.",
+      "Ship production TypeScript applications - typically React / Next.js with a solid backend or BFF - under real client constraints.",
+      "Integrate model-backed capabilities only where they earn their place: evals, logging, refusal paths, and human checkpoints.",
+      "Facilitate short technical demos and trade-off conversations with client stakeholders in English.",
+      "Write handover packs: runbooks, decision records, access inventory, and known limits.",
+      "Uphold reviews, testing strategy, and secure handling of client data across environments.",
+      "Work async across time zones with predictable overlap and clear written status.",
     ],
     youMight: [
-      "5+ years building and operating production web software.",
-      "Deep TypeScript fluency and strong React (or equivalent) craft.",
-      "Comfort owning ambiguous scope without a large supporting cast.",
-      "Evidence of shipping under real constraints - deadlines, legacy systems, or imperfect data.",
-      "Strong English interview and communication skills (spoken and written) for client-facing delivery.",
+      "Over 5 years building and operating production web software as a senior IC or equivalent.",
+      "Deep TypeScript fluency and strong React (or comparable) craft in shipped products.",
+      "Proven ownership of ambiguous scope without a large supporting cast.",
+      "Evidence of shipping under constraints: deadlines, legacy systems, imperfect data, or regulated environments.",
+      "Strong spoken and written English for client-facing delivery, not only internal chats.",
     ],
     nice: [
       "Production experience with LLM features, RAG, or agent tooling.",
-      "Prior consulting, agency, or product-studio delivery.",
+      "Prior consulting, agency, or product-studio multi-client delivery.",
       "Cloud fundamentals (AWS, GCP, or Azure) and CI/CD ownership.",
-      "Reliable overlap with APAC / EU / US client hours depending on engagement.",
+      "Reliable overlap with APAC, EU, or US client hours depending on engagement.",
     ],
+
     applyQuestions: [
       {
         id: "recent_ship",
@@ -113,80 +122,104 @@ export const roles: Role[] = [
     ],
   },
   {
-    slug: "frontend-engineer",
-    title: "Frontend Engineer",
+    slug: "senior-frontend-engineer",
+    title: "Senior Frontend Engineer",
     team: "Engineering",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    experience: "5+ years production",
+    reportsTo: "CTO",
     summary:
-      "Craft calm, production-grade interfaces for products, copilots, and internal tools - accessibility and performance included.",
-    about:
-      "Our product compositions and client UIs need engineers who care about interaction quality as much as delivery speed. As a Frontend Engineer you partner closely with design and full-stack peers to implement systems that feel considered: dense operational screens, customer-facing flows, and AI surfaces that stay usable under load. You will raise the bar on component quality, performance budgets, and front-end architecture that survives handover.",
+      "Lead production-grade interfaces for products, copilots, and internal tools - accessibility, performance, and craft that survive handover.",
+    about: [
+      "Condax ships interfaces operators and customers open every day: dense ops consoles, customer portals, and AI surfaces that must stay calm under load. We do not hire for marketing-site polish alone.",
+      "As a Senior Frontend Engineer you set the interaction and component bar for an engagement. You translate imperfect briefs into production UI, partner tightly with full-stack peers on contracts and error states, and document patterns so client teams can extend the product after we leave.",
+      "You need over five years of professional front-end engineering on shipped products, plus the English communication skill to defend craft decisions in reviews and client demos.",
+    ],
+    impact: [
+      "Make Condax product UIs feel considered, fast, and operable - not demo-only.",
+      "Establish reusable front-end patterns that shorten later engagements.",
+      "Improve accessibility and performance budgets without slowing delivery.",
+    ],
     youWill: [
-      "Implement responsive, accessible interfaces in React / Next.js (or similar) with strong TypeScript.",
-      "Translate Figma (and imperfect briefs) into production UI with sensible component boundaries.",
-      "Own front-end performance, state management choices, and design-system consistency.",
-      "Build AI product surfaces - review steps, streaming states, empty states - without novelty for its own sake.",
-      "Collaborate with backend engineers on API contracts and error handling that operators understand.",
-      "Document UI patterns so client teams can extend the product after Condax exits.",
+      "Lead responsive, accessible interfaces in React / Next.js (or similar) with strong TypeScript.",
+      "Define component boundaries, design-system discipline, and state patterns appropriate to the product.",
+      "Own front-end performance: budgets, loading strategy, and regressions that matter to operators.",
+      "Build AI product surfaces - streaming, citations, review steps, empty and error states - with operator trust first.",
+      "Collaborate on API contracts and failure modes so the UI explains problems clearly.",
+      "Leave UI documentation and patterns a client engineer can extend without reverse-engineering.",
+      "Participate in design and engineering reviews; raise the craft bar without blocking shipping.",
     ],
     youMight: [
-      "3+ years of professional front-end engineering on shipped products.",
-      "Strong React and TypeScript; comfort with modern CSS (including Tailwind or equivalent).",
-      "Eye for spacing, hierarchy, and interaction detail - not layout alone.",
-      "Experience working with designers in a tight feedback loop.",
-      "Strong technical front-end craft and strong English interview / communication skills for reviews and client demos.",
+      "Over 5 years of professional front-end engineering on shipped digital products.",
+      "Strong React and TypeScript; modern CSS including Tailwind or equivalent systems.",
+      "A portfolio that shows hierarchy, interaction detail, and density handling - not only visual flair.",
+      "Experience leading front-end craft reviews or mentoring peers.",
+      "Strong English for critiques, async write-ups, and client demos.",
     ],
     nice: [
-      "Design-system or component-library ownership.",
+      "Design-system or component-library ownership in production.",
       "Motion craft that respects prefers-reduced-motion.",
       "Light full-stack ability (API routes, auth flows).",
-      "Prior product-studio or consulting experience.",
+      "Prior product-studio or consulting delivery.",
     ],
+
     applyQuestions: [
       {
         id: "ui_craft",
         label: "Link one UI you are proud of and explain two craft decisions you made.",
-        hint: "Public URLs preferred; private work can be described without screenshots of confidential data.",
+        hint: "Public URLs preferred; private work can be described without confidential screenshots.",
       },
       {
         id: "ai_surface",
-        label: "How would you design the empty / loading / error states for a copilot review screen?",
+        label: "How would you design empty, loading, and error states for a copilot review screen?",
         hint: "Focus on operator trust, not visual novelty.",
       },
     ],
   },
   {
-    slug: "backend-platform-engineer",
-    title: "Backend / Platform Engineer",
+    slug: "senior-backend-platform-engineer",
+    title: "Senior Backend / Platform Engineer",
     team: "Engineering",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    experience: "5+ years production",
+    reportsTo: "CTO",
     summary:
       "Design APIs, data layers, and platform foundations that keep client products reliable, observable, and hand-over-ready.",
-    about:
-      "Condax builds systems that must survive real traffic, real data, and real operators. As a Backend / Platform Engineer you shape services, data models, integrations, and the operational backbone (auth, jobs, queues, observability) so products stay understandable after we leave. You will make pragmatic buy-vs-build calls, keep security and tenancy explicit, and partner with AI engineers when model features need durable plumbing.",
+    about: [
+      "Condax products must survive real traffic, real data, and real operators. Backend and platform work is judged by clarity under failure - not only green-path demos.",
+      "As a Senior Backend / Platform Engineer you shape services, data models, integrations, auth, jobs, and observability so a client’s team can operate what we ship. You make pragmatic buy-versus-build calls, keep tenancy and secrets explicit, and partner when AI features need durable plumbing.",
+      "Over five years of backend or platform engineering in production is required, including systems you have personally operated or been accountable for.",
+    ],
+    impact: [
+      "Establish reliable foundations engagements can build on without reinventing auth, jobs, or logging.",
+      "Reduce production risk through observability, backups, and documented failure modes.",
+      "Enable clean handover to client engineers with architecture notes they can actually use.",
+    ],
     youWill: [
       "Design and implement APIs, services, and data models for custom products and internal tools.",
-      "Own reliability basics: logging, metrics, alerting, backups, and failure modes that are documented.",
-      "Integrate third-party systems (CRM, ERP, auth, payments, AI vendors) with clear boundaries.",
+      "Own reliability basics: structured logging, metrics, alerting, backups, and recoverable failure modes.",
+      "Integrate third-party systems (CRM, ERP, identity, AI vendors) with clear boundaries and ownership.",
       "Partner on AI features so retrieval, tool calls, and permissions sit on solid platform rails.",
       "Improve CI/CD, environments, and secrets handling for small delivery teams.",
       "Write architecture notes and runbooks suitable for client engineering handover.",
+      "Pressure-test scope: push back on fragile shortcuts that will fail after Condax exits.",
     ],
     youMight: [
-      "5+ years of backend or platform engineering in production.",
-      "Strong in at least one of Node/TypeScript, Python, Go, or Java - and SQL fluency.",
-      "Experience with cloud infrastructure and containerized deployments.",
-      "Track record of operating systems you built (on-call or equivalent ownership).",
-      "Strong backend/platform technical skill and strong English interview / communication skills for design reviews and client sessions.",
+      "Over 5 years of backend or platform engineering in production.",
+      "Strong skill in at least one of Node/TypeScript, Python, Go, or Java - plus SQL fluency.",
+      "Hands-on experience with cloud infrastructure and containerized deployments.",
+      "A track record of operating systems you built (on-call or equivalent ownership).",
+      "Strong English for design reviews, incident notes, and client technical sessions.",
     ],
     nice: [
       "Event-driven architectures, queues, or workflow engines.",
-      "Security / compliance exposure (SOC2-minded practices, least privilege).",
+      "Security and compliance-minded practices (least privilege, audit trails).",
       "Experience modernizing legacy systems without big-bang rewrites.",
       "Prior consulting or multi-tenant SaaS background.",
     ],
+
     applyQuestions: [
       {
         id: "reliability",
@@ -194,46 +227,59 @@ export const roles: Role[] = [
       },
       {
         id: "integration",
-        label: "Walk through how you would integrate a third-party LLM vendor into a client’s VPC or tenancy constraints.",
+        label:
+          "Walk through how you would integrate a third-party LLM vendor under a client’s VPC or tenancy constraints.",
         hint: "Trade-offs and failure modes matter more than brand names.",
       },
     ],
   },
   {
-    slug: "ai-engineer",
-    title: "AI / LLM Engineer",
+    slug: "senior-ai-engineer",
+    title: "Senior AI / LLM Engineer",
     team: "AI & Engineering",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    experience: "5+ years software · production AI/ML",
+    reportsTo: "CTO",
     summary:
-      "Turn AI pilots into systems clients can run - copilots, retrieval, and automations grounded in their data, not a demo chatbot.",
-    about:
-      "Condax treats AI as product engineering with extra failure modes. As an AI / LLM Engineer you design retrieval, tool use, evaluation, and human checkpoints so features earn their place in production. You will push back when a prompt is not a product, choose vendors against cost and data constraints, and leave the client able to operate what you shipped.",
+      "Turn AI pilots into systems clients can run - copilots, retrieval, and automations grounded in their data, with evals and human checkpoints.",
+    about: [
+      "Condax treats AI as product engineering with extra failure modes. We do not ship chat demos that cannot survive contact with real corpora, access rules, or operators.",
+      "As a Senior AI / LLM Engineer you design retrieval, tool use, evaluation, and human review so features earn their place in production. You will refuse work when a prompt is not a product, choose vendors against cost and data residency, and leave clients able to operate what you shipped.",
+      "Candidates need over five years of software engineering experience, including at least one LLM or ML feature that real users depended on - with the engineering habits (APIs, tests, reviews) to match.",
+    ],
+    impact: [
+      "Convert AI ambition into bounded pilots and production features with measurable quality.",
+      "Establish eval and logging practices Condax and clients can reuse.",
+      "Protect clients from unsafe or unmaintainable AI shortcuts.",
+    ],
     youWill: [
       "Design and build copilots, RAG pipelines, and workflow automations on real client stacks.",
       "Select models and vendors against latency, cost, quality, and data-residency constraints.",
       "Add evals, tracing, and human review steps before anything is called production-ready.",
-      "Partner with product and engineering so AI sits inside the product - not as a side chatbot.",
-      "Support AI-for-teams rollouts: safe usage patterns, tenancy boundaries, and operator training materials.",
-      "Document prompts, datasets, and operational playbooks for handover.",
+      "Partner with product and engineering so AI sits inside the workflow - not a side chatbot.",
+      "Support AI-for-teams engagements: safe usage patterns, tenancy boundaries, and operator materials.",
+      "Document prompts, datasets, failure modes, and operational playbooks for handover.",
+      "Explain adopt-versus-build recommendations clearly to non-ML stakeholders in English.",
     ],
     youMight: [
-      "Shipped at least one LLM or ML feature that real users depended on.",
-      "Solid software engineering habits - APIs, tests, reviews - not only notebooks.",
-      "Ability to explain adopt versus build for AI without relying on presentation-only rationale.",
-      "Strong AI/engineering technical skill and strong English interview / communication skills for async handovers and client explanations.",
-      "Comfort saying “not yet” when data quality or risk is wrong.",
+      "Over 5 years of software engineering, including production LLM or ML features real users relied on.",
+      "Solid engineering habits - APIs, tests, code review - not notebook-only work.",
+      "Judgment to defer or refuse when data quality, access control, or eval coverage is inadequate.",
+      "Strong English for async handovers, leadership readouts, and client workshops.",
     ],
     nice: [
-      "Enterprise data constraints or regulated environments.",
+      "Enterprise or regulated data environments.",
       "Familiarity with major model APIs, vector stores, and eval harnesses.",
       "Experience mentoring client engineers after handover.",
       "Background in search, NLP, or information retrieval.",
     ],
+
     applyQuestions: [
       {
         id: "production_ai",
-        label: "Describe an LLM or ML feature you shipped to production. What broke after launch, and how did you fix it?",
+        label:
+          "Describe an LLM or ML feature you shipped to production. What broke after launch, and how did you fix it?",
       },
       {
         id: "eval_approach",
@@ -243,57 +289,25 @@ export const roles: Role[] = [
     ],
   },
   {
-    slug: "solutions-architect",
-    title: "Solutions Architect",
-    team: "Architecture",
-    location: "Remote · Worldwide",
-    type: "Full-time · Contract",
-    summary:
-      "Shape technical direction for engagements - from discovery recommendations to architecture that a delivery team can execute.",
-    about:
-      "Many Condax engagements start with a hard call: buy a tool, build software, or wait. As a Solutions Architect you lead that technical clarity - mapping current systems, proposing options with trade-offs, and establishing an architecture the delivery team can ship against. You stay close enough to implementation to remain credible, and close enough to clients to keep recommendations practical.",
-    youWill: [
-      "Run technical discovery: systems, constraints, risks, and success criteria.",
-      "Produce architecture options and recommendations clients can accept or reject.",
-      "Define integration patterns, data boundaries, and non-functional requirements.",
-      "Guide delivery teams on sequencing, spikes, and technical debt they should not ignore.",
-      "Support advisory and enablement work when AI tooling is the right answer instead of a build.",
-      "Present findings clearly in English - written briefs and live sessions.",
-    ],
-    youMight: [
-      "7+ years across engineering and architecture, or equivalent senior IC experience.",
-      "Breadth across web, cloud, data, and integration landscapes.",
-      "Evidence of influencing stakeholders without relying on formal authority alone.",
-      "Comfortable in discovery workshops and whiteboard-to-document workflows.",
-      "Strong technical judgment and strong English interview / communication skills for workshops and decision records.",
-    ],
-    nice: [
-      "Consulting or multi-client delivery background.",
-      "AI / data platform exposure.",
-      "Security architecture familiarity.",
-      "Experience estimating delivery risk honestly.",
-    ],
-    applyQuestions: [
-      {
-        id: "buy_build",
-        label: "Give an example where you recommended “buy” or “wait” instead of “build.” What convinced the stakeholders?",
-      },
-      {
-        id: "architecture_doc",
-        label: "How do you keep architecture docs useful after week one of delivery?",
-      },
-    ],
-  },
-  {
-    slug: "devops-cloud-engineer",
-    title: "DevOps / Cloud Engineer",
+    slug: "senior-devops-cloud-engineer",
+    title: "Senior DevOps / Cloud Engineer",
     team: "Platform",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    experience: "5+ years production",
+    reportsTo: "CTO",
     summary:
-      "Make environments, pipelines, and cloud foundations reliably operable for product teams and client handovers.",
-    about:
-      "Delivery speed collapses when environments are fragile. As a DevOps / Cloud Engineer you create the infrastructure and automation that let Condax squads ship safely - and that clients can operate after engagement. You will prefer clear IaC, least-privilege access, and observability over clever one-offs.",
+      "Make environments, pipelines, and cloud foundations reliably operable for Condax delivery teams and client handovers.",
+    about: [
+      "Delivery speed collapses when environments are fragile. Condax engagements need infrastructure that is reviewable, least-privilege by default, and understandable after we leave.",
+      "As a Senior DevOps / Cloud Engineer you build CI/CD, environments, identity, networking, and observability that let small senior squads ship safely - and that client platform teams can operate without reverse-engineering one-offs.",
+      "Over five years in DevOps, SRE, or cloud platform roles is required, with experience supporting product teams rather than ticket queues alone.",
+    ],
+    impact: [
+      "Shorten time-to-safe-deploy across Condax engagements.",
+      "Reduce secrets, access, and environment drift risk for client tenancies.",
+      "Leave infrastructure handovers that a small client ops team can run.",
+    ],
     youWill: [
       "Build and maintain CI/CD, environments, and release workflows for product teams.",
       "Implement infrastructure as code on AWS, GCP, or Azure with reviewable changes.",
@@ -301,19 +315,21 @@ export const roles: Role[] = [
       "Improve observability: logs, metrics, tracing, and actionable alerts.",
       "Partner with engineers on performance, cost, and operational readiness before go-live.",
       "Produce handover documentation clients’ platform teams can operate from.",
+      "Prefer clear patterns over clever snowflakes that only you can maintain.",
     ],
     youMight: [
-      "4+ years in DevOps, SRE, or cloud platform roles.",
-      "Hands-on with Terraform/Pulumi (or equivalent) and container orchestration.",
-      "Experience supporting product teams, not only ticket queues.",
-      "Strong cloud/platform technical skill and strong English interview / communication skills for runbooks and incident notes.",
+      "Over 5 years in DevOps, SRE, or cloud platform roles.",
+      "Hands-on Terraform/Pulumi (or equivalent) and container orchestration experience.",
+      "Experience supporting product delivery teams, not only L1 ticket queues.",
+      "Strong English for runbooks, incident notes, and client platform conversations.",
     ],
     nice: [
       "FinOps awareness and cost governance.",
       "Security tooling (WAF, CSPM, secret scanning).",
-      "Multi-account / multi-tenant cloud organization design.",
+      "Multi-account or multi-tenant cloud organization design.",
       "Prior agency or consulting delivery.",
     ],
+
     applyQuestions: [
       {
         id: "platform_story",
@@ -321,212 +337,229 @@ export const roles: Role[] = [
       },
       {
         id: "handover",
-        label: "What does a good infrastructure handover look like for a client who has a small ops team?",
+        label: "What does a good infrastructure handover look like for a client with a small ops team?",
       },
     ],
   },
   {
-    slug: "product-designer",
-    title: "Product Designer",
-    team: "Design",
-    location: "Remote · Worldwide",
-    type: "Full-time · Contract",
-    summary:
-      "Design products and internal tools that operators and customers open every day - calm UI, clear flows, no concept-only deliverables.",
-    about:
-      "Condax design work is judged by whether people can complete the job with less friction. As a Product Designer you own experience from problem framing through production-ready specs, working inside small delivery squads. You will design for density, clarity, and AI surfaces that stay trustworthy - and you will talk to clients and users directly.",
-    youWill: [
-      "Own UX and UI from brief to production-ready specifications and design QA.",
-      "Design flows for products, internal tools, and AI review / copilot surfaces.",
-      "Facilitate lightweight research and usability checks appropriate to engagement length.",
-      "Partner tightly with engineers; prefer implementable systems over speculative presentations.",
-      "Maintain coherent visual and interaction patterns across an engagement.",
-      "Present work to clients in English and incorporate feedback into the next slice.",
-    ],
-    youMight: [
-      "Portfolio of shipped digital products (not only marketing sites).",
-      "Strong Figma craft and interaction thinking.",
-      "Ability to write short specs engineers respect.",
-      "Comfort collaborating remotely across time zones.",
-      "Strong product-design craft and strong English interview / communication skills for workshops and critiques.",
-    ],
-    nice: [
-      "Consulting or product-studio experience.",
-      "Light prototyping or front-end literacy.",
-      "Experience designing complex B2B / ops interfaces.",
-      "Interest in AI product patterns that stay usable under load.",
-    ],
-    applyQuestions: [
-      {
-        id: "shipped_case",
-        label: "Walk through one shipped product case: problem, constraints, your decisions, and outcome.",
-      },
-      {
-        id: "ops_ui",
-        label: "How do you approach information density in an internal operations UI?",
-      },
-    ],
-  },
-  {
-    slug: "product-manager",
-    title: "Product Manager",
-    team: "Product",
-    location: "Remote · Worldwide",
-    type: "Full-time · Contract",
-    summary:
-      "Keep engagements pointed at outcomes - discovery, scope, sequencing, and honest calls between tools and custom software.",
-    about:
-      "Condax product managers protect clarity. You will run discovery, write scopes clients can accept or reject, sequence delivery, and keep quality ahead of process overhead. You sit between client stakeholders and the delivery squad - facilitating adopt-versus-build decisions, surfacing risk early, and making sure handover is part of the plan, not an afterthought.",
-    youWill: [
-      "Lead discovery and produce briefs / scopes with explicit outcomes and trade-offs.",
-      "Facilitate buy vs build vs wait decisions with engineering and design.",
-      "Own delivery cadence: demos, risk logs, stakeholder updates, and definition of done.",
-      "Coordinate a remote international team without drowning people in process.",
-      "Protect quality: push back on unjustified scope and under-specified AI features.",
-      "Plan handover - training, docs, and ownership - from the start of the engagement.",
-    ],
-    youMight: [
-      "Led product or delivery work in software, consulting, or a studio.",
-      "Write briefs that engineers and designers respect.",
-      "Strong product judgment and strong English interview / communication skills with international clients.",
-      "Bias to shipping over ceremony; comfort with incomplete information.",
-    ],
-    nice: [
-      "AI product or enablement exposure.",
-      "Commercial instincts (scope, timeline, change control).",
-      "Experience with distributed teams and async rituals.",
-      "Technical literacy sufficient to challenge weak proposals.",
-    ],
-    applyQuestions: [
-      {
-        id: "scope_call",
-        label: "Describe a time you reduced scope to protect quality. What did you cut, and how did you bring stakeholders along?",
-      },
-      {
-        id: "ai_enablement",
-        label: "When is “adopt a tool” a better product decision than “build a custom AI feature”?",
-      },
-    ],
-  },
-  {
-    slug: "engagement-lead",
-    title: "Engagement / Delivery Lead",
-    team: "Delivery",
-    location: "Remote · Worldwide",
-    type: "Full-time · Contract",
-    summary:
-      "Run client engagements end to end - relationship, plan, risk, and the operating rhythm that keeps senior ICs effective.",
-    about:
-      "Small senior teams still need someone accountable for the engagement as a whole. As an Engagement / Delivery Lead you own the client relationship day to day, keep work sequenced, surface risk early, and make sure Condax delivers what was promised - including a clean exit. You are not a pure coordinator; you understand product and engineering enough to intervene when quality slips.",
-    youWill: [
-      "Own engagement health: plan, milestones, risks, and stakeholder communication.",
-      "Translate client goals into a delivery shape the squad can execute.",
-      "Facilitate ceremonies that earn their keep; kill ones that do not.",
-      "Partner with commercial conversations on scope changes and timeline impact.",
-      "Ensure handover, training, and access cleanup are completed before close-out.",
-      "Coach the team on client communication standards in English.",
-    ],
-    youMight: [
-      "5+ years leading delivery in consulting, agencies, or product organizations.",
-      "Track record managing multi-disciplinary remote teams.",
-      "Strong delivery judgment and strong English interview / communication skills with executive stakeholders.",
-      "Comfort with ambiguity and changing constraints.",
-    ],
-    nice: [
-      "Background as a PM, engineering manager, or technical program lead.",
-      "Experience with AI or digital transformation programs.",
-      "Exposure to commercial negotiation and SOW change control.",
-    ],
-    applyQuestions: [
-      {
-        id: "engagement_save",
-        label: "Tell us about an engagement that was at risk. What did you change, and what was the result?",
-      },
-      {
-        id: "rituals",
-        label: "Which delivery rituals do you insist on for a remote senior team - and which do you refuse?",
-      },
-    ],
-  },
-  {
-    slug: "qa-engineer",
-    title: "QA / Quality Engineer",
+    slug: "senior-java-spring-engineer",
+    title: "Senior Java / Spring Boot Engineer",
     team: "Engineering",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    experience: "5+ years production",
+    reportsTo: "CTO",
     summary:
-      "Raise the quality bar for client products - risk-based testing, automation where it pays off, and release confidence without ceremony.",
-    about:
-      "Condax ships software clients will operate. As a QA / Quality Engineer you embed with delivery squads to catch the failures that matter: regressions, broken handovers, fragile AI behaviors, and unclear acceptance criteria. You will prefer risk-based strategy and useful automation over checkbox-driven ceremony.",
+      "Design and ship production Java / Spring Boot services, APIs, and integrations for Condax client engagements - with clear ownership through handover.",
+    about: [
+      "Many Condax clients already run on the JVM. When the right path is custom software on Java and Spring Boot, we need senior engineers who can design services that are reliable, observable, and understandable after we leave.",
+      "As a Senior Java / Spring Boot Engineer you own backend delivery on the JVM stack: domain modeling, Spring Boot services, data access, messaging, security, and production readiness. You will work alongside TypeScript and platform peers when engagements span stacks, and you will talk to clients in English about trade-offs - not only ticket status.",
+      "Over five years of production Java experience is required, including Spring Boot systems you have shipped and operated (or been accountable for in production).",
+    ],
+    impact: [
+      "Deliver JVM-backed products and services clients can run without Condax as a permanent dependency.",
+      "Raise the bar for Spring Boot architecture, testing, and operational clarity on engagements.",
+      "Bridge Java client stacks with Condax delivery standards for handover and observability.",
+    ],
     youWill: [
-      "Define test strategy per engagement: critical paths, data setups, and release gates.",
-      "Design and maintain automated checks where they reduce real risk.",
-      "Explore AI and workflow features for failure modes operators would hit.",
-      "Partner with engineers and PMs to sharpen acceptance criteria before build.",
-      "Support go-live readiness and post-release verification.",
-      "Leave a maintainable quality harness and notes for the client team.",
+      "Design and implement Spring Boot services, REST/GraphQL APIs, and domain models for scoped client builds.",
+      "Own data access, transactions, and consistency patterns appropriate to the problem (JPA/JDBC, messaging, or both).",
+      "Integrate with identity providers, queues, and third-party systems under explicit tenancy and security constraints.",
+      "Establish testing strategy: unit, integration, and contract tests that protect production paths.",
+      "Partner with frontend, AI, and platform engineers when the engagement spans stacks.",
+      "Produce architecture notes, runbooks, and known-limits documentation for client Java teams.",
+      "Participate in client demos and technical trade-off sessions in English.",
     ],
     youMight: [
-      "4+ years in QA, SDET, or quality engineering on shipped products.",
-      "Experience with modern web test tooling and CI integration.",
-      "Strong quality/engineering technical skill and strong English interview / communication skills to explain risk to non-QA stakeholders.",
-      "Comfortable in remote, async delivery.",
+      "Over 5 years of production Java engineering, including Spring Boot in live systems.",
+      "Strong grasp of concurrency, JVM performance basics, and API design.",
+      "Experience with relational databases, migrations, and production troubleshooting on the JVM.",
+      "Comfort owning ambiguous backend scope without a large supporting cast.",
+      "Strong spoken and written English for client-facing technical conversations.",
     ],
     nice: [
-      "API and contract testing experience.",
-      "Exposure to AI / ML product evaluation.",
-      "Security or accessibility testing familiarity.",
-      "Consulting or multi-client delivery background.",
+      "Kotlin alongside Java in production.",
+      "Kafka, RabbitMQ, or similar messaging in production.",
+      "Prior consulting or multi-client delivery.",
+      "Exposure to LLM/API integration from Spring services.",
+      "Cloud deployment of JVM services (AWS, GCP, or Azure).",
     ],
+
     applyQuestions: [
       {
-        id: "risk_based",
-        label: "How do you decide what not to automate on a short consulting engagement?",
+        id: "spring_ship",
+        label: "Describe a Spring Boot service you owned in production. What failed under load or edge cases, and what did you change?",
       },
       {
-        id: "ai_quality",
-        label: "What would you test for a retrieval-augmented assistant before calling it production-ready?",
+        id: "java_tradeoff",
+        label: "When would you choose messaging over a synchronous API between services - and when would you refuse that complexity?",
+        hint: "A concrete past decision is better than a textbook answer.",
       },
     ],
   },
   {
-    slug: "technical-writer",
-    title: "Technical Writer / Enablement Specialist",
-    team: "Enablement",
+    slug: "senior-dotnet-engineer",
+    title: "Senior C# / .NET Engineer",
+    team: "Engineering",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    experience: "5+ years production",
+    reportsTo: "CTO",
     summary:
-      "Turn delivery into durable enablement - docs, training, and policy language operators can use after Condax leaves.",
-    about:
-      "Handover is part of the product. As a Technical Writer / Enablement Specialist you create the guides, runbooks, and training materials that make AI tools and custom software durable. You will work beside engineers and PMs, interview operators, and write in clear English that respects how people work day to day.",
+      "Design and ship production C# / .NET services, APIs, and integrations for Condax client engagements - with maintainable architecture and clean handover.",
+    about: [
+      "A substantial share of enterprise clients run on .NET. Condax needs senior engineers who can deliver on that stack without treating it as a second-class path next to TypeScript.",
+      "As a Senior C# / .NET Engineer you own backend (and full-stack where ASP.NET UI is in scope) delivery: service design, data access, identity, integrations, testing, and production readiness. You will collaborate with Condax peers on polyglot engagements and communicate clearly with client stakeholders in English.",
+      "Over five years of production C# / .NET experience is required, including systems you have shipped and been accountable for after go-live.",
+    ],
+    impact: [
+      "Ship .NET services and applications that client teams can operate and extend.",
+      "Establish Condax-quality standards for ASP.NET / .NET architecture on engagements.",
+      "Reduce handover friction for Microsoft-stack client engineering organizations.",
+    ],
     youWill: [
-      "Produce runbooks, admin guides, and user help for products and AI rollouts.",
-      "Convert engagement outcomes into training sessions and short reference material.",
-      "Help draft practical policy language for AI tool usage where needed.",
-      "Interview subject-matter experts and operators to keep docs accurate.",
-      "Maintain information architecture so docs stay findable after handover.",
-      "Partner with design and engineering on in-product empty states and help copy.",
+      "Design and implement .NET services and APIs (ASP.NET Core) for scoped client products and internal tools.",
+      "Own data access, domain modeling, and persistence patterns that match the engagement’s constraints.",
+      "Integrate with Microsoft and third-party identity, messaging, and SaaS systems under clear security boundaries.",
+      "Define testing and observability practices appropriate to production .NET workloads.",
+      "Partner with frontend, AI, and platform engineers on polyglot deliveries.",
+      "Write architecture notes and runbooks suitable for client .NET teams.",
+      "Present technical trade-offs and demos to clients in English.",
     ],
     youMight: [
-      "Proven portfolio of technical documentation or enablement programs.",
-      "Excellent written English and strong spoken English interview / facilitation skills for remote training.",
-      "Strong technical literacy - able to work with engineering teams and imperfect source material.",
-      "Comfortable facilitating short training sessions remotely.",
+      "Over 5 years of production C# / .NET engineering.",
+      "Strong ASP.NET Core experience and solid SQL / EF Core (or equivalent) fluency.",
+      "Evidence of shipping and operating services under real production constraints.",
+      "Comfort with ambiguous scope and senior IC ownership.",
+      "Strong spoken and written English for client technical sessions.",
     ],
     nice: [
-      "AI tooling or developer-docs background.",
-      "Instructional design experience.",
-      "Familiarity with docs-as-code workflows.",
-      "Prior consulting or customer education roles.",
+      "Azure-native delivery (App Service, Functions, Service Bus, Entra ID).",
+      "Blazor or other .NET UI experience when the product stays on Microsoft stack.",
+      "Prior consulting or multi-client delivery.",
+      "Exposure to integrating LLM APIs from .NET services.",
+      "Containerized .NET deployments and CI/CD ownership.",
     ],
+
     applyQuestions: [
       {
-        id: "doc_sample",
-        label: "Share a public writing sample (or describe a private one) and what made it effective for operators.",
+        id: "dotnet_ship",
+        label: "Describe a .NET service or application you owned in production. What operational pain did you hit, and how did you harden it?",
       },
       {
-        id: "enablement",
-        label: "How would you structure a 45-minute enablement session for a team adopting a new internal tool?",
+        id: "dotnet_boundaries",
+        label: "How do you decide service boundaries in a .NET codebase that started as a modular monolith?",
+        hint: "Trade-offs and a past example matter more than slogans.",
+      },
+    ],
+  },
+  {
+    slug: "senior-technical-interviewer",
+    title: "Senior Technical Interviewer",
+    team: "Talent · Engineering",
+    location: "Remote · Worldwide",
+    type: "Full-time · Contract",
+    experience: "5+ years production · deep interview craft",
+    reportsTo: "CTO",
+    summary:
+      "Run deep technical interviews for Condax engineering hiring - assess real production judgment across stacks, not puzzle performance.",
+    about: [
+      "Condax hires only senior engineers. That bar only holds if interviews are rigorous, consistent, and grounded in how people actually ship software - not trivia or trick puzzles.",
+      "As a Senior Technical Interviewer you conduct in-depth technical conversations for Condax candidates (and, when scoped, client hiring support). You probe architecture judgment, debugging instincts, stack depth (TypeScript, Java/Spring, C#/.NET, platform, AI), and English communication under client-delivery conditions.",
+      "You are a strong senior engineer first. Interviewing is the focus of this role, but credibility comes from years of production work and the ability to evaluate peers fairly across multiple stacks.",
+    ],
+    impact: [
+      "Protect Condax’s senior hiring bar with consistent, high-signal technical interviews.",
+      "Reduce false positives and false negatives that waste delivery capacity.",
+      "Give candidates a professional, respectful process that still surfaces real depth.",
+    ],
+    youWill: [
+      "Design and run deep technical interviews aligned to Condax role profiles (full-stack, frontend, backend, Java/Spring, .NET, AI, platform).",
+      "Assess production judgment: trade-offs, failure modes, ownership stories, and communication clarity in English.",
+      "Write structured interview notes and hire/no-hire recommendations leadership can trust.",
+      "Calibrate with Condax leadership on what “senior” means per stack - and push back when a candidate is mid-level in senior clothing.",
+      "Maintain a living bank of scenario-based questions that mirror Condax delivery work (not LeetCode theater).",
+      "Occasionally support client-side technical screening when Condax is asked to help evaluate engineers.",
+      "Keep candidate experience high: clear expectations, no trick puzzles, timely written feedback inputs.",
+    ],
+    youMight: [
+      "Over 5 years of production engineering, plus substantial experience interviewing or mentoring senior ICs.",
+      "Depth in at least one major stack Condax hires for (TypeScript, Java/Spring, or C#/.NET) and literacy across others.",
+      "Evidence you can separate signal from confidence - fair evaluation under time pressure.",
+      "Excellent spoken English for long-form technical conversation with international candidates.",
+      "Comfort delivering candid, evidence-based hire recommendations to leadership.",
+    ],
+    nice: [
+      "Prior staff+/principal interviewing experience or hiring-committee work.",
+      "Experience interviewing across both product and consulting environments.",
+      "Familiarity with AI/LLM engineering assessment.",
+      "Structured rubric design or interviewer training experience.",
+    ],
+
+    applyQuestions: [
+      {
+        id: "interview_signal",
+        label: "Describe a time you reversed an initial positive impression during a technical interview. What evidence changed your mind?",
+      },
+      {
+        id: "stack_depth",
+        label: "Which stack are you deepest in, and how would you probe senior-level judgment in that stack in 45 minutes?",
+        hint: "Outline the conversation structure - not a list of trivia questions.",
+      },
+    ],
+  },
+  {
+    slug: "technical-interview-lead",
+    title: "Technical Interview Lead",
+    team: "Talent · Engineering",
+    location: "Remote · Worldwide",
+    type: "Full-time · Contract",
+    experience: "7+ years production · hiring systems",
+    reportsTo: "CTO",
+    summary:
+      "Own Condax’s technical interview system - rubrics, stack-specific depth (including Java/Spring and .NET), interviewer calibration, and bar quality.",
+    about: [
+      "As Condax grows senior engineering hiring across TypeScript, Java/Spring Boot, C#/.NET, AI, and platform, someone must own the interview system itself - not only run individual loops.",
+      "As Technical Interview Lead you design and continuously improve how Condax evaluates senior engineers. You build stack-specific rubrics, train and calibrate interviewers, audit interview quality, and partner with leadership on hard hire calls. You still conduct high-stakes interviews yourself, especially for specialized stacks.",
+      "This role requires deep technical credibility (7+ years production engineering) and proven experience building or leading interview processes - not recruiter coordination alone.",
+    ],
+    impact: [
+      "Make Condax hiring quality predictable as role volume and stack diversity grow.",
+      "Ensure Java/Spring, .NET, and other specialized roles get the same senior bar as core TypeScript delivery.",
+      "Create an interview practice candidates experience as rigorous and fair.",
+    ],
+    youWill: [
+      "Own the end-to-end technical interview framework for Condax engineering roles.",
+      "Design stack-specific deep interviews for TypeScript, Java/Spring Boot, C#/.NET, AI/LLM, and platform candidates.",
+      "Recruit, coach, and calibrate Senior Technical Interviewers; review their notes for consistency.",
+      "Partner with leadership on final hiring recommendations and bar-raising decisions.",
+      "Instrument the funnel: time-to-signal, pass rates by stage, and false-positive postmortems after bad hires (or near-misses).",
+      "Keep question banks and rubrics current with how Condax actually delivers for clients.",
+      "Run the most difficult interviews yourself when stack depth or seniority is ambiguous.",
+    ],
+    youMight: [
+      "7+ years of production engineering plus ownership of a hiring or interview program.",
+      "Personal depth in at least one of Java/Spring, C#/.NET, or large-scale TypeScript backends - and the ability to evaluate the others.",
+      "Evidence of building rubrics, calibrating interviewers, or running hiring committees.",
+      "Exceptional English communication for interviewing, coaching interviewers, and writing decision memos.",
+      "Judgment to protect the senior bar under hiring pressure.",
+    ],
+    nice: [
+      "Experience hiring for a consultancy, agency, or multi-product engineering org.",
+      "Prior staff+/principal or engineering-manager background.",
+      "Familiarity with AI engineering assessment.",
+      "Operations mindset: metrics, process improvement, documentation.",
+    ],
+
+    applyQuestions: [
+      {
+        id: "bar_raise",
+        label: "Tell us about a time you raised a hiring bar against organizational pressure. What did you change in the process afterward?",
+      },
+      {
+        id: "multi_stack",
+        label: "How would you structure Condax interviews so Java/Spring and .NET candidates are evaluated as rigorously as TypeScript candidates?",
+        hint: "Speak to rubrics, interviewer assignment, and calibration - not slogans.",
       },
     ],
   },
@@ -535,7 +568,8 @@ export const roles: Role[] = [
 export const generalApplyQuestions: Role["applyQuestions"] = [
   {
     id: "craft_focus",
-    label: "What craft do you want to be hired for, and at what seniority?",
+    label:
+      "Which craft are you targeting (e.g. TypeScript full-stack, Java/Spring, C#/.NET, AI, platform, technical interviewing), and roughly how many years of production experience?",
   },
   {
     id: "recent_work",

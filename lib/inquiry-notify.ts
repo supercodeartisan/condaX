@@ -10,12 +10,12 @@ export async function notifyContactInquiry(input: {
   id: string;
   name: string;
   email: string;
-  source: string;
-  region: string;
+  source?: string | null;
+  region?: string | null;
   description: string;
   scope: string;
-  date: string;
-  investment: string;
+  date?: string | null;
+  investment?: string | null;
   referralCode?: string | null;
   geo?: RequestGeo | null;
 }): Promise<void> {
@@ -34,11 +34,11 @@ export async function notifyContactInquiry(input: {
     ``,
     `Name: ${input.name}`,
     `Email: ${input.email}`,
-    `Source: ${input.source}`,
-    `Region: ${input.region}`,
+    `Source: ${input.source || "—"}`,
+    `Region: ${input.region || "—"}`,
     `Scope: ${input.scope}`,
-    `Timeline: ${input.date}`,
-    `Investment: ${input.investment}`,
+    `Timeline: ${input.date || "—"}`,
+    `Investment: ${input.investment || "—"}`,
     input.referralCode ? `Referral code: ${input.referralCode}` : null,
     input.geo
       ? `Submitter network: ${formatRequestGeo({

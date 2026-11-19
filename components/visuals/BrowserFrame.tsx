@@ -1,8 +1,9 @@
+import { ArrowLeftIcon, ArrowRightIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 
-export type WindowOs = "macos" | "windows" | "linux";
+export type WindowOs = "macos" | "chrome" | "dark";
 
-/** Multi-OS window chrome so product UIs read as captured screenshots. */
+/** Distinct browser chrome so Work screenshots feel like real product captures. */
 export function BrowserFrame({
   title,
   url,
@@ -19,17 +20,20 @@ export function BrowserFrame({
   return (
     <div
       className={cn(
-        "overflow-hidden border border-hairline bg-surface shadow-[0_20px_60px_rgba(17,17,16,0.10)]",
-        os === "macos" && "rounded-[14px]",
-        os === "windows" && "rounded-sm",
-        os === "linux" && "rounded-md",
+        "overflow-hidden border bg-surface",
+        os === "macos" &&
+          "rounded-[16px] border-hairline shadow-[0_24px_70px_rgba(17,17,16,0.12)]",
+        os === "chrome" &&
+          "rounded-[12px] border-[#dadce0] shadow-[0_18px_50px_rgba(60,64,67,0.18)]",
+        os === "dark" &&
+          "rounded-[10px] border-white/10 shadow-[0_28px_80px_rgba(0,0,0,0.45)]",
         className,
       )}
     >
       {os === "macos" ? <MacChrome title={title} url={url} /> : null}
-      {os === "windows" ? <WindowsChrome title={title} url={url} /> : null}
-      {os === "linux" ? <LinuxChrome title={title} url={url} /> : null}
-      <div className="bg-paper">{children}</div>
+      {os === "chrome" ? <ChromeFrame title={title} url={url} /> : null}
+      {os === "dark" ? <DarkChrome title={title} url={url} /> : null}
+      <div className={cn(os === "dark" ? "bg-[#0f1419]" : "bg-paper")}>{children}</div>
     </div>
   );
 }
@@ -46,63 +50,83 @@ function MacChrome({ title, url }: { title: string; url?: string }) {
         {url ?? title}
       </div>
       <span className="hidden text-[10px] font-medium tracking-wide text-muted uppercase sm:inline">
-        macOS
+        Safari
       </span>
     </div>
   );
 }
 
-function WindowsChrome({ title, url }: { title: string; url?: string }) {
+function ChromeFrame({ title, url }: { title: string; url?: string }) {
   return (
-    <div className="border-b border-[#d0d0d0] bg-[#f3f3f3]">
-      <div className="flex items-center justify-between px-2 py-1.5">
-        <div className="flex min-w-0 items-center gap-2 px-1">
-          <span className="grid size-4 place-items-center rounded-[2px] bg-cobalt text-[8px] font-bold text-white">
-            {title.slice(0, 1)}
-          </span>
-          <span className="truncate text-[11px] text-[#323130]">{title} - Microsoft Edge</span>
-        </div>
-        <div className="flex shrink-0 items-center text-[#323130]" aria-hidden>
-          <span className="grid h-7 w-10 place-items-center text-[14px] leading-none">─</span>
-          <span className="grid h-7 w-10 place-items-center text-[12px] leading-none">□</span>
-          <span className="grid h-7 w-10 place-items-center text-[14px] leading-none hover:bg-[#e81123] hover:text-white">
+    <div className="border-b border-[#dadce0] bg-[#dee1e6]">
+      <div className="flex items-end gap-1 px-2 pt-2">
+        <div className="flex min-w-0 items-center gap-2 rounded-t-lg bg-white px-3 py-2 shadow-[0_-1px_0_rgba(0,0,0,0.04)]">
+          <ChromeMark />
+          <span className="max-w-[12rem] truncate text-[11px] font-medium text-[#202124]">{title}</span>
+          <span className="text-[12px] leading-none text-[#5f6368]" aria-hidden>
             ×
           </span>
         </div>
+        <div className="mb-1.5 ml-1 hidden size-6 place-items-center rounded-full text-[14px] text-[#5f6368] sm:grid" aria-hidden>
+          +
+        </div>
       </div>
-      <div className="flex items-center gap-2 border-t border-[#e5e5e5] bg-white px-2 py-1.5">
-        <div className="flex gap-1 text-[11px] text-[#605e5c]" aria-hidden>
-          <span className="px-1">←</span>
-          <span className="px-1">→</span>
-          <span className="px-1">↻</span>
+      <div className="flex items-center gap-2 bg-white px-2 py-1.5">
+        <div className="flex items-center gap-0.5 text-[#5f6368]" aria-hidden>
+          <span className="grid size-7 place-items-center rounded-full hover:bg-[#f1f3f4]">
+            <ArrowLeftIcon className="size-3.5" />
+          </span>
+          <span className="grid size-7 place-items-center rounded-full hover:bg-[#f1f3f4]">
+            <ArrowRightIcon className="size-3.5" />
+          </span>
+          <span className="grid size-7 place-items-center rounded-full text-[13px] hover:bg-[#f1f3f4]">
+            ↻
+          </span>
         </div>
-        <div className="min-w-0 flex-1 rounded-full bg-[#f3f3f3] px-3 py-1 text-[11px] text-[#605e5c] truncate">
-          {url ?? `https://${title.toLowerCase()}.example`}
+        <div className="flex min-w-0 flex-1 items-center gap-2 rounded-full bg-[#f1f3f4] px-3 py-1.5">
+          <span className="grid size-3.5 place-items-center rounded-full bg-[#34a853]/20 text-[8px] font-bold text-[#188038]">
+            ✓
+          </span>
+          <span className="truncate text-[11px] text-[#202124]">{url ?? `https://app.condaxits.com/${title.toLowerCase()}`}</span>
         </div>
-        <span className="hidden text-[10px] font-medium tracking-wide text-muted uppercase sm:inline">
-          Windows
+        <span className="hidden text-[10px] font-medium tracking-wide text-[#5f6368] uppercase sm:inline">
+          Chrome
         </span>
       </div>
     </div>
   );
 }
 
-function LinuxChrome({ title, url }: { title: string; url?: string }) {
+function DarkChrome({ title, url }: { title: string; url?: string }) {
   return (
-    <div className="border-b border-[#2a2f3a] bg-[#1c212b] text-[#e8eaed]">
-      <div className="flex items-center gap-3 px-3 py-2">
+    <div className="border-b border-white/10 bg-[#171c24] text-[#e8eaed]">
+      <div className="flex items-center gap-3 px-3 py-2.5">
         <div className="flex items-center gap-1.5" aria-hidden>
-          <span className="size-2.5 rounded-full border border-white/25 bg-[#e25c5c]" />
-          <span className="size-2.5 rounded-full border border-white/25 bg-[#c8a44a]" />
-          <span className="size-2.5 rounded-full border border-white/25 bg-[#5aa86c]" />
+          <span className="size-2.5 rounded-full bg-[#ff5f57]/90" />
+          <span className="size-2.5 rounded-full bg-[#febc2e]/90" />
+          <span className="size-2.5 rounded-full bg-[#28c840]/90" />
         </div>
-        <div className="min-w-0 flex-1 rounded border border-white/10 bg-[#12161e] px-3 py-1 text-center text-[11px] text-white/55 truncate">
+        <div className="min-w-0 flex-1 rounded-lg border border-white/10 bg-[#0f1419] px-3 py-1.5 text-center text-[11px] text-white/55 truncate">
           {url ?? title}
         </div>
-        <span className="hidden text-[10px] font-medium tracking-wide text-white/40 uppercase sm:inline">
-          Linux
+        <span className="hidden text-[10px] font-medium tracking-wide text-white/35 uppercase sm:inline">
+          Desktop
         </span>
       </div>
     </div>
+  );
+}
+
+function ChromeMark() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 48 48" aria-hidden className="shrink-0">
+      <circle cx="24" cy="24" r="20" fill="#fff" />
+      <path fill="#EA4335" d="M24 4a20 20 0 0 1 17.32 10H24z" />
+      <path fill="#FBBC05" d="M41.32 14A20 20 0 0 1 34 41.32L24 24z" />
+      <path fill="#34A853" d="M34 41.32A20 20 0 0 1 6.68 14H24z" />
+      <path fill="#4285F4" d="M6.68 14A20 20 0 0 1 24 4v20z" />
+      <circle cx="24" cy="24" r="8" fill="#fff" />
+      <circle cx="24" cy="24" r="6" fill="#4285F4" />
+    </svg>
   );
 }

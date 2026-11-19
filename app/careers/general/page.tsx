@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ApplyForm } from "@/components/ApplyForm";
+import { BackLink } from "@/components/ui/BackLink";
 import { generalApplyQuestions } from "@/lib/careers";
 
 export const metadata: Metadata = { title: "General application" };
@@ -8,9 +8,7 @@ export const metadata: Metadata = { title: "General application" };
 export default function GeneralApplicationPage() {
   return (
     <main id="main-content" className="paddings mx-auto max-w-[820px] pt-40 pb-24 lg:pt-44">
-      <Link href="/careers" className="text-[14px] text-neutral hover:text-cobalt">
-        ← Careers
-      </Link>
+      <BackLink href="/careers">Careers</BackLink>
       <h1 className="font-display mt-8 text-[40px] leading-[1.1] font-light md:text-[52px]">
         General application
       </h1>

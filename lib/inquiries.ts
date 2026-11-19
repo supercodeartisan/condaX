@@ -3,12 +3,12 @@ import { z } from "zod";
 export const contactInquirySchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(120),
   email: z.string().trim().email("Valid email required").max(200),
-  source: z.string().trim().min(1, "Source is required").max(80),
-  region: z.string().trim().min(1, "Region is required").max(80),
+  source: z.string().trim().max(80).optional().nullable(),
+  region: z.string().trim().max(80).optional().nullable(),
   description: z.string().trim().min(1, "Description is required").max(5000),
   scope: z.string().trim().min(1, "Scope is required").max(120),
-  date: z.string().trim().min(1, "Timeline is required").max(200),
-  investment: z.string().trim().min(1, "Investment is required").max(80),
+  date: z.string().trim().max(200).optional().nullable(),
+  investment: z.string().trim().max(80).optional().nullable(),
   referralCode: z.string().trim().max(40).optional().nullable(),
 });
 

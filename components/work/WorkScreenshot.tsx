@@ -24,67 +24,67 @@ const catalog: Record<
 > = {
   kite: {
     title: "Kite",
-    url: "https://app.kite.example/assistant",
-    os: "macos",
+    url: "https://app.condaxits.com/kite/assistant",
+    os: "dark",
     Visual: KiteUi,
   },
   beacon: {
     title: "Beacon",
-    url: "https://app.beacon.example/onboarding",
-    os: "windows",
+    url: "https://app.condaxits.com/beacon/onboarding",
+    os: "chrome",
     Visual: BeaconUi,
   },
   canvas: {
     title: "Canvas",
-    url: "https://app.canvas.example/inbox/4821",
+    url: "https://app.condaxits.com/canvas/inbox/4821",
     os: "macos",
     Visual: CanvasUi,
   },
   pulse: {
     title: "Pulse",
-    url: "https://ops.pulse.example/triage",
-    os: "linux",
+    url: "https://app.condaxits.com/pulse/triage",
+    os: "chrome",
     Visual: PulseUi,
   },
   harbor: {
     title: "Harbor",
-    url: "https://ops.harbor.example/flows/intake",
-    os: "linux",
+    url: "https://app.condaxits.com/harbor/flows/intake",
+    os: "dark",
     Visual: HarborUi,
   },
   relay: {
     title: "Relay",
-    url: "https://ops.relay.example/orders/10492",
-    os: "windows",
+    url: "https://app.condaxits.com/relay/orders/10492",
+    os: "macos",
     Visual: RelayUi,
   },
   ledger: {
     title: "Ledger",
-    url: "https://finance.ledger.example/invoices/INV-88421",
-    os: "windows",
+    url: "https://app.condaxits.com/ledger/invoices/INV-88421",
+    os: "chrome",
     Visual: LedgerUi,
   },
   signal: {
     title: "Signal",
-    url: "https://crm.signal.example/qualify",
+    url: "https://app.condaxits.com/signal/qualify",
     os: "macos",
     Visual: SignalUi,
   },
   meridian: {
     title: "Meridian",
-    url: "https://ops.meridian.example/board",
-    os: "linux",
+    url: "https://app.condaxits.com/meridian/board",
+    os: "dark",
     Visual: MeridianUi,
   },
   atlas: {
     title: "Atlas",
-    url: "https://enablement.atlas.example/governance",
-    os: "macos",
+    url: "https://app.condaxits.com/atlas/governance",
+    os: "chrome",
     Visual: AtlasUi,
   },
 };
 
-/** Full-page product UI screenshot with mixed OS window chrome. */
+/** Full-page product UI screenshot with distinct browser chrome per case. */
 export function WorkScreenshot({
   slug,
   className = "",
