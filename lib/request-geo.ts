@@ -72,7 +72,14 @@ export function formatRequestGeo(geo: {
   geo_region?: string | null;
   geo_city?: string | null;
 }): string {
-  const place = [geo.geo_city, geo.geo_region, geo.geo_country].filter(Boolean).join(", ");
+  // Vercel city headers (and older stored rows) may be percent-encoded, e.g. Salt%20Lake%20City.
+  const place = [
+    decodeHeaderValue(geo.geo_city ?? null),
+    decodeHeaderValue(geo.geo_region ?? null),
+    geo.geo_country,
+  ]
+    .filter(Boolean)
+    .join(", ");
   if (place && geo.ip) return `${place} · ${geo.ip}`;
   if (place) return place;
   if (geo.ip) return geo.ip;

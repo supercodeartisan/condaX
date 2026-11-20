@@ -46,8 +46,11 @@ export default async function AdminApplicationsPage() {
     if (isLocalDevStoreEnabled()) {
       applications = await listApplicationsLocal(200);
     } else {
+      const detail = err instanceof Error ? err.message : "";
       loadError =
-        "Could not load applications. Check DATABASE_URL and that db/schema.sql has been applied.";
+        /nationality/i.test(detail)
+          ? "Database is missing the nationality column. Run db/migrations/002_add_nationality.sql on Neon, then refresh."
+          : "Could not load applications. Check DATABASE_URL and that db/schema.sql has been applied.";
     }
   }
 

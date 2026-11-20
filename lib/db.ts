@@ -126,77 +126,156 @@ export async function insertApplication(input: NewApplication): Promise<{ id: st
   return { id: String(rows[0].id) };
 }
 
+function isMissingNationalityColumn(err: unknown): boolean {
+  const message = err instanceof Error ? err.message : String(err);
+  return /nationality/i.test(message) && /does not exist|undefined column|column .* not found/i.test(message);
+}
+
 export async function listApplications(limit = 100): Promise<ApplicationRow[]> {
   const db = sql();
-  const rows = await db`
-    SELECT
-      id::text,
-      role_title,
-      role_slug,
-      full_name,
-      email,
-      phone,
-      linkedin,
-      portfolio,
-      nationality,
-      country,
-      city,
-      state,
-      address,
-      date_of_birth,
-      start_date,
-      note,
-      answers,
-      cv_url,
-      cv_filename,
-      status,
-      submitter_ip,
-      geo_country,
-      geo_region,
-      geo_city,
-      created_at::text
-    FROM applications
-    ORDER BY created_at DESC
-    LIMIT ${limit}
-  `;
-  return rows.map((row) => mapApplicationRow(row as Record<string, unknown>));
+  try {
+    const rows = await db`
+      SELECT
+        id::text,
+        role_title,
+        role_slug,
+        full_name,
+        email,
+        phone,
+        linkedin,
+        portfolio,
+        nationality,
+        country,
+        city,
+        state,
+        address,
+        date_of_birth,
+        start_date,
+        note,
+        answers,
+        cv_url,
+        cv_filename,
+        status,
+        submitter_ip,
+        geo_country,
+        geo_region,
+        geo_city,
+        created_at::text
+      FROM applications
+      ORDER BY created_at DESC
+      LIMIT ${limit}
+    `;
+    return rows.map((row) => mapApplicationRow(row as Record<string, unknown>));
+  } catch (err) {
+    if (!isMissingNationalityColumn(err)) throw err;
+    // Pre-migration Neon DBs: nationality column not applied yet.
+    const rows = await db`
+      SELECT
+        id::text,
+        role_title,
+        role_slug,
+        full_name,
+        email,
+        phone,
+        linkedin,
+        portfolio,
+        country,
+        city,
+        state,
+        address,
+        date_of_birth,
+        start_date,
+        note,
+        answers,
+        cv_url,
+        cv_filename,
+        status,
+        submitter_ip,
+        geo_country,
+        geo_region,
+        geo_city,
+        created_at::text
+      FROM applications
+      ORDER BY created_at DESC
+      LIMIT ${limit}
+    `;
+    return rows.map((row) =>
+      mapApplicationRow({ ...(row as Record<string, unknown>), nationality: null }),
+    );
+  }
 }
 
 export async function getApplicationById(id: string): Promise<ApplicationRow | null> {
   const db = sql();
-  const rows = await db`
-    SELECT
-      id::text,
-      role_title,
-      role_slug,
-      full_name,
-      email,
-      phone,
-      linkedin,
-      portfolio,
-      nationality,
-      country,
-      city,
-      state,
-      address,
-      date_of_birth,
-      start_date,
-      note,
-      answers,
-      cv_url,
-      cv_filename,
-      status,
-      submitter_ip,
-      geo_country,
-      geo_region,
-      geo_city,
-      created_at::text
-    FROM applications
-    WHERE id = ${id}::uuid
-    LIMIT 1
-  `;
-  if (!rows[0]) return null;
-  return mapApplicationRow(rows[0] as Record<string, unknown>);
+  try {
+    const rows = await db`
+      SELECT
+        id::text,
+        role_title,
+        role_slug,
+        full_name,
+        email,
+        phone,
+        linkedin,
+        portfolio,
+        nationality,
+        country,
+        city,
+        state,
+        address,
+        date_of_birth,
+        start_date,
+        note,
+        answers,
+        cv_url,
+        cv_filename,
+        status,
+        submitter_ip,
+        geo_country,
+        geo_region,
+        geo_city,
+        created_at::text
+      FROM applications
+      WHERE id = ${id}::uuid
+      LIMIT 1
+    `;
+    if (!rows[0]) return null;
+    return mapApplicationRow(rows[0] as Record<string, unknown>);
+  } catch (err) {
+    if (!isMissingNationalityColumn(err)) throw err;
+    const rows = await db`
+      SELECT
+        id::text,
+        role_title,
+        role_slug,
+        full_name,
+        email,
+        phone,
+        linkedin,
+        portfolio,
+        country,
+        city,
+        state,
+        address,
+        date_of_birth,
+        start_date,
+        note,
+        answers,
+        cv_url,
+        cv_filename,
+        status,
+        submitter_ip,
+        geo_country,
+        geo_region,
+        geo_city,
+        created_at::text
+      FROM applications
+      WHERE id = ${id}::uuid
+      LIMIT 1
+    `;
+    if (!rows[0]) return null;
+    return mapApplicationRow({ ...(rows[0] as Record<string, unknown>), nationality: null });
+  }
 }
 
 export async function updateApplicationStatus(id: string, status: string): Promise<void> {

@@ -143,11 +143,13 @@ export async function submitCareerApplication(
       : await insertApplicationLocal(payload));
   } catch (err) {
     console.error("[careers] db insert failed", err);
+    const detail = err instanceof Error ? err.message : "";
     return {
       ok: false,
       status: 502,
-      error:
-        "Could not save the application to the database. Confirm DATABASE_URL and that db/schema.sql was run on Neon.",
+      error: /nationality/i.test(detail)
+        ? "Database needs an update before applications can save (missing nationality column). Run db/migrations/002_add_nationality.sql on Neon."
+        : "Could not save the application to the database. Confirm DATABASE_URL and that db/schema.sql was run on Neon.",
     };
   }
 
