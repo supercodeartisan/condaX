@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Careers",
   description:
-    "Condax hires senior engineers with over five years of production experience. Remote roles for AI enablement and custom products.",
+    "Condax hires senior (5+) and junior (0–2) engineers for remote AI enablement and custom product delivery.",
 };
 
 export default function CareersPage() {
@@ -26,11 +26,11 @@ export default function CareersPage() {
           Deliver for global clients. Work remotely.
         </h1>
         <p className="mt-6 max-w-[48ch] text-[18px] leading-relaxed text-neutral">
-          Condax hires senior engineers for AI enablement and custom products - including
-          TypeScript, Java/Spring Boot, and C#/.NET - plus specialists who run deep technical
-          interviews. Delivery roles require over five years of production experience. Roles are
-          remote and open internationally. Strong technical craft and strong English communication
-          are both required.
+          Condax hires engineers for AI enablement and custom products - TypeScript delivery,
+          Java/Spring Boot, C#/.NET, and specialists who run deep technical interviews. Senior
+          roles require 5+ years in production; junior full-stack, frontend, and backend roles are
+          open at 0–2 years beside senior ICs. Roles are remote and open internationally. Strong
+          craft and strong English communication are both required.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <ButtonLink href="#open-roles" arrow>
@@ -72,9 +72,9 @@ export default function CareersPage() {
           How we hire
         </h2>
         <p className="mt-3 max-w-[52ch] text-[16px] leading-relaxed text-neutral">
-          A structured process designed for senior remote candidates. Typical end-to-end timeline is
-          two to four weeks. We tell you the format of each step before it happens - and we reply
-          either way.
+          A structured process for remote candidates at every level we hire. Typical end-to-end
+          timeline is two to four weeks. We tell you the format of each step before it happens - and
+          we reply either way.
         </p>
         <ol className="mt-10 divide-y divide-hairline border-y border-hairline">
           {hiringProcess.map((s) => (
@@ -98,9 +98,9 @@ export default function CareersPage() {
           Open roles
         </h2>
         <p className="mt-3 text-[16px] text-neutral">
-          {roles.length} open roles across senior delivery engineering (including Java/Spring and
-          C#/.NET) and technical interviewing. Senior delivery roles require over 5 years of
-          production experience. No matching role?{" "}
+          {roles.length} open roles across senior and junior delivery engineering (including
+          Java/Spring and C#/.NET) and technical interviewing. Senior delivery roles require 5+
+          years in production; junior roles are 0–2 years. No matching role?{" "}
           <Link href="/careers/general" className="font-medium text-cobalt link-underline">
             Submit a general application
           </Link>
@@ -138,7 +138,7 @@ export default function CareersPage() {
             No matching role?
           </h2>
           <p className="mt-2 max-w-[42ch] text-[16px] text-neutral">
-            Tell us what you do well. We maintain a pipeline of qualified senior engineers for future
+            Tell us what you do well. We maintain a pipeline of qualified engineers for future
             engagements.
           </p>
         </div>

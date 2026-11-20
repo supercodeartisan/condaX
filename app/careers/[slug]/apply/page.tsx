@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { ApplyForm } from "@/components/ApplyForm";
 import { BackLink } from "@/components/ui/BackLink";
 import { getRole, roles } from "@/lib/careers";
+import {
+  getRequestGeoFromHeaders,
+  locationPrefillFromGeo,
+} from "@/lib/request-geo";
 
 export function generateStaticParams() {
   return roles.map((r) => ({ slug: r.slug }));
@@ -23,6 +28,9 @@ export default async function ApplyPage({ params }: { params: Promise<{ slug: st
   const role = getRole(slug);
   if (!role) notFound();
 
+  const geo = getRequestGeoFromHeaders(await headers());
+  const locationDefaults = locationPrefillFromGeo(geo);
+
   return (
     <main id="main-content" className="paddings mx-auto max-w-[820px] pt-40 pb-24 lg:pt-44">
       <BackLink href={`/careers/${role.slug}`}>{role.title}</BackLink>
@@ -33,7 +41,12 @@ export default async function ApplyPage({ params }: { params: Promise<{ slug: st
         {role.location}. LinkedIn, role questions, and CV required.
       </p>
       <div className="mt-10">
-        <ApplyForm roleTitle={role.title} roleSlug={role.slug} questions={role.applyQuestions} />
+        <ApplyForm
+          roleTitle={role.title}
+          roleSlug={role.slug}
+          questions={role.applyQuestions}
+          locationDefaults={locationDefaults}
+        />
       </div>
     </main>
   );

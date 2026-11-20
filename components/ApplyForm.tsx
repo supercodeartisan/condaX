@@ -6,7 +6,8 @@ import { EmailLink } from "@/components/EmailLink";
 import { FormSecurityFields } from "@/components/FormSecurityFields";
 import { readTurnstileToken } from "@/components/TurnstileField";
 import { CalendarDatePicker } from "@/components/ui/CalendarDatePicker";
-import { getDobBounds, getStartDateBounds } from "@/lib/careers-apply";
+import { COUNTRIES } from "@/lib/countries";
+import { getDobBounds, START_AVAILABILITY_OPTIONS } from "@/lib/careers-apply";
 
 type Question = { id: string; label: string; hint?: string };
 
@@ -14,17 +15,20 @@ export function ApplyForm({
   roleTitle,
   roleSlug,
   questions = [],
+  locationDefaults,
 }: {
   roleTitle: string;
   roleSlug?: string;
   questions?: Question[];
+  locationDefaults?: { country?: string; city?: string };
 }) {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [cvLabel, setCvLabel] = useState("Upload CV (PDF or Word) *");
-  const startBounds = useMemo(() => getStartDateBounds(), []);
   const dobBounds = useMemo(() => getDobBounds(), []);
+  const defaultCountry = locationDefaults?.country ?? "";
+  const defaultCity = locationDefaults?.city ?? "";
 
   return (
     <form
@@ -43,8 +47,18 @@ export function ApplyForm({
           setBusy(false);
           return;
         }
+        if (!String(body.get("nationality") ?? "").trim()) {
+          setError("Please select your nationality.");
+          setBusy(false);
+          return;
+        }
+        if (!String(body.get("country") ?? "").trim()) {
+          setError("Please select your country of residence.");
+          setBusy(false);
+          return;
+        }
         if (!String(body.get("start") ?? "").trim()) {
-          setError("Please select your earliest start date on the calendar.");
+          setError("Please select when you can start.");
           setBusy(false);
           return;
         }
@@ -95,8 +109,8 @@ export function ApplyForm({
           Contact
         </legend>
         <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="Full name *" name="name" />
-          <Field label="Email *" name="email" type="email" />
+          <Field label="Full name *" name="name" autoComplete="name" />
+          <Field label="Email *" name="email" type="email" autoComplete="email" />
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <Field label="Phone number *" name="phone" type="tel" autoComplete="tel" />
@@ -116,6 +130,12 @@ export function ApplyForm({
           required={false}
           placeholder="Portfolio, GitHub, or website (optional)"
         />
+        <CountrySelect
+          label="Nationality *"
+          name="nationality"
+          hint="Citizenship / nationality for contracting paperwork."
+          defaultValue=""
+        />
         <CalendarDatePicker
           name="dob"
           label="Date of birth *"
@@ -131,12 +151,24 @@ export function ApplyForm({
           Location
         </legend>
         <p className="text-[13px] leading-relaxed text-neutral">
-          Roles are remote and open internationally. We use location for scheduling and compliance -
-          not for exclusion of qualified applicants.
+          Roles are remote and open internationally. Country and city may be prefilled from your
+          network location - edit if wrong. We use this for scheduling and compliance, not to
+          exclude qualified applicants.
         </p>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="Country *" name="country" autoComplete="country-name" />
-          <Field label="City *" name="city" autoComplete="address-level2" />
+        <div className="grid gap-4 sm:grid-cols-2 sm:items-start">
+          <CountrySelect
+            label="Country of residence *"
+            name="country"
+            defaultValue={defaultCountry}
+            autoComplete="country-name"
+          />
+          <Field
+            label="City *"
+            name="city"
+            autoComplete="address-level2"
+            defaultValue={defaultCity}
+            showLabel
+          />
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <Field
@@ -160,13 +192,26 @@ export function ApplyForm({
         <legend className="text-[13px] font-medium tracking-[0.12em] text-muted uppercase">
           Availability
         </legend>
-        <CalendarDatePicker
-          name="start"
-          label="Earliest start date *"
-          hint="Pick day, month, and year on the calendar. From today through the next 18 months."
-          min={startBounds.min}
-          max={startBounds.max}
-        />
+        <label className="block">
+          <span className="mb-1.5 block text-[12px] font-medium tracking-wide text-muted uppercase">
+            When can you start? *
+          </span>
+          <select
+            name="start"
+            required
+            defaultValue=""
+            className="w-full rounded-2xl border border-hairline bg-surface px-4 py-4 text-[15px] text-charcoal outline-none focus:border-cobalt"
+          >
+            <option value="" disabled>
+              Select availability
+            </option>
+            {START_AVAILABILITY_OPTIONS.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
+        </label>
       </fieldset>
 
       {questions.length > 0 ? (
@@ -176,7 +221,9 @@ export function ApplyForm({
           </legend>
           {questions.map((q) => (
             <label key={q.id} className="block">
-              <span className="text-[14px] font-medium text-ink">{q.label} *</span>
+              <span className="text-[14px] font-medium text-ink">
+                {q.label} *
+              </span>
               {q.hint ? <span className="mt-1 block text-[13px] text-neutral">{q.hint}</span> : null}
               <textarea
                 name={`q_${q.id}`}
@@ -189,24 +236,6 @@ export function ApplyForm({
           ))}
         </fieldset>
       ) : null}
-
-      <fieldset className="space-y-4">
-        <legend className="text-[13px] font-medium tracking-[0.12em] text-muted uppercase">
-          Introduction
-        </legend>
-        <label className="block">
-          <span className="text-[14px] font-medium text-ink">
-            Why are you interested in Condax, and what relevant work should we review? *
-          </span>
-          <textarea
-            name="note"
-            required
-            minLength={20}
-            rows={5}
-            className="mt-3 w-full resize-y rounded-2xl border border-hairline bg-surface px-4 py-4 text-[15px] text-charcoal outline-none placeholder:text-muted focus:border-cobalt"
-          />
-        </label>
-      </fieldset>
 
       <fieldset className="space-y-3">
         <legend className="text-[13px] font-medium tracking-[0.12em] text-muted uppercase">
@@ -265,6 +294,45 @@ export function ApplyForm({
   );
 }
 
+function CountrySelect({
+  label,
+  name,
+  defaultValue = "",
+  hint,
+  autoComplete,
+}: {
+  label: string;
+  name: string;
+  defaultValue?: string;
+  hint?: string;
+  autoComplete?: string;
+}) {
+  return (
+    <label className="block">
+      <span className="mb-1.5 block text-[12px] font-medium tracking-wide text-muted uppercase">
+        {label}
+      </span>
+      {hint ? <span className="mb-2 block text-[13px] text-neutral">{hint}</span> : null}
+      <select
+        name={name}
+        required
+        defaultValue={defaultValue}
+        autoComplete={autoComplete}
+        className="w-full rounded-2xl border border-hairline bg-surface px-4 py-4 text-[15px] text-charcoal outline-none focus:border-cobalt"
+      >
+        <option value="" disabled>
+          Select country
+        </option>
+        {COUNTRIES.map((c) => (
+          <option key={c.code} value={c.name}>
+            {c.name}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
 function Field({
   label,
   name,
@@ -274,6 +342,8 @@ function Field({
   pattern,
   title,
   autoComplete,
+  defaultValue,
+  showLabel = false,
 }: {
   label: string;
   name: string;
@@ -283,18 +353,27 @@ function Field({
   pattern?: string;
   title?: string;
   autoComplete?: string;
+  defaultValue?: string;
+  showLabel?: boolean;
 }) {
   return (
     <label className="block">
-      <span className="sr-only">{label}</span>
+      {showLabel ? (
+        <span className="mb-1.5 block text-[12px] font-medium tracking-wide text-muted uppercase">
+          {label}
+        </span>
+      ) : (
+        <span className="sr-only">{label}</span>
+      )}
       <input
         name={name}
         type={type}
         required={required}
-        placeholder={placeholder ?? label}
+        placeholder={placeholder ?? (showLabel ? undefined : label)}
         pattern={pattern}
         title={title}
         autoComplete={autoComplete}
+        defaultValue={defaultValue}
         className="w-full rounded-2xl border border-hairline bg-surface px-4 py-4 text-[15px] text-charcoal outline-none placeholder:text-muted focus:border-cobalt"
       />
     </label>

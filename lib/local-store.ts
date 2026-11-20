@@ -57,6 +57,7 @@ export async function insertApplicationLocal(input: NewApplication): Promise<{ i
     phone: input.phone,
     linkedin: input.linkedin,
     portfolio: input.portfolio,
+    nationality: input.nationality,
     country: input.country,
     city: input.city,
     state: input.state,
@@ -83,6 +84,7 @@ export async function listApplicationsLocal(limit = 100): Promise<ApplicationRow
   const apps = await readApps();
   return apps.slice(0, limit).map((row) => ({
     ...row,
+    nationality: row.nationality ?? null,
     submitter_ip: row.submitter_ip ?? null,
     geo_country: row.geo_country ?? null,
     geo_region: row.geo_region ?? null,

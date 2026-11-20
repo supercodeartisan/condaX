@@ -258,9 +258,10 @@ export function AdminApplicationsClient({
                         <dl className="grid gap-3 text-[14px] sm:grid-cols-2">
                           <Detail label="Phone" value={app.phone} />
                           <Detail label="Location" value={location || "-"} />
+                          <Detail label="Nationality" value={app.nationality || "-"} />
                           <Detail label="Address" value={app.address || "-"} />
                           <Detail label="Date of birth" value={app.date_of_birth || "-"} />
-                          <Detail label="Earliest start" value={app.start_date || "-"} />
+                          <Detail label="Availability" value={app.start_date || "-"} />
                           <Detail label="Submitted" value={formatAdminDate(app.created_at)} />
                           <Detail
                             label="Network / region"

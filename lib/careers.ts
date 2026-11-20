@@ -22,7 +22,7 @@ export const hiringProcess = [
     step: "01",
     title: "Application review",
     duration: "3-5 business days",
-    text: "We read your CV, LinkedIn, and answers against the role - looking for clear senior depth and evidence you can explain your work. Strong fits move forward; everyone hears back either way.",
+    text: "We read your CV, LinkedIn, and answers against the role - looking for evidence you can explain your work at the level the posting requires. Strong fits move forward; everyone hears back either way.",
   },
   {
     step: "02",
@@ -34,7 +34,7 @@ export const hiringProcess = [
     step: "03",
     title: "Leadership conversation",
     duration: "45-60 minutes",
-    text: "A conversation with Condax leadership (CTO or CEO). We cover technical judgment, ownership, client communication, and how you would operate on a small senior remote team.",
+    text: "A conversation with Condax leadership (CTO or CEO). We cover technical judgment, ownership, client communication, and how you would operate on a small remote delivery team.",
   },
   {
     step: "04",
@@ -54,8 +54,8 @@ export const whyJoin = [
     text: "Clients and colleagues across regions. Location is not a hiring filter.",
   },
   {
-    title: "Senior bar only",
-    text: "We hire engineers with over five years of production experience. Flat structure. Direct client contact.",
+    title: "Senior and junior paths",
+    text: "Senior delivery roles require 5+ years in production. Junior roles (0–2 years) grow beside senior ICs on real client work.",
   },
   {
     title: "Craft and communication",
@@ -63,7 +63,7 @@ export const whyJoin = [
   },
 ];
 
-/** Open roles - senior engineers only (5+ years production experience). */
+/** Open roles - senior (5+) and junior (0–2) delivery engineering, plus interview specialists. */
 export const roles: Role[] = [
   {
     slug: "senior-full-stack-engineer",
@@ -454,6 +454,171 @@ export const roles: Role[] = [
     ],
   },
   {
+    slug: "junior-full-stack-engineer",
+    title: "Junior Full-Stack Engineer",
+    team: "Engineering",
+    location: "Remote · Worldwide",
+    type: "Full-time · Contract",
+    experience: "0–2 years production",
+    reportsTo: "CTO",
+    summary:
+      "Ship features across UI and API with senior guidance - learn Condax delivery habits on real client work.",
+    about: [
+      "Condax is a small AI, automation, and product engineering consultancy. Junior engineers join delivery squads led by senior ICs - not a separate training track disconnected from clients.",
+      "As a Junior Full-Stack Engineer you implement scoped tickets across TypeScript, React / Next.js, and APIs. You write clear updates, ask for review early, and treat production quality (tests, error states, access) as part of the job from week one.",
+      "This role fits 0–2 years of professional software experience - or an equivalent portfolio of shipped projects if you are early in your career. Strong English and a bias to learn by shipping are required.",
+    ],
+    impact: [
+      "Increase delivery capacity on client engagements without lowering the quality bar.",
+      "Absorb Condax patterns so seniors spend less time on boilerplate.",
+      "Grow into independent ownership of vertical slices over time.",
+    ],
+    youWill: [
+      "Implement features across UI and API under a senior engineer’s design and review.",
+      "Write TypeScript that is readable, typed, and covered by the tests the team expects.",
+      "Handle forms, loading and error states, and basic auth-aware UI with care.",
+      "Pair on debugging, PRs, and small production fixes.",
+      "Document what you changed so handovers stay clean.",
+      "Communicate blockers early in English - async updates and standups.",
+      "Improve craft through feedback; rework without ego.",
+    ],
+    youMight: [
+      "0–2 years of professional software experience, or strong projects that shipped beyond tutorials.",
+      "Working knowledge of TypeScript and React (or close equivalents).",
+      "Familiarity with REST APIs, Git, and basic SQL or document stores.",
+      "Evidence you finish work and explain it clearly.",
+      "Strong spoken and written English for a remote international team.",
+    ],
+    nice: [
+      "Next.js, Node, or a similar full-stack framework in a portfolio project.",
+      "Curiosity about AI product surfaces (streaming UI, citations, review steps).",
+      "Internship or freelance delivery for a real stakeholder.",
+      "Overlap with APAC, EU, or US client hours depending on engagement.",
+    ],
+    applyQuestions: [
+      {
+        id: "project_deep",
+        label: "Describe one project you built end to end (work, internship, or personal).",
+        hint: "Stack, what you owned, and what you would rebuild differently.",
+      },
+      {
+        id: "learning_loop",
+        label: "Tell us about feedback that changed how you write code.",
+        hint: "A concrete example beats a general philosophy.",
+      },
+    ],
+  },
+  {
+    slug: "junior-frontend-engineer",
+    title: "Junior Frontend Engineer",
+    team: "Engineering",
+    location: "Remote · Worldwide",
+    type: "Full-time · Contract",
+    experience: "0–2 years production",
+    reportsTo: "CTO",
+    summary:
+      "Build accessible, production UI with senior front-end guidance - craft, performance, and clear states.",
+    about: [
+      "Condax ships interfaces operators and customers use daily. Junior frontend engineers contribute real screens and components inside that standard - reviewed by seniors, not isolated practice work.",
+      "As a Junior Frontend Engineer you implement responsive layouts, components, and interaction detail in React / Next.js with TypeScript. You care about empty, loading, and error states as much as the happy path.",
+      "0–2 years of professional front-end experience - or a portfolio that shows shipped UI beyond course clones - is the expected range. Clear English for critiques and async notes is required.",
+    ],
+    impact: [
+      "Help squads ship polished UI faster without skipping accessibility and state craft.",
+      "Strengthen Condax’s component consistency on client products.",
+      "Build toward leading front-end slices independently.",
+    ],
+    youWill: [
+      "Implement UI in React / Next.js with TypeScript under senior design direction.",
+      "Follow accessibility basics: semantics, keyboard paths, contrast, focus.",
+      "Own loading, empty, and error states for the screens you build.",
+      "Use modern CSS (including Tailwind or equivalent) with discipline.",
+      "Collaborate on API contracts so the UI explains failures clearly.",
+      "Take design and code review feedback and iterate quickly.",
+      "Write short notes so client engineers can extend your work later.",
+    ],
+    youMight: [
+      "0–2 years of professional front-end work, or a strong public portfolio of shipped UI.",
+      "Solid React and TypeScript fundamentals.",
+      "Comfort with responsive layouts and component composition.",
+      "Evidence of craft: hierarchy, spacing, and interaction detail.",
+      "Strong English for design feedback and remote collaboration.",
+    ],
+    nice: [
+      "Design-system or Storybook exposure.",
+      "Light motion that respects prefers-reduced-motion.",
+      "Basic understanding of API fetching and auth-aware UI.",
+      "Internship or agency/product studio experience.",
+    ],
+    applyQuestions: [
+      {
+        id: "ui_sample",
+        label: "Link one UI you built and name two craft decisions you made.",
+        hint: "Public URLs preferred; private work can be described without confidential screenshots.",
+      },
+      {
+        id: "states_care",
+        label: "How do you approach empty, loading, and error states on a form-heavy screen?",
+        hint: "Focus on clarity for the user, not visual novelty.",
+      },
+    ],
+  },
+  {
+    slug: "junior-backend-engineer",
+    title: "Junior Backend Engineer",
+    team: "Engineering",
+    location: "Remote · Worldwide",
+    type: "Full-time · Contract",
+    experience: "0–2 years production",
+    reportsTo: "CTO",
+    summary:
+      "Implement APIs, data access, and integrations with senior guidance - reliability habits from day one.",
+    about: [
+      "Condax backends must survive real traffic and real operators. Junior backend engineers join those systems under senior design - shipping endpoints, jobs, and data changes that are reviewed for safety.",
+      "As a Junior Backend Engineer you implement services and data access (typically Node/TypeScript or a similar stack the engagement uses), write clear migrations or schema changes when asked, and learn observability and failure modes alongside seniors.",
+      "0–2 years of professional backend experience - or projects that show real APIs and data work - is the expected range. Strong English for design notes and debugging updates is required.",
+    ],
+    impact: [
+      "Expand delivery capacity on APIs and integrations without silent production risk.",
+      "Learn Condax reliability habits early so quality scales with the team.",
+      "Grow into owning services and on-call-ready changes over time.",
+    ],
+    youWill: [
+      "Implement API endpoints, validation, and data access under senior architecture.",
+      "Write SQL (or equivalent) carefully; treat migrations as production events.",
+      "Add structured logging and basic error handling for the paths you own.",
+      "Help with third-party integrations when scoped and reviewed.",
+      "Write short design or runbook notes for changes you ship.",
+      "Debug with seniors: reproduce, narrow, fix, and document.",
+      "Communicate blockers and trade-offs clearly in English.",
+    ],
+    youMight: [
+      "0–2 years of professional backend or full-stack experience, or strong API/data projects.",
+      "Working knowledge of at least one of Node/TypeScript, Python, Go, or Java.",
+      "Basic SQL fluency and comfort with Git and HTTP APIs.",
+      "Evidence you think about failure cases, not only the happy path.",
+      "Strong English for remote technical collaboration.",
+    ],
+    nice: [
+      "Docker or basic cloud exposure (AWS, GCP, or Azure).",
+      "Experience with queues, cron jobs, or webhooks.",
+      "Internship or freelance backend delivery for a real stakeholder.",
+      "Curiosity about auth, secrets, and least-privilege habits.",
+    ],
+    applyQuestions: [
+      {
+        id: "api_story",
+        label: "Describe an API or data feature you built. What failed in testing or production, and how did you fix it?",
+        hint: "Constraints and your personal contribution matter most.",
+      },
+      {
+        id: "data_care",
+        label: "How do you think about validating input and protecting data when writing a new endpoint?",
+        hint: "A short, concrete approach is enough.",
+      },
+    ],
+  },
+  {
     slug: "senior-technical-interviewer",
     title: "Senior Technical Interviewer",
     team: "Talent · Engineering",
@@ -464,20 +629,20 @@ export const roles: Role[] = [
     summary:
       "Run deep technical interviews for Condax engineering hiring - assess real production judgment across stacks, not puzzle performance.",
     about: [
-      "Condax hires only senior engineers. That bar only holds if interviews are rigorous, consistent, and grounded in how people actually ship software - not trivia or trick puzzles.",
-      "As a Senior Technical Interviewer you conduct in-depth technical conversations for Condax candidates (and, when scoped, client hiring support). You probe architecture judgment, debugging instincts, stack depth (TypeScript, Java/Spring, C#/.NET, platform, AI), and English communication under client-delivery conditions.",
-      "You are a strong senior engineer first. Interviewing is the focus of this role, but credibility comes from years of production work and the ability to evaluate peers fairly across multiple stacks.",
+      "Condax hires senior and junior engineers against clear role bars. That only holds if interviews are rigorous, consistent, and grounded in how people actually ship software - not trivia or trick puzzles.",
+      "As a Senior Technical Interviewer you conduct in-depth technical conversations for Condax candidates (and, when scoped, client hiring support). You probe architecture judgment, debugging instincts, stack depth (TypeScript, Java/Spring, C#/.NET, platform, AI), and English communication under client-delivery conditions - calibrated to senior vs junior role profiles.",
+      "You are a strong senior engineer first. Interviewing is the focus of this role, but credibility comes from years of production work and the ability to evaluate candidates fairly across multiple stacks and seniority levels.",
     ],
     impact: [
-      "Protect Condax’s senior hiring bar with consistent, high-signal technical interviews.",
+      "Protect Condax’s hiring bars with consistent, high-signal technical interviews.",
       "Reduce false positives and false negatives that waste delivery capacity.",
       "Give candidates a professional, respectful process that still surfaces real depth.",
     ],
     youWill: [
-      "Design and run deep technical interviews aligned to Condax role profiles (full-stack, frontend, backend, Java/Spring, .NET, AI, platform).",
+      "Design and run deep technical interviews aligned to Condax role profiles (full-stack, frontend, backend - senior and junior - plus Java/Spring, .NET, AI, platform).",
       "Assess production judgment: trade-offs, failure modes, ownership stories, and communication clarity in English.",
       "Write structured interview notes and hire/no-hire recommendations leadership can trust.",
-      "Calibrate with Condax leadership on what “senior” means per stack - and push back when a candidate is mid-level in senior clothing.",
+      "Calibrate with Condax leadership on seniority bars per stack - and push back when a candidate does not match the posted level.",
       "Maintain a living bank of scenario-based questions that mirror Condax delivery work (not LeetCode theater).",
       "Occasionally support client-side technical screening when Condax is asked to help evaluate engineers.",
       "Keep candidate experience high: clear expectations, no trick puzzles, timely written feedback inputs.",
@@ -519,18 +684,18 @@ export const roles: Role[] = [
     summary:
       "Own Condax’s technical interview system - rubrics, stack-specific depth (including Java/Spring and .NET), interviewer calibration, and bar quality.",
     about: [
-      "As Condax grows senior engineering hiring across TypeScript, Java/Spring Boot, C#/.NET, AI, and platform, someone must own the interview system itself - not only run individual loops.",
-      "As Technical Interview Lead you design and continuously improve how Condax evaluates senior engineers. You build stack-specific rubrics, train and calibrate interviewers, audit interview quality, and partner with leadership on hard hire calls. You still conduct high-stakes interviews yourself, especially for specialized stacks.",
+      "As Condax grows engineering hiring across TypeScript, Java/Spring Boot, C#/.NET, AI, platform, and junior delivery roles, someone must own the interview system itself - not only run individual loops.",
+      "As Technical Interview Lead you design and continuously improve how Condax evaluates engineers at each posted level. You build stack-specific rubrics, train and calibrate interviewers, audit interview quality, and partner with leadership on hard hire calls. You still conduct high-stakes interviews yourself, especially for specialized stacks.",
       "This role requires deep technical credibility (7+ years production engineering) and proven experience building or leading interview processes - not recruiter coordination alone.",
     ],
     impact: [
       "Make Condax hiring quality predictable as role volume and stack diversity grow.",
-      "Ensure Java/Spring, .NET, and other specialized roles get the same senior bar as core TypeScript delivery.",
+      "Ensure Java/Spring, .NET, junior, and other specialized roles get a clear, fair bar matched to the posting.",
       "Create an interview practice candidates experience as rigorous and fair.",
     ],
     youWill: [
       "Own the end-to-end technical interview framework for Condax engineering roles.",
-      "Design stack-specific deep interviews for TypeScript, Java/Spring Boot, C#/.NET, AI/LLM, and platform candidates.",
+      "Design stack-specific deep interviews for TypeScript, Java/Spring Boot, C#/.NET, AI/LLM, platform, and junior delivery candidates.",
       "Recruit, coach, and calibrate Senior Technical Interviewers; review their notes for consistency.",
       "Partner with leadership on final hiring recommendations and bar-raising decisions.",
       "Instrument the funnel: time-to-signal, pass rates by stage, and false-positive postmortems after bad hires (or near-misses).",
@@ -542,7 +707,7 @@ export const roles: Role[] = [
       "Personal depth in at least one of Java/Spring, C#/.NET, or large-scale TypeScript backends - and the ability to evaluate the others.",
       "Evidence of building rubrics, calibrating interviewers, or running hiring committees.",
       "Exceptional English communication for interviewing, coaching interviewers, and writing decision memos.",
-      "Judgment to protect the senior bar under hiring pressure.",
+      "Judgment to protect role bars under hiring pressure.",
     ],
     nice: [
       "Experience hiring for a consultancy, agency, or multi-product engineering org.",
@@ -569,7 +734,7 @@ export const generalApplyQuestions: Role["applyQuestions"] = [
   {
     id: "craft_focus",
     label:
-      "Which craft are you targeting (e.g. TypeScript full-stack, Java/Spring, C#/.NET, AI, platform, technical interviewing), and roughly how many years of production experience?",
+      "Which craft are you targeting (e.g. junior or senior TypeScript full-stack/frontend/backend, Java/Spring, C#/.NET, AI, platform, technical interviewing), and roughly how many years of production experience?",
   },
   {
     id: "recent_work",

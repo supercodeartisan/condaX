@@ -1,21 +1,27 @@
 import { z } from "zod";
+import { isKnownCountryName } from "@/lib/countries";
 
 const MAX_CV_BYTES = 8 * 1024 * 1024;
-/** Earliest start: today … 18 months ahead (YYYY-MM-DD). */
-export const START_DATE_MAX_MONTHS = 18;
+
+export const START_AVAILABILITY_OPTIONS = [
+  { value: "Immediate", label: "Immediate" },
+  { value: "~2 weeks", label: "About 2 weeks" },
+  { value: "~1 month", label: "About 1 month" },
+  { value: "2+ months", label: "2+ months" },
+] as const;
+
+export type StartAvailability = (typeof START_AVAILABILITY_OPTIONS)[number]["value"];
+
+const START_AVAILABILITY_VALUES = START_AVAILABILITY_OPTIONS.map((o) => o.value) as [
+  StartAvailability,
+  ...StartAvailability[],
+];
 
 export function toIsoDate(d: Date): string {
   const y = d.getFullYear();
   const m = String(d.getMonth() + 1).padStart(2, "0");
   const day = String(d.getDate()).padStart(2, "0");
   return `${y}-${m}-${day}`;
-}
-
-export function getStartDateBounds(now = new Date()) {
-  const min = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const max = new Date(min);
-  max.setMonth(max.getMonth() + START_DATE_MAX_MONTHS);
-  return { min: toIsoDate(min), max: toIsoDate(max) };
 }
 
 /** DOB: age 18-80. */
@@ -51,6 +57,14 @@ function refineIsoDateInRange(
   if (value < bounds.min) ctx.addIssue({ code: "custom", message: labels.before });
   if (value > bounds.max) ctx.addIssue({ code: "custom", message: labels.after });
 }
+
+const countryName = z
+  .string()
+  .trim()
+  .min(2)
+  .max(100)
+  .refine((v) => isKnownCountryName(v), "Please select a country from the list.");
+
 const ALLOWED_CV_TYPES = new Set([
   "application/pdf",
   "application/msword",
@@ -82,22 +96,14 @@ export const applicationFieldsSchema = z.object({
     .url()
     .refine((v) => /linkedin\.com/i.test(v), "LinkedIn URL must point to linkedin.com"),
   portfolio: optionalUrl,
-  country: z.string().trim().min(2).max(100),
+  nationality: countryName,
+  country: countryName,
   city: z.string().trim().min(1).max(100),
   state: optionalText,
   address: optionalText,
-  start: z
-    .string()
-    .trim()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "Start date must be a valid day, month, and year.")
-    .superRefine((value, ctx) => {
-      const bounds = getStartDateBounds();
-      refineIsoDateInRange(value, bounds, {
-        invalid: "Start date must be a real calendar day (day / month / year).",
-        before: `Earliest start cannot be before today (${bounds.min}).`,
-        after: `Earliest start cannot be more than ${START_DATE_MAX_MONTHS} months ahead (${bounds.max}).`,
-      }, ctx);
-    }),
+  start: z.enum(START_AVAILABILITY_VALUES, {
+    message: "Please select when you can start.",
+  }),
   dob: z
     .string()
     .trim()
@@ -110,7 +116,10 @@ export const applicationFieldsSchema = z.object({
         after: `Candidates must be at least ${DOB_MIN_AGE} years old.`,
       }, ctx);
     }),
-  note: z.string().trim().min(20).max(8000),
+  note: z.preprocess(
+    (v) => (typeof v === "string" ? v.trim() : ""),
+    z.string().max(8000).default(""),
+  ),
 });
 
 export function emptyToNull(value: string | undefined | null): string | null {

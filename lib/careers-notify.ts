@@ -32,10 +32,11 @@ export async function notifyNewApplication(
     `Phone: ${input.phone}`,
     `LinkedIn: ${input.linkedin}`,
     input.portfolio ? `Portfolio: ${input.portfolio}` : null,
+    `Nationality: ${input.nationality}`,
     `Location: ${[input.city, input.state, input.country].filter(Boolean).join(", ")}`,
     input.address ? `Address: ${input.address}` : null,
     `Date of birth: ${input.dateOfBirth}`,
-    `Earliest start: ${input.startDate}`,
+    `Availability: ${input.startDate}`,
     `CV (admin): ${siteUrl}/api/admin/applications/${applicationId}/cv`,
     `Download CV: ${siteUrl}/api/admin/applications/${applicationId}/cv?download=1`,
     input.geo
@@ -47,8 +48,7 @@ export async function notifyNewApplication(
         })}`
       : null,
     ``,
-    `Introduction:`,
-    input.note,
+    input.note ? `Introduction:\n${input.note}` : null,
     answerLines ? `\nRole answers:\n${answerLines}` : null,
     ``,
     `Review: ${siteUrl}/admin/applications`,

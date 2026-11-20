@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS applications (
   phone TEXT NOT NULL,
   linkedin TEXT NOT NULL,
   portfolio TEXT,
+  nationality TEXT NOT NULL,
   country TEXT NOT NULL,
   city TEXT NOT NULL,
   state TEXT,

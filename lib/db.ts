@@ -11,6 +11,7 @@ export type ApplicationRow = {
   phone: string;
   linkedin: string;
   portfolio: string | null;
+  nationality: string | null;
   country: string;
   city: string;
   state: string | null;
@@ -37,6 +38,7 @@ export type NewApplication = {
   phone: string;
   linkedin: string;
   portfolio: string | null;
+  nationality: string;
   country: string;
   city: string;
   state: string | null;
@@ -64,6 +66,7 @@ function mapApplicationRow(row: Record<string, unknown>): ApplicationRow {
     phone: String(row.phone),
     linkedin: String(row.linkedin),
     portfolio: (row.portfolio as string | null) ?? null,
+    nationality: (row.nationality as string | null) ?? null,
     country: String(row.country),
     city: String(row.city),
     state: (row.state as string | null) ?? null,
@@ -91,7 +94,7 @@ export async function insertApplication(input: NewApplication): Promise<{ id: st
   const geo = input.geo;
   const rows = await db`
     INSERT INTO applications (
-      role_title, role_slug, full_name, email, phone, linkedin, portfolio,
+      role_title, role_slug, full_name, email, phone, linkedin, portfolio, nationality,
       country, city, state, address, date_of_birth, start_date, note, answers, cv_url, cv_filename,
       submitter_ip, geo_country, geo_region, geo_city
     ) VALUES (
@@ -102,6 +105,7 @@ export async function insertApplication(input: NewApplication): Promise<{ id: st
       ${input.phone},
       ${input.linkedin},
       ${input.portfolio},
+      ${input.nationality},
       ${input.country},
       ${input.city},
       ${input.state},
@@ -134,6 +138,7 @@ export async function listApplications(limit = 100): Promise<ApplicationRow[]> {
       phone,
       linkedin,
       portfolio,
+      nationality,
       country,
       city,
       state,
@@ -169,6 +174,7 @@ export async function getApplicationById(id: string): Promise<ApplicationRow | n
       phone,
       linkedin,
       portfolio,
+      nationality,
       country,
       city,
       state,
