@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { People } from "@/components/about/People";
 import { EditorialImage } from "@/components/ui/EditorialImage";
 import { images } from "@/lib/images";
 import { values } from "@/lib/site";
@@ -47,8 +46,6 @@ export default function AboutPage() {
           ))}
         </ul>
       </section>
-
-      <People />
 
       <section className="border-t border-hairline">
         <div className="paddings mx-auto flex max-w-[1720px] flex-col gap-6 py-16 md:flex-row md:items-end md:justify-between md:py-20">

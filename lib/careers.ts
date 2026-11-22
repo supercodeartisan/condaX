@@ -630,7 +630,7 @@ export const roles: Role[] = [
       "Run deep technical interviews for Condax engineering hiring - assess real production judgment across stacks, not puzzle performance.",
     about: [
       "Condax hires senior and junior engineers against clear role bars. That only holds if interviews are rigorous, consistent, and grounded in how people actually ship software - not trivia or trick puzzles.",
-      "As a Senior Technical Interviewer you conduct in-depth technical conversations for Condax candidates (and, when scoped, client hiring support). You probe architecture judgment, debugging instincts, stack depth (TypeScript, Java/Spring, C#/.NET, platform, AI), and English communication under client-delivery conditions - calibrated to senior vs junior role profiles.",
+      "As a Senior Technical Interviewer you conduct in-depth technical conversations for Condax candidates, when scoped, client hiring support. You probe architecture judgment, debugging instincts, stack depth (TypeScript, Java/Spring, C#/.NET, platform, AI), and English communication under client-delivery conditions - calibrated to senior vs junior role profiles.",
       "You are a strong senior engineer first. Interviewing is the focus of this role, but credibility comes from years of production work and the ability to evaluate candidates fairly across multiple stacks and seniority levels.",
     ],
     impact: [

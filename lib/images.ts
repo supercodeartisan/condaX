@@ -20,6 +20,17 @@ const u = (photoId: string) => `https://unsplash.com/photos/${photoId}`;
 
 export const images = {
   home: {
+    heroVisual: {
+      src: "/images/home/hero-visual.webp",
+      alt: "Laptop showing a live product analytics dashboard — charts, sessions, and performance",
+      width: 2000,
+      height: 1333,
+      sourceUrl: u("1551288049-bebda4e38f71"),
+      sourceSite: "Unsplash",
+      license: "Unsplash License",
+      photoId: "1551288049-bebda4e38f71",
+      usage: "Homepage hero product visual",
+    },
     capabilitiesStrip: {
       src: "/images/home/capabilities-strip.webp",
       alt: "Close view of a real IDE with source code on a monitor",
