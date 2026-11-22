@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS applications (
   city TEXT NOT NULL,
   state TEXT,
   address TEXT,
-  date_of_birth TEXT NOT NULL,
+  date_of_birth TEXT,
   start_date TEXT NOT NULL,
   note TEXT NOT NULL,
   answers JSONB NOT NULL DEFAULT '{}'::jsonb,

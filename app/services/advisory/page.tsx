@@ -13,9 +13,11 @@ const scope = encodeURIComponent("Advisory / decision session");
 export default function AdvisoryPage() {
   return (
     <ServicePage
+      eyebrow="Service"
+      visualTone="paper"
       visual={<DecisionMemo />}
       title="A clear recommendation: adopt, build, or defer."
-      lede="Short paid sessions and a written memo when leadership is deciding between AI tools, a custom product, and waiting."
+      lede="Short paid sessions and a written memo when leadership is deciding between AI tools, a custom product, and waiting — grounded in your stack, data posture, and what operators can actually run."
       cta="Book a session"
       ctaHref={`/get-in-touch?scope=${scope}`}
       fit={{
@@ -43,7 +45,7 @@ export default function AdvisoryPage() {
         },
         {
           title: "Risk & data",
-          text: "Vendors, tenancy, and a policy posture that remains enforceable under early usage.",
+          text: "Vendors, tenancy, retention, and a policy posture that remains enforceable once teams start using AI on live work.",
         },
         {
           title: "Sequence",

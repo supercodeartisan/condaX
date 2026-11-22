@@ -20,6 +20,7 @@ export function ContactForm({
   return (
     <form
       className="flex flex-col gap-4"
+      aria-busy={busy}
       onSubmit={async (e) => {
         e.preventDefault();
         setBusy(true);
@@ -89,13 +90,18 @@ export function ContactForm({
       <button
         type="submit"
         disabled={busy || sent}
+        aria-disabled={busy || sent}
         className="mt-2 inline-flex w-fit items-center rounded-full bg-cobalt px-6 py-3 text-[16px] font-medium text-white hover:bg-cobalt-hover disabled:opacity-60"
       >
         {busy ? "Submitting…" : sent ? "Submitted" : "Submit"}
       </button>
-      {error ? <p className="text-[14px] text-red-700">{error}</p> : null}
+      {error ? (
+        <p className="text-[14px] text-red-700" role="alert">
+          {error}
+        </p>
+      ) : null}
       {sent ? (
-        <p className="text-[14px] text-neutral">
+        <p className="text-[14px] text-neutral" role="status" aria-live="polite">
           Thank you. We received your submission and typically reply within one business day. If you
           need to add anything, email{" "}
           <EmailLink

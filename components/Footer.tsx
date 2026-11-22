@@ -46,6 +46,9 @@ export function Footer() {
             <Link href="/legal/cookie-policy" className="transition-colors hover:text-white">
               Cookies
             </Link>
+            <Link href="/security" className="transition-colors hover:text-white">
+              Security
+            </Link>
           </div>
         </Container>
       </div>

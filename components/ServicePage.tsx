@@ -44,6 +44,8 @@ type Props = {
   showPlans?: boolean;
   closingTitle?: string;
   closingLede?: string;
+  /** Visual band background — defaults to warm wash */
+  visualTone?: "warm" | "paper" | "diagram";
 };
 
 export function ServicePage({
@@ -65,7 +67,15 @@ export function ServicePage({
   showPlans,
   closingTitle = "Ready to talk through fit?",
   closingLede = "Tell us what you are deciding or building. We will respond with a clear recommendation.",
+  visualTone = "warm",
 }: Props) {
+  const visualSectionClass = cn(
+    "border-b border-hairline",
+    visualTone === "warm" && "bg-warm/40",
+    visualTone === "paper" && "bg-paper",
+    visualTone === "diagram" && "bg-[linear-gradient(180deg,var(--color-paper)_0%,#f4f6fb_100%)]",
+  );
+  const visualPadClass = visualTone === "diagram" ? "py-12 md:py-16" : "py-10 md:py-14";
   const proof = (relatedWork ?? [])
     .map((slug) => workItems.find((item) => item.slug === slug))
     .filter((item): item is (typeof workItems)[number] => Boolean(item));
@@ -92,10 +102,10 @@ export function ServicePage({
       </section>
 
       {visual ? (
-        <section className="border-b border-hairline bg-warm/40">
-          <Container className="py-10 md:py-14">
+        <section className={visualSectionClass}>
+          <Container className={cn(visualPadClass, visualTone === "diagram" && "max-w-[min(100%,56rem)]")}>
             <Reveal>
-              <div className="overflow-hidden">{visual}</div>
+              <div className={cn(visualTone === "diagram" ? "" : "overflow-hidden")}>{visual}</div>
             </Reveal>
           </Container>
         </section>

@@ -4,20 +4,25 @@ import { ArrowUpIcon } from "@/components/ui/icons";
 export function AIAssistant({ className = "" }: { className?: string }) {
   return (
     <div
-      className={`overflow-hidden rounded-[18px] border border-hairline bg-surface shadow-[0_24px_70px_rgba(17,17,16,0.12)] ${className}`}
+      className={`overflow-hidden rounded-[18px] border border-hairline bg-surface shadow-[0_28px_80px_rgba(17,17,16,0.16)] ring-1 ring-black/[0.05] ${className}`}
       aria-hidden
     >
       <div className="flex items-center justify-between border-b border-hairline px-3.5 py-2.5 sm:px-4 sm:py-3">
         <div className="flex items-center gap-2.5">
           <span className="grid size-7 place-items-center rounded-full bg-cobalt text-[10px] font-semibold text-white">
-            AI
+            K
           </span>
           <div>
-            <div className="text-[12px] font-medium text-ink">Ops assistant</div>
-            <div className="text-[10px] text-muted">Grounded in queue + policy</div>
+            <div className="text-[12px] font-medium text-ink">Kite · Ops assistant</div>
+            <div className="text-[10px] text-muted">Grounded in queue + policy · refuse enabled</div>
           </div>
         </div>
-        <span className="rounded-full bg-warm px-2.5 py-1 text-[10px] font-medium text-neutral">Cited</span>
+        <div className="flex items-center gap-1.5">
+          <span className="rounded-full bg-warm px-2 py-1 text-[10px] font-medium text-neutral">Cited</span>
+          <span className="rounded-full bg-cobalt/10 px-2 py-1 text-[10px] font-medium text-cobalt">
+            Human gate
+          </span>
+        </div>
       </div>
 
       <div className="space-y-2.5 p-3.5 sm:space-y-3 sm:p-4">
@@ -33,7 +38,7 @@ export function AIAssistant({ className = "" }: { className?: string }) {
                 1
               </span>
               <span>
-                <span className="font-medium text-ink">#4821 billing dispute</span> - invoice mismatch
+                <span className="font-medium text-ink">#4821 billing dispute</span> — invoice mismatch
                 above auto-resolve threshold
               </span>
             </li>
@@ -42,16 +47,23 @@ export function AIAssistant({ className = "" }: { className?: string }) {
                 2
               </span>
               <span>
-                <span className="font-medium text-ink">#4818 access review</span> - policy conflict on
+                <span className="font-medium text-ink">#4818 access review</span> — policy conflict on
                 refund eligibility
               </span>
             </li>
           </ul>
           <div className="mt-3 flex flex-wrap gap-1.5 border-t border-hairline pt-2.5">
-            <span className="rounded-full bg-cobalt/10 px-2 py-0.5 text-[10px] text-cobalt">Helpdesk</span>
+            <span className="rounded-full bg-cobalt/10 px-2 py-0.5 text-[10px] text-cobalt">
+              Helpdesk · 92%
+            </span>
             <span className="rounded-full bg-warm px-2 py-0.5 text-[10px] text-neutral">Policy §4.2</span>
             <span className="rounded-full bg-warm px-2 py-0.5 text-[10px] text-neutral">3 sources</span>
           </div>
+        </div>
+
+        <div className="rounded-xl border border-[#E8D5C4] bg-[#FBF6F0] px-3 py-2 text-[10px] leading-relaxed text-[#8A5A2B] sm:text-[11px]">
+          <span className="font-semibold">Won’t answer:</span> competitor pricing outside approved corpus —
+          escalated to human queue.
         </div>
 
         <div className="flex items-center gap-2 rounded-full border border-hairline bg-paper px-3 py-2">

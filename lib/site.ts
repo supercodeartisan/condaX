@@ -95,6 +95,7 @@ export const footerNav = {
     { href: "/what-we-do", label: "What we do" },
     { href: "/careers", label: "Careers" },
     { href: "/insights", label: "Insights" },
+    { href: "/security", label: "Security & trust" },
   ],
   services: [
     { href: "/services/ai-for-teams", label: "AI for teams" },

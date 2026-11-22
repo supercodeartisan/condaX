@@ -43,7 +43,7 @@ export type NewApplication = {
   city: string;
   state: string | null;
   address: string | null;
-  dateOfBirth: string;
+  dateOfBirth: string | null;
   startDate: string;
   note: string;
   answers: Record<string, string>;

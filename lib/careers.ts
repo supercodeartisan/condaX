@@ -1,9 +1,86 @@
+export type RoleCategory =
+  | "software"
+  | "ai"
+  | "associate"
+  | "cloud"
+  | "leadership"
+  | "talent";
+
+export type RoleSeniority = "associate" | "senior" | "lead";
+
+export type RoleRemoteStatus = "remote";
+
+/** Regions shown in careers filters (Worldwide = no region filter). */
+export const CAREERS_FILTER_REGIONS = [
+  "United States",
+  "United Kingdom",
+  "Europe",
+  "Philippines",
+  "India",
+  "Latin America",
+  "Worldwide",
+] as const;
+
+export type CareersFilterRegion = (typeof CAREERS_FILTER_REGIONS)[number];
+
+export const CAREERS_FILTER_CATEGORIES: { value: RoleCategory | "all"; label: string }[] = [
+  { value: "all", label: "All categories" },
+  { value: "software", label: "Software engineering" },
+  { value: "associate", label: "Associate engineering" },
+  { value: "ai", label: "AI / LLM" },
+  { value: "cloud", label: "Cloud / platform" },
+  { value: "talent", label: "Talent / interviewing" },
+];
+
+export const CAREERS_FILTER_SENIORITIES: { value: RoleSeniority | "all"; label: string }[] = [
+  { value: "all", label: "All levels" },
+  { value: "associate", label: "Associate (0–2 years)" },
+  { value: "senior", label: "Senior (5+ years)" },
+  { value: "lead", label: "Lead" },
+];
+
+/** Condax hiring regions for remote roles (filtering; location stays Remote · Worldwide). */
+export const DEFAULT_ELIGIBLE_REGIONS = [
+  "United States",
+  "United Kingdom",
+  "Europe",
+  "Philippines",
+  "India",
+  "Latin America",
+];
+
+function remoteRoleMeta(
+  category: RoleCategory,
+  seniority: RoleSeniority,
+  employmentTypes: string[] = ["Full-time", "Contract"],
+): Pick<Role, "category" | "seniority" | "eligibleRegions" | "employmentTypes" | "remoteStatus"> {
+  return {
+    category,
+    seniority,
+    eligibleRegions: [...DEFAULT_ELIGIBLE_REGIONS],
+    employmentTypes,
+    remoteStatus: "remote",
+  };
+}
+
+/** Legacy junior URLs → associate slugs (also configured in next.config redirects). */
+export const CAREERS_SLUG_REDIRECTS: Record<string, string> = {
+  "junior-full-stack-engineer": "associate-full-stack-engineer",
+  "junior-frontend-engineer": "associate-frontend-engineer",
+  "junior-backend-engineer": "associate-backend-engineer",
+};
+
 export type Role = {
   slug: string;
   title: string;
   team: string;
   location: string;
   type: string;
+  category: RoleCategory;
+  seniority: RoleSeniority;
+  eligibleRegions: string[];
+  employmentTypes: string[];
+  remoteStatus: RoleRemoteStatus;
   experience: string;
   reportsTo: string;
   summary: string;
@@ -54,8 +131,8 @@ export const whyJoin = [
     text: "Clients and colleagues across regions. Location is not a hiring filter.",
   },
   {
-    title: "Senior and junior paths",
-    text: "Senior delivery roles require 5+ years in production. Junior roles (0–2 years) grow beside senior ICs on real client work.",
+    title: "Associate and senior paths",
+    text: "Senior delivery roles require 5+ years in production. Associate roles (0–2 years) grow beside senior ICs on real client work.",
   },
   {
     title: "Craft and communication",
@@ -63,7 +140,7 @@ export const whyJoin = [
   },
 ];
 
-/** Open roles - senior (5+) and junior (0–2) delivery engineering, plus interview specialists. */
+/** Open roles - senior (5+) and associate (0–2) delivery engineering, plus interview specialists. */
 export const roles: Role[] = [
   {
     slug: "senior-full-stack-engineer",
@@ -71,6 +148,7 @@ export const roles: Role[] = [
     team: "Engineering",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    ...remoteRoleMeta("software", "senior"),
     experience: "5+ years production",
     reportsTo: "CTO",
     summary:
@@ -127,6 +205,7 @@ export const roles: Role[] = [
     team: "Engineering",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    ...remoteRoleMeta("software", "senior"),
     experience: "5+ years production",
     reportsTo: "CTO",
     summary:
@@ -183,6 +262,7 @@ export const roles: Role[] = [
     team: "Engineering",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    ...remoteRoleMeta("software", "senior"),
     experience: "5+ years production",
     reportsTo: "CTO",
     summary:
@@ -239,6 +319,7 @@ export const roles: Role[] = [
     team: "AI & Engineering",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    ...remoteRoleMeta("ai", "senior"),
     experience: "5+ years software · production AI/ML",
     reportsTo: "CTO",
     summary:
@@ -294,6 +375,7 @@ export const roles: Role[] = [
     team: "Platform",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    ...remoteRoleMeta("cloud", "senior"),
     experience: "5+ years production",
     reportsTo: "CTO",
     summary:
@@ -347,6 +429,7 @@ export const roles: Role[] = [
     team: "Engineering",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    ...remoteRoleMeta("software", "senior"),
     experience: "5+ years production",
     reportsTo: "CTO",
     summary:
@@ -403,6 +486,7 @@ export const roles: Role[] = [
     team: "Engineering",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    ...remoteRoleMeta("software", "senior"),
     experience: "5+ years production",
     reportsTo: "CTO",
     summary:
@@ -454,18 +538,19 @@ export const roles: Role[] = [
     ],
   },
   {
-    slug: "junior-full-stack-engineer",
-    title: "Junior Full-Stack Engineer",
+    slug: "associate-full-stack-engineer",
+    title: "Associate Full-Stack Engineer",
     team: "Engineering",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    ...remoteRoleMeta("associate", "associate"),
     experience: "0–2 years production",
     reportsTo: "CTO",
     summary:
       "Ship features across UI and API with senior guidance - learn Condax delivery habits on real client work.",
     about: [
-      "Condax is a small AI, automation, and product engineering consultancy. Junior engineers join delivery squads led by senior ICs - not a separate training track disconnected from clients.",
-      "As a Junior Full-Stack Engineer you implement scoped tickets across TypeScript, React / Next.js, and APIs. You write clear updates, ask for review early, and treat production quality (tests, error states, access) as part of the job from week one.",
+      "Condax is a small AI, automation, and product engineering consultancy. Associate engineers join delivery squads led by senior ICs - not a separate training track disconnected from clients.",
+      "As an Associate Full-Stack Engineer you implement scoped tickets across TypeScript, React / Next.js, and APIs. You write clear updates, ask for review early, and treat production quality (tests, error states, access) as part of the job from week one.",
       "This role fits 0–2 years of professional software experience - or an equivalent portfolio of shipped projects if you are early in your career. Strong English and a bias to learn by shipping are required.",
     ],
     impact: [
@@ -509,18 +594,19 @@ export const roles: Role[] = [
     ],
   },
   {
-    slug: "junior-frontend-engineer",
-    title: "Junior Frontend Engineer",
+    slug: "associate-frontend-engineer",
+    title: "Associate Frontend Engineer",
     team: "Engineering",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    ...remoteRoleMeta("associate", "associate"),
     experience: "0–2 years production",
     reportsTo: "CTO",
     summary:
       "Build accessible, production UI with senior front-end guidance - craft, performance, and clear states.",
     about: [
-      "Condax ships interfaces operators and customers use daily. Junior frontend engineers contribute real screens and components inside that standard - reviewed by seniors, not isolated practice work.",
-      "As a Junior Frontend Engineer you implement responsive layouts, components, and interaction detail in React / Next.js with TypeScript. You care about empty, loading, and error states as much as the happy path.",
+      "Condax ships interfaces operators and customers use daily. Associate frontend engineers contribute real screens and components inside that standard - reviewed by seniors, not isolated practice work.",
+      "As an Associate Frontend Engineer you implement responsive layouts, components, and interaction detail in React / Next.js with TypeScript. You care about empty, loading, and error states as much as the happy path.",
       "0–2 years of professional front-end experience - or a portfolio that shows shipped UI beyond course clones - is the expected range. Clear English for critiques and async notes is required.",
     ],
     impact: [
@@ -564,18 +650,19 @@ export const roles: Role[] = [
     ],
   },
   {
-    slug: "junior-backend-engineer",
-    title: "Junior Backend Engineer",
+    slug: "associate-backend-engineer",
+    title: "Associate Backend Engineer",
     team: "Engineering",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    ...remoteRoleMeta("associate", "associate"),
     experience: "0–2 years production",
     reportsTo: "CTO",
     summary:
       "Implement APIs, data access, and integrations with senior guidance - reliability habits from day one.",
     about: [
-      "Condax backends must survive real traffic and real operators. Junior backend engineers join those systems under senior design - shipping endpoints, jobs, and data changes that are reviewed for safety.",
-      "As a Junior Backend Engineer you implement services and data access (typically Node/TypeScript or a similar stack the engagement uses), write clear migrations or schema changes when asked, and learn observability and failure modes alongside seniors.",
+      "Condax backends must survive real traffic and real operators. Associate backend engineers join those systems under senior design - shipping endpoints, jobs, and data changes that are reviewed for safety.",
+      "As an Associate Backend Engineer you implement services and data access (typically Node/TypeScript or a similar stack the engagement uses), write clear migrations or schema changes when asked, and learn observability and failure modes alongside seniors.",
       "0–2 years of professional backend experience - or projects that show real APIs and data work - is the expected range. Strong English for design notes and debugging updates is required.",
     ],
     impact: [
@@ -624,6 +711,7 @@ export const roles: Role[] = [
     team: "Talent · Engineering",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    ...remoteRoleMeta("talent", "senior"),
     experience: "5+ years production · deep interview craft",
     reportsTo: "CTO",
     summary:
@@ -679,6 +767,7 @@ export const roles: Role[] = [
     team: "Talent · Engineering",
     location: "Remote · Worldwide",
     type: "Full-time · Contract",
+    ...remoteRoleMeta("talent", "lead"),
     experience: "7+ years production · hiring systems",
     reportsTo: "CTO",
     summary:
@@ -734,7 +823,7 @@ export const generalApplyQuestions: Role["applyQuestions"] = [
   {
     id: "craft_focus",
     label:
-      "Which craft are you targeting (e.g. junior or senior TypeScript full-stack/frontend/backend, Java/Spring, C#/.NET, AI, platform, technical interviewing), and roughly how many years of production experience?",
+      "Which craft are you targeting (e.g. associate or senior TypeScript full-stack/frontend/backend, Java/Spring, C#/.NET, AI, platform, technical interviewing), and roughly how many years of production experience?",
   },
   {
     id: "recent_work",
@@ -744,5 +833,6 @@ export const generalApplyQuestions: Role["applyQuestions"] = [
 ];
 
 export function getRole(slug: string) {
-  return roles.find((r) => r.slug === slug);
+  const resolved = CAREERS_SLUG_REDIRECTS[slug] ?? slug;
+  return roles.find((r) => r.slug === resolved);
 }

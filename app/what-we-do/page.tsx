@@ -3,12 +3,14 @@ import Link from "next/link";
 import { Plans } from "@/components/Plans";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
+import { nav } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "What we do",
   description:
-    "Condax engagement models - AI for teams, custom products, and advisory - plus how we deliver and hand over.",
+    "Condax engagement models - AI for teams, custom products, and advisory - plus product shapes we ship and how we deliver.",
 };
 
 const services = [
@@ -17,7 +19,7 @@ const services = [
     href: "/services/ai-for-teams",
     title: "AI for teams",
     text: "Select, deploy, and govern AI tools in the workflows people already run.",
-    when: "Best when tooling exists - or is about to - and adoption needs structure.",
+    when: "Best when tooling exists — or is about to — and adoption needs structure.",
   },
   {
     index: "02",
@@ -38,7 +40,7 @@ const services = [
 const expectations = [
   {
     title: "Documented decisions",
-    text: "Adopt, build, or defer - written down, with the trade-offs attached.",
+    text: "Adopt, build, or defer — written down, with the trade-offs attached.",
   },
   {
     title: "In the workflow",
@@ -50,7 +52,7 @@ const expectations = [
   },
   {
     title: "Senior ownership",
-    text: "You work with people who can decide and deliver - then leave your operators able to run the result.",
+    text: "You work with people who can decide and deliver — then leave your operators able to run the result.",
   },
 ];
 
@@ -61,26 +63,28 @@ export default function WhatWeDoPage() {
         <Container className="max-w-[1100px] pt-10 pb-14 md:pt-16 md:pb-20">
           <Reveal>
             <p className="text-center text-[12px] tracking-[0.14em] text-muted uppercase">Our approach</p>
-            <h1 className="font-display mx-auto mt-4 max-w-[18ch] text-center text-[36px] leading-[1.12] font-medium tracking-tight text-ink sm:text-[48px] md:text-[56px]">
+            <h1 className="font-display type-h1 mx-auto mt-4 max-w-[20ch] text-center text-ink">
               Enable AI adoption. Build custom software when tools are not enough.
             </h1>
-            <p className="mx-auto mt-6 max-w-[46ch] text-center text-[16px] leading-relaxed text-neutral md:text-[17px]">
-              Services are how we engage. Solutions are the product shapes we ship. One delivery
-              standard: scoped work, clear ownership, and a handover your organization can operate.
+            <p className="mx-auto mt-6 max-w-[52ch] text-center type-body-lg text-neutral">
+              <span className="font-medium text-ink">Services</span> are how we engage — advisory,
+              enablement, or product engineering.{" "}
+              <span className="font-medium text-ink">Solutions</span> are the product shapes we ship
+              when you build. One delivery standard: scoped work, clear ownership, and a handover your
+              organization can operate.
             </p>
           </Reveal>
         </Container>
       </section>
 
-      <section className="border-b border-hairline">
+      <section className="border-b border-hairline bg-paper">
         <Container className="py-16 md:py-20">
           <Reveal>
-            <h2 className="font-display text-[32px] font-medium tracking-tight text-ink md:text-[40px]">
-              Choose a path
-            </h2>
-            <p className="mt-3 max-w-[42ch] text-[16px] leading-relaxed text-neutral">
-              Start with the engagement that matches the decision in front of you. Deep detail lives
-              on each service page.
+            <Eyebrow>Services</Eyebrow>
+            <h2 className="font-display type-h2 mt-4 text-ink">How we engage</h2>
+            <p className="mt-3 max-w-[46ch] text-[16px] leading-relaxed text-neutral">
+              Pick the engagement that matches the decision in front of you. Each path has its own page
+              with scope, governance, and handover detail.
             </p>
           </Reveal>
 
@@ -93,7 +97,7 @@ export default function WhatWeDoPage() {
                 >
                   <span className="font-display text-[13px] tabular-nums text-muted">{service.index}</span>
                   <div>
-                    <h3 className="font-display text-[24px] font-medium tracking-tight text-ink transition-colors group-hover:text-cobalt md:text-[28px]">
+                    <h3 className="font-display type-h3 text-ink transition-colors group-hover:text-cobalt">
                       {service.title}
                     </h3>
                     <p className="mt-2 max-w-[36ch] text-[15px] leading-relaxed text-neutral">
@@ -104,7 +108,7 @@ export default function WhatWeDoPage() {
                     {service.when}
                   </p>
                   <span className="text-[14px] font-medium text-cobalt link-underline sm:justify-self-end">
-                    Explore
+                    Explore service
                   </span>
                 </Link>
               </Reveal>
@@ -113,14 +117,62 @@ export default function WhatWeDoPage() {
         </Container>
       </section>
 
-      <section className="border-b border-hairline bg-paper">
+      <section className="border-b border-hairline">
+        <Container className="py-16 md:py-20">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.38fr)_minmax(0,0.62fr)] lg:gap-16">
+            <Reveal className="lg:sticky lg:top-28 lg:self-start">
+              <Eyebrow>Solutions</Eyebrow>
+              <h2 className="font-display type-h2 mt-4 text-ink">What we build</h2>
+              <p className="mt-4 max-w-[34ch] text-[16px] leading-relaxed text-neutral">
+                Product shapes we design and ship — usually through custom product engineering or a
+                defined automation engagement.
+              </p>
+              <p className="mt-4 max-w-[36ch] text-[14px] leading-relaxed text-muted">
+                Not sure which shape fits? Start with{" "}
+                <Link href="/services/advisory" className="font-medium text-cobalt link-underline">
+                  advisory
+                </Link>{" "}
+                or{" "}
+                <Link href="/services/ai-for-teams" className="font-medium text-cobalt link-underline">
+                  AI for teams
+                </Link>
+                .
+              </p>
+            </Reveal>
+
+            <ul className="grid gap-4 sm:grid-cols-2">
+              {nav.solutions.map((solution, i) => (
+                <Reveal key={solution.href} delay={i * 50}>
+                  <li className="h-full">
+                    <Link
+                      href={solution.href}
+                      className="group flex h-full flex-col rounded-[20px] border border-hairline bg-surface p-6 transition-colors hover:border-cobalt/40"
+                    >
+                      <h3 className="font-display text-[20px] font-medium tracking-tight text-ink transition-colors group-hover:text-cobalt">
+                        {solution.title}
+                      </h3>
+                      <p className="mt-2 flex-1 text-[14px] leading-relaxed text-neutral">
+                        {solution.description}
+                      </p>
+                      <span className="mt-5 text-[13px] font-medium text-cobalt link-underline">
+                        View solution
+                      </span>
+                    </Link>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-b border-hairline bg-warm/30">
         <Container className="grid gap-12 py-16 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-16 md:py-20">
           <Reveal className="md:sticky md:top-28 md:self-start">
-            <h2 className="font-display text-[32px] font-medium tracking-tight text-ink md:text-[40px]">
-              What you can expect
-            </h2>
+            <h2 className="font-display type-h2 text-ink">What you can expect</h2>
             <p className="mt-4 max-w-[36ch] text-[16px] leading-relaxed text-neutral">
-              Clear decisions, production delivery, and a handover your operators can run.
+              Clear decisions, production delivery, and a handover your operators can run — on every
+              service and solution engagement.
             </p>
             <div className="mt-8">
               <ButtonLink href="/get-in-touch" arrow className="w-fit">

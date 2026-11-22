@@ -5,7 +5,7 @@ type ShellProps = { className?: string };
 /** Kite - full knowledge workspace */
 export function KiteUi({ className = "" }: ShellProps) {
   return (
-    <div className={cn("min-h-[420px] bg-[#0f1419] text-white", className)} aria-hidden>
+    <div className={cn("min-h-[460px] bg-[#0f1419] text-white", className)} aria-hidden>
       <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
         <div className="flex items-center gap-3">
           <span className="grid size-7 place-items-center rounded-full bg-cobalt text-[10px] font-bold">K</span>
@@ -14,59 +14,80 @@ export function KiteUi({ className = "" }: ShellProps) {
             <div className="text-[10px] text-white/40">Customer knowledge · live</div>
           </div>
         </div>
-        <div className="flex gap-2 text-[10px]">
+        <div className="flex flex-wrap items-center gap-2 text-[10px]">
           <span className="rounded-full bg-white/8 px-2.5 py-1 text-white/60">Policies</span>
           <span className="rounded-full bg-white/8 px-2.5 py-1 text-white/60">Tickets</span>
           <span className="rounded-full bg-cobalt/25 px-2.5 py-1 text-[#9db4ff]">Ask</span>
+          <span className="rounded-full border border-[#c4a574]/40 bg-[#c4a574]/15 px-2.5 py-1 text-[#e8d4b0]">
+            Human · ML
+          </span>
         </div>
       </div>
       <div className="grid lg:grid-cols-[0.95fr_1.15fr_0.85fr]">
         <div className="border-b border-white/10 p-4 lg:border-r lg:border-b-0">
-          <div className="mb-3 text-[10px] tracking-[0.12em] text-white/40 uppercase">Corpus map</div>
-          <svg viewBox="0 0 240 200" className="mx-auto h-[200px] w-full max-w-[240px]">
-            <circle cx="120" cy="100" r="26" fill="#2f5bff" />
-            <text x="120" y="104" textAnchor="middle" fill="white" fontSize="9" fontWeight="600">
+          <div className="mb-3 flex items-center justify-between">
+            <div className="text-[10px] tracking-[0.12em] text-white/40 uppercase">Corpus map</div>
+            <span className="text-[9px] text-white/35">4 collections hit</span>
+          </div>
+          <svg viewBox="0 0 240 168" className="mx-auto h-[160px] w-full max-w-[240px]">
+            <circle cx="120" cy="88" r="24" fill="#2f5bff" />
+            <text x="120" y="92" textAnchor="middle" fill="white" fontSize="9" fontWeight="600">
               Query
             </text>
             {[
-              [50, 36, "Policies"],
-              [190, 40, "Tickets"],
-              [42, 160, "Runbooks"],
-              [198, 158, "Product"],
-              [120, 28, "FAQ"],
-            ].map(([x, y, label], i) => (
+              [50, 32, "Policies"],
+              [190, 36, "Tickets"],
+              [42, 148, "Runbooks"],
+              [198, 146, "Product"],
+              [120, 24, "FAQ"],
+            ].map(([x, y, label]) => (
               <g key={String(label)}>
                 <line
                   x1="120"
-                  y1="100"
+                  y1="88"
                   x2={Number(x)}
                   y2={Number(y)}
                   stroke="#2f5bff"
                   strokeOpacity={0.35}
                   strokeWidth="1.5"
                 />
-                <circle cx={Number(x)} cy={Number(y)} r="16" fill="#1c2430" stroke="#3d4a5c" />
+                <circle cx={Number(x)} cy={Number(y)} r="15" fill="#1c2430" stroke="#3d4a5c" />
                 <text x={Number(x)} y={Number(y) + 3} textAnchor="middle" fill="#c8d0dc" fontSize="7">
                   {label}
                 </text>
               </g>
             ))}
           </svg>
-          <div className="mt-2 space-y-1.5 text-[10px] text-white/45">
-            <div className="flex justify-between"><span>Indexed chunks</span><span>14,208</span></div>
-            <div className="flex justify-between"><span>Collections</span><span>12</span></div>
-            <div className="flex justify-between"><span>p95 latency</span><span>410 ms</span></div>
+          <div className="mt-2 space-y-1 text-[10px] text-white/45">
+            <div className="flex justify-between"><span>Indexed chunks</span><span className="text-white/70">14,208</span></div>
+            <div className="flex justify-between"><span>Retrieved this turn</span><span className="text-white/70">6 / top-k 8</span></div>
+            <div className="flex justify-between"><span>p50 / p95 latency</span><span className="text-white/70">180 / 410 ms</span></div>
+            <div className="flex justify-between"><span>Refuse rate (7d)</span><span className="text-white/70">4.2%</span></div>
           </div>
         </div>
         <div className="flex flex-col border-b border-white/10 bg-[#151b22] p-4 lg:border-r lg:border-b-0">
-          <div className="flex-1 space-y-3">
+          <div className="mb-3 flex flex-wrap gap-1.5 text-[9px]">
+            <span className="rounded-md bg-white/8 px-2 py-0.5 text-white/55">session · 3 turns</span>
+            <span className="rounded-md bg-white/8 px-2 py-0.5 text-white/55">grounding · on</span>
+            <span className="rounded-md border border-[#c07070]/50 bg-[#c07070]/15 px-2 py-0.5 text-[#f0b4b4]">
+              refused · out of corpus
+            </span>
+          </div>
+          <div className="flex-1 space-y-2.5">
             <div className="max-w-[90%] rounded-2xl rounded-tl-sm bg-white/8 px-3.5 py-2.5 text-[12px] text-white/75">
               What does our refund policy say about partial shipments?
             </div>
             <div className="rounded-2xl rounded-tr-sm border border-white/10 bg-[#1c2430] px-3.5 py-3 text-[12px] leading-relaxed text-white/85">
               Partial shipments can be refunded for undelivered line items only. Shipping is
               non-refundable once the first parcel has left the warehouse.
-              <div className="mt-3 space-y-1.5 border-t border-white/10 pt-3">
+              <div className="mt-2.5 flex flex-wrap gap-1.5 text-[9px] text-white/40">
+                <span>412 ms</span>
+                <span>·</span>
+                <span>3 citations</span>
+                <span>·</span>
+                <span>6 chunks scored</span>
+              </div>
+              <div className="mt-2.5 space-y-1.5 border-t border-white/10 pt-2.5">
                 {[
                   ["Policy · Refunds §4.2", "92%"],
                   ["Runbook · Tier-1 refund script", "88%"],
@@ -79,8 +100,27 @@ export function KiteUi({ className = "" }: ShellProps) {
                 ))}
               </div>
             </div>
+            <div className="max-w-[90%] rounded-2xl rounded-tl-sm bg-white/8 px-3.5 py-2.5 text-[12px] text-white/75">
+              Can you price a competitor&apos;s warranty plan for us?
+            </div>
+            <div className="rounded-2xl rounded-tr-sm border border-[#c07070]/35 bg-[#2a1818] px-3.5 py-3 text-[12px] leading-relaxed text-white/80">
+              <div className="mb-1.5 flex items-center gap-2 text-[10px] font-medium text-[#f0b4b4]">
+                <span className="rounded bg-[#c07070]/25 px-1.5 py-0.5">Won&apos;t answer</span>
+                <span className="text-white/40">0 in-corpus hits</span>
+              </div>
+              No approved sources cover competitor pricing. I won&apos;t invent an answer from outside the
+              corpus. Hand off to a human if this is needed for the ticket.
+              <div className="mt-2.5 flex flex-wrap gap-1.5">
+                <span className="rounded-full border border-white/15 px-2.5 py-1 text-[10px] text-white/70">
+                  Escalate to human
+                </span>
+                <span className="rounded-full bg-white/8 px-2.5 py-1 text-[10px] text-white/45">
+                  Suggest corpus gap
+                </span>
+              </div>
+            </div>
           </div>
-          <div className="mt-4 flex items-center gap-2 rounded-full border border-white/10 bg-[#0f1419] px-3 py-2">
+          <div className="mt-3 flex items-center gap-2 rounded-full border border-white/10 bg-[#0f1419] px-3 py-2">
             <span className="flex-1 text-[11px] text-white/35">Ask across policies, tickets, docs…</span>
             <span className="grid size-7 place-items-center rounded-full bg-cobalt text-white">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
@@ -97,7 +137,7 @@ export function KiteUi({ className = "" }: ShellProps) {
         </div>
         <div className="bg-[#121820] p-4">
           <div className="text-[10px] tracking-[0.12em] text-white/40 uppercase">Answer checklist</div>
-          <ul className="mt-3 space-y-2.5 text-[11px] text-white/70">
+          <ul className="mt-3 space-y-2 text-[11px] text-white/70">
             {[
               ["Cite source before advising", true],
               ["Flag policy conflicts", true],
@@ -117,10 +157,21 @@ export function KiteUi({ className = "" }: ShellProps) {
               </li>
             ))}
           </ul>
-          <div className="mt-6 rounded-xl border border-white/10 p-3">
-            <div className="text-[10px] text-white/40">Session</div>
+          <div className="mt-5 rounded-xl border border-[#c4a574]/35 bg-[#c4a574]/10 p-3">
+            <div className="flex items-center justify-between gap-2">
+              <div className="text-[10px] text-[#e8d4b0]">Human handover</div>
+              <span className="rounded-full bg-[#c4a574]/20 px-2 py-0.5 text-[9px] text-[#e8d4b0]">Ready</span>
+            </div>
             <div className="mt-1 text-[12px] font-medium">Support · Guest checkout</div>
-            <div className="mt-1 text-[10px] text-white/45">Human handover ready</div>
+            <div className="mt-1 text-[10px] text-white/45">Queue · Morgan L. · SLA 12m</div>
+            <div className="mt-2.5 flex gap-1.5 text-[9px]">
+              <span className="rounded-md bg-white/8 px-2 py-1 text-white/60">Context attached</span>
+              <span className="rounded-md bg-white/8 px-2 py-1 text-white/60">Refuse logged</span>
+            </div>
+          </div>
+          <div className="mt-3 rounded-xl border border-white/10 p-3 text-[10px] text-white/45">
+            <div className="flex justify-between"><span>Grounded answers</span><span className="text-white/70">91%</span></div>
+            <div className="mt-1 flex justify-between"><span>Avg chunks / answer</span><span className="text-white/70">4.1</span></div>
           </div>
         </div>
       </div>
@@ -400,78 +451,150 @@ export function PulseUi({ className = "" }: ShellProps) {
 /** Harbor - full topology console */
 export function HarborUi({ className = "" }: ShellProps) {
   return (
-    <div className={cn("min-h-[420px] bg-[#0c0f14] text-white", className)} aria-hidden>
+    <div className={cn("min-h-[460px] bg-[#0c0f14] text-white", className)} aria-hidden>
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-4 py-3">
         <div>
           <div className="text-[13px] font-medium">Harbor · Automation topology</div>
-          <div className="text-[10px] text-white/40">Inbound intake · guarded actions · human checkpoints</div>
+          <div className="text-[10px] text-white/40">Classify → retrieve → execute → gate</div>
         </div>
         <div className="flex gap-2 text-[10px]">
           <span className="rounded-full border border-white/15 px-2.5 py-1 text-white/55">128 runs today</span>
+          <span className="rounded-full border border-[#c4a574]/40 bg-[#c4a574]/15 px-2.5 py-1 text-[#e8d4b0]">
+            DLQ 3
+          </span>
           <span className="rounded-full border border-cobalt/40 bg-cobalt/20 px-2.5 py-1 text-[#9db4ff]">Live</span>
         </div>
       </div>
-      <div className="px-4 py-6 sm:px-6">
-        <svg viewBox="0 0 560 240" className="mx-auto h-auto w-full max-w-[560px]">
-          <defs>
-            <marker id="harrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-              <path d="M0,0 L6,3 L0,6 Z" fill="#5a6a80" />
-            </marker>
-          </defs>
-          {[
-            [50, 110, 120, 110],
-            [160, 110, 230, 110],
-            [270, 110, 330, 60],
-            [270, 110, 330, 160],
-            [370, 60, 440, 60],
-            [370, 160, 440, 160],
-            [480, 60, 520, 110],
-            [480, 160, 520, 110],
-          ].map(([x1, y1, x2, y2], i) => (
-            <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#3a4558" strokeWidth="1.5" markerEnd="url(#harrow)" />
-          ))}
-          {[
-            [20, 90, 90, 40, "Webhook", false],
-            [130, 90, 90, 40, "Classify", false],
-            [240, 90, 90, 40, "Router", true],
-            [340, 40, 90, 40, "Ticket", false],
-            [340, 140, 90, 40, "Slack", false],
-            [500, 90, 50, 40, "Gate", false],
-          ].map(([x, y, w, h, label, accent]) => (
-            <g key={String(label)}>
-              <rect
-                x={Number(x)}
-                y={Number(y)}
-                width={Number(w)}
-                height={Number(h)}
-                rx="8"
-                fill={accent ? "#2f5bff" : "#1a2230"}
-                stroke={accent ? "#2f5bff" : "#3a4558"}
-              />
-              <text
-                x={Number(x) + Number(w) / 2}
-                y={Number(y) + Number(h) / 2 + 4}
-                textAnchor="middle"
-                fill="white"
-                fontSize="11"
-                fontWeight="500"
-              >
+      <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="border-b border-white/10 px-4 py-5 sm:px-5 lg:border-r lg:border-b-0">
+          <div className="mb-3 flex flex-wrap gap-1.5 text-[9px]">
+            {[
+              ["1", "Classify"],
+              ["2", "Retrieve"],
+              ["3", "Execute"],
+              ["4", "Gate"],
+            ].map(([n, label]) => (
+              <span key={label} className="rounded-md border border-white/10 bg-white/[0.04] px-2 py-1 text-white/55">
+                <span className="mr-1 text-[#9db4ff]">{n}</span>
                 {label}
-              </text>
-            </g>
-          ))}
-        </svg>
-        <div className="mx-auto mt-4 grid max-w-[560px] gap-2 sm:grid-cols-3">
-          {[
-            ["Guards", "PII redaction · confidence threshold · rate limit"],
-            ["Outputs", "Zendesk · Slack · Sheet · email"],
-            ["SLA", "p95 1.4s · 0.3% dead-letter"],
-          ].map(([t, b]) => (
-            <div key={t} className="rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2.5">
-              <div className="text-[11px] font-medium text-white/80">{t}</div>
-              <div className="mt-1 text-[10px] leading-relaxed text-white/45">{b}</div>
-            </div>
-          ))}
+              </span>
+            ))}
+          </div>
+          <svg viewBox="0 0 560 200" className="mx-auto h-auto w-full max-w-[560px]">
+            <defs>
+              <marker id="harrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#5a6a80" />
+              </marker>
+            </defs>
+            {[
+              [50, 100, 110, 100],
+              [150, 100, 210, 100],
+              [250, 100, 310, 100],
+              [350, 100, 410, 55],
+              [350, 100, 410, 145],
+              [450, 55, 500, 100],
+              [450, 145, 500, 100],
+            ].map(([x1, y1, x2, y2], i) => (
+              <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#3a4558" strokeWidth="1.5" markerEnd="url(#harrow)" />
+            ))}
+            {[
+              [10, 80, 88, 40, "Webhook", "intake", false],
+              [110, 80, 88, 40, "Classify", "intent", false],
+              [210, 80, 88, 40, "Retrieve", "context", false],
+              [310, 80, 88, 40, "Execute", "action", true],
+              [410, 35, 88, 40, "Ticket", "side", false],
+              [410, 125, 88, 40, "Slack", "side", false],
+              [500, 80, 52, 40, "Gate", "check", false],
+            ].map(([x, y, w, h, label, sub, accent]) => (
+              <g key={String(label)}>
+                <rect
+                  x={Number(x)}
+                  y={Number(y)}
+                  width={Number(w)}
+                  height={Number(h)}
+                  rx="8"
+                  fill={accent ? "#2f5bff" : "#1a2230"}
+                  stroke={accent ? "#2f5bff" : "#3a4558"}
+                />
+                <text
+                  x={Number(x) + Number(w) / 2}
+                  y={Number(y) + Number(h) / 2 - 2}
+                  textAnchor="middle"
+                  fill="white"
+                  fontSize="10"
+                  fontWeight="500"
+                >
+                  {label}
+                </text>
+                <text
+                  x={Number(x) + Number(w) / 2}
+                  y={Number(y) + Number(h) / 2 + 11}
+                  textAnchor="middle"
+                  fill="#7a8799"
+                  fontSize="7"
+                >
+                  {sub}
+                </text>
+              </g>
+            ))}
+          </svg>
+          <div className="mt-3 grid gap-2 sm:grid-cols-3">
+            {[
+              ["Guards", "PII · confidence · rate limit"],
+              ["Outputs", "Zendesk · Slack · Sheet"],
+              ["SLA", "p95 1.4s · 0.3% DLQ"],
+            ].map(([t, b]) => (
+              <div key={t} className="rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2">
+                <div className="text-[11px] font-medium text-white/80">{t}</div>
+                <div className="mt-0.5 text-[10px] leading-relaxed text-white/45">{b}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="bg-[#10151c] p-4">
+          <div className="flex items-center justify-between gap-2">
+            <div className="text-[10px] tracking-[0.12em] text-white/40 uppercase">Human review · DLQ</div>
+            <span className="text-[9px] text-[#e8d4b0]">3 awaiting judgment</span>
+          </div>
+          <div className="mt-3 space-y-2">
+            {[
+              {
+                id: "run · 8841",
+                reason: "Confidence low",
+                detail: "Classify 0.51 · refund vs chargeback",
+                tone: "border-[#c4a574]/30 bg-[#c4a574]/8",
+                chip: "text-[#e8d4b0] bg-[#c4a574]/15",
+              },
+              {
+                id: "run · 8837",
+                reason: "PII flag",
+                detail: "SSN pattern in payload · redaction incomplete",
+                tone: "border-[#c07070]/35 bg-[#c07070]/10",
+                chip: "text-[#f0b4b4] bg-[#c07070]/20",
+              },
+              {
+                id: "run · 8829",
+                reason: "Policy conflict",
+                detail: "Auto-credit vs finance hold rule",
+                tone: "border-white/12 bg-white/[0.03]",
+                chip: "text-[#9db4ff] bg-cobalt/20",
+              },
+            ].map((item) => (
+              <div key={item.id} className={cn("rounded-xl border px-3 py-2.5", item.tone)}>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[9px] text-white/40">{item.id}</span>
+                  <span className={cn("rounded-full px-2 py-0.5 text-[9px] font-medium", item.chip)}>
+                    {item.reason}
+                  </span>
+                </div>
+                <div className="mt-1.5 text-[11px] leading-snug text-white/75">{item.detail}</div>
+                <div className="mt-2 flex gap-1.5 text-[9px]">
+                  <span className="rounded-md bg-cobalt px-2.5 py-1 font-medium text-white">Approve</span>
+                  <span className="rounded-md border border-white/15 px-2.5 py-1 text-white/65">Escalate</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -682,14 +805,52 @@ export function SignalUi({ className = "" }: ShellProps) {
 
 /** Meridian - full ops board */
 export function MeridianUi({ className = "" }: ShellProps) {
+  const slaStyle = (sla: string) =>
+    sla === "On track"
+      ? "bg-[#e4efe8] text-[#2F6B4F]"
+      : sla === "Risk"
+        ? "bg-[#F3E6D8] text-[#8A5A2B]"
+        : "bg-[#f3e0e0] text-[#8a3b3b]";
+
   const cols = [
-    { title: "Intake", wip: "4", items: ["Vendor onboarding", "Access request", "Badge revoke"] },
-    { title: "In review", wip: "3", items: ["Contract renewal", "SLA follow-up"], active: true },
-    { title: "Blocked", wip: "2", items: ["Invoice exception"] },
-    { title: "Done", wip: "-", items: ["Vendor NDA", "Seat transfer", "Policy update"] },
+    {
+      title: "Intake",
+      wip: "4",
+      cards: [
+        { title: "Vendor onboarding", owner: "AK", sla: "On track", due: "Due 2d" },
+        { title: "Access request", owner: "JR", sla: "Risk", due: "Due 6h" },
+        { title: "Badge revoke", owner: "ML", sla: "On track", due: "Due 1d" },
+      ],
+    },
+    {
+      title: "In review",
+      wip: "3",
+      active: true,
+      cards: [
+        { title: "Contract renewal", owner: "SN", sla: "Risk", due: "Due 4h" },
+        { title: "SLA follow-up", owner: "AK", sla: "On track", due: "Due 1d" },
+      ],
+    },
+    {
+      title: "Blocked",
+      wip: "2",
+      cards: [
+        { title: "Invoice exception", owner: "TP", sla: "Breached", due: "Overdue 9h" },
+        { title: "Policy waiver", owner: "JR", sla: "Risk", due: "Due 3h" },
+      ],
+    },
+    {
+      title: "Done",
+      wip: "-",
+      cards: [
+        { title: "Vendor NDA", owner: "ML", sla: "On track", due: "Closed" },
+        { title: "Seat transfer", owner: "AK", sla: "On track", due: "Closed" },
+        { title: "Policy update", owner: "SN", sla: "On track", due: "Closed" },
+      ],
+    },
   ];
   return (
-    <div className={cn("min-h-[420px] bg-[#f7f5f1]", className)} aria-hidden>
+    <div className={cn("min-h-[460px] bg-[#f7f5f1]", className)} aria-hidden>
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-hairline bg-white px-4 py-3">
         <div>
           <div className="text-[13px] font-medium">Meridian · Operations board</div>
@@ -700,12 +861,18 @@ export function MeridianUi({ className = "" }: ShellProps) {
           <span className="rounded-full bg-[#F3E6D8] px-2.5 py-1 font-medium text-[#8A5A2B]">SLA risk 3</span>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-2.5 p-4 sm:grid-cols-4">
+      <div className="flex flex-wrap items-center gap-2 border-b border-hairline bg-paper/80 px-4 py-2 text-[10px]">
+        <span className="rounded-full bg-ink px-2.5 py-1 font-medium text-white">All</span>
+        <span className="rounded-full border border-hairline bg-white px-2.5 py-1 text-neutral">Mine</span>
+        <span className="rounded-full border border-hairline bg-white px-2.5 py-1 text-neutral">SLA risk</span>
+        <span className="ml-auto text-muted">Owner · SLA · Due</span>
+      </div>
+      <div className="grid grid-cols-2 gap-2.5 p-3.5 sm:grid-cols-4">
         {cols.map((col) => (
           <div
             key={col.title}
             className={cn(
-              "min-h-[280px] rounded-xl border p-2.5",
+              "min-h-[300px] rounded-xl border p-2.5",
               col.active ? "border-cobalt/30 bg-cobalt/5" : "border-hairline bg-white",
             )}
           >
@@ -714,13 +881,21 @@ export function MeridianUi({ className = "" }: ShellProps) {
               <span className="text-[9px] text-muted">WIP {col.wip}</span>
             </div>
             <div className="space-y-1.5">
-              {col.items.map((item) => (
+              {col.cards.map((card) => (
                 <div
-                  key={item}
-                  className="rounded-lg border border-hairline bg-paper px-2.5 py-2.5 text-[11px] font-medium leading-snug shadow-sm"
+                  key={card.title}
+                  className="rounded-lg border border-hairline bg-paper px-2.5 py-2 shadow-sm"
                 >
-                  {item}
-                  <div className="mt-1 text-[9px] font-normal text-muted">Updated today</div>
+                  <div className="text-[11px] font-medium leading-snug">{card.title}</div>
+                  <div className="mt-2 flex items-center justify-between gap-1.5">
+                    <span className="grid size-5 place-items-center rounded-full bg-ink/90 text-[8px] font-semibold text-white">
+                      {card.owner}
+                    </span>
+                    <span className={cn("rounded-full px-1.5 py-0.5 text-[8px] font-medium", slaStyle(card.sla))}>
+                      {card.sla}
+                    </span>
+                  </div>
+                  <div className="mt-1.5 text-[9px] text-muted">{card.due}</div>
                 </div>
               ))}
             </div>
@@ -743,8 +918,8 @@ export function AtlasUi({ className = "" }: ShellProps) {
     [1, 1, 1],
   ];
   return (
-    <div className={cn("min-h-[420px] bg-white", className)} aria-hidden>
-      <div className="border-b border-hairline bg-[linear-gradient(90deg,#f4f7fb,#fbfaf7)] px-4 py-4">
+    <div className={cn("min-h-[460px] bg-white", className)} aria-hidden>
+      <div className="border-b border-hairline bg-[linear-gradient(90deg,#f4f7fb,#fbfaf7)] px-4 py-3.5">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <div className="text-[13px] font-medium">Atlas · AI enablement governance</div>
@@ -753,6 +928,35 @@ export function AtlasUi({ className = "" }: ShellProps) {
           <span className="rounded-full bg-cobalt/10 px-2.5 py-1 text-[10px] font-medium text-cobalt">
             Governance live
           </span>
+        </div>
+      </div>
+      <div className="border-b border-hairline bg-ink px-4 py-3 text-white">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <div className="text-[9px] tracking-[0.14em] text-white/45 uppercase">Decision · Q4 path</div>
+            <div className="mt-1 flex flex-wrap items-center gap-2">
+              <span className="rounded-md bg-cobalt px-2 py-0.5 text-[10px] font-semibold">Build</span>
+              <span className="text-[12px] font-medium">Coding assistant · internal fork</span>
+            </div>
+            <div className="mt-1 text-[10px] text-white/50">
+              Adopt writing tools · Defer research copilots until attestation closes
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2 text-[9px]">
+            <span className="rounded-md border border-white/15 bg-white/5 px-2.5 py-1.5">
+              <span className="text-white/40">Owner</span>
+              <span className="mt-0.5 block font-medium text-white/85">Priya N. · Eng</span>
+            </span>
+            <span className="rounded-md border border-white/15 bg-white/5 px-2.5 py-1.5">
+              <span className="text-white/40">Next step</span>
+              <span className="mt-0.5 block font-medium text-white/85">Scope POC · Dec 2</span>
+            </span>
+          </div>
+        </div>
+        <div className="mt-2.5 flex flex-wrap gap-1.5 text-[9px]">
+          <span className="rounded-full bg-[#e4efe8]/15 px-2.5 py-1 text-[#9dcfb0]">Adopt · Writing</span>
+          <span className="rounded-full bg-cobalt/30 px-2.5 py-1 text-[#9db4ff]">Build · Coding</span>
+          <span className="rounded-full bg-white/8 px-2.5 py-1 text-white/55">Defer · Research</span>
         </div>
       </div>
       <div className="grid gap-4 p-4 lg:grid-cols-[1.3fr_0.7fr]">
@@ -774,9 +978,9 @@ export function AtlasUi({ className = "" }: ShellProps) {
               className="grid border-b border-hairline last:border-0"
               style={{ gridTemplateColumns: "1.3fr repeat(3, 1fr)" }}
             >
-              <div className="px-3 py-3 text-[11px] font-medium">{rule}</div>
+              <div className="px-3 py-2.5 text-[11px] font-medium">{rule}</div>
               {matrix[ri].map((cell, ci) => (
-                <div key={`${ri}-${ci}`} className="flex items-center justify-center border-l border-hairline py-3">
+                <div key={`${ri}-${ci}`} className="flex items-center justify-center border-l border-hairline py-2.5">
                   <span
                     className={cn(
                       "grid size-6 place-items-center rounded-md text-[10px] font-bold",
@@ -795,14 +999,28 @@ export function AtlasUi({ className = "" }: ShellProps) {
             <div className="text-[10px] tracking-[0.12em] text-muted uppercase">Seat rollout</div>
             <div className="mt-3 space-y-2.5">
               {[
-                ["Writing tools", "142 / 150", 94],
-                ["Coding assistants", "68 / 80", 85],
-                ["Research copilots", "24 / 40", 60],
-              ].map(([tool, seats, pct]) => (
+                ["Writing tools", "142 / 150", 94, "Adopt"],
+                ["Coding assistants", "68 / 80", 85, "Build"],
+                ["Research copilots", "24 / 40", 60, "Defer"],
+              ].map(([tool, seats, pct, path]) => (
                 <div key={String(tool)}>
                   <div className="flex justify-between text-[11px]">
                     <span className="font-medium">{tool}</span>
-                    <span className="text-muted">{seats}</span>
+                    <span className="flex items-center gap-2 text-muted">
+                      <span
+                        className={cn(
+                          "rounded px-1.5 py-0.5 text-[8px] font-medium",
+                          path === "Adopt"
+                            ? "bg-[#e4efe8] text-[#2F6B4F]"
+                            : path === "Build"
+                              ? "bg-cobalt/10 text-cobalt"
+                              : "bg-warm text-muted",
+                        )}
+                      >
+                        {path}
+                      </span>
+                      {seats}
+                    </span>
                   </div>
                   <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-warm">
                     <div className="h-full rounded-full bg-cobalt" style={{ width: `${pct}%` }} />
@@ -812,7 +1030,7 @@ export function AtlasUi({ className = "" }: ShellProps) {
             </div>
           </div>
           <div className="rounded-xl border border-hairline bg-paper p-3.5 text-[11px] leading-relaxed text-neutral">
-            Next review: 12 Dec 2026 · Access attestation for research copilots still open.
+            Next review: 12 Dec 2026 · Access attestation for research copilots still open · Owner: Dana K.
           </div>
         </div>
       </div>

@@ -5,37 +5,40 @@ import { HeroProduct } from "@/components/visuals/HeroProduct";
 
 export function Hero() {
   return (
-    <section className="atmosphere relative pt-[112px] pb-16 md:pb-24 lg:pt-[128px] lg:pb-28">
+    <section className="atmosphere relative overflow-hidden pt-[112px] pb-20 md:pb-28 lg:pt-[128px] lg:pb-32">
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[52%] bg-[linear-gradient(105deg,transparent_0%,rgba(243,241,236,0.65)_28%,rgba(238,242,255,0.45)_100%)] lg:block"
+        aria-hidden
+      />
       <Container>
-        <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-center lg:gap-10 xl:gap-14">
+        <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-12 xl:gap-16">
           <div className="relative z-[1] max-w-[38rem] lg:max-w-[40rem]">
             <Eyebrow className="animate-fade-up">
               AI systems, automation, and product engineering
             </Eyebrow>
 
-            <h1 className="font-display mt-5 text-[36px] font-medium tracking-[-0.035em] text-ink sm:text-[48px] md:text-[56px] lg:text-[60px] xl:text-[68px]">
-              <span className="animate-fade-up delay-100 block leading-[1.12]">From strategy</span>
-              <span className="animate-fade-up delay-200 mt-1 block leading-[1.12]">
-                to automated operations.
-              </span>
+            <h1 className="font-display type-h1 mt-5 text-ink">
+              <span className="animate-fade-up delay-100 block">From strategy</span>
+              <span className="animate-fade-up delay-200 mt-1 block">to automated operations.</span>
             </h1>
 
-            <p className="animate-fade-up delay-300 mt-6 max-w-[38ch] text-[16px] leading-[1.7] text-neutral md:mt-7 md:text-[18px]">
-              We design customer AI, workflow automation, and production software for organizations that
-              need durable outcomes - not prototypes.
+            <p className="animate-fade-up delay-300 type-body-lg mt-6 max-w-[42ch] text-neutral md:mt-7">
+              We help organizations turn AI opportunities into production systems. From technical
+              strategy and architecture to intelligent automation and custom software, Condax delivers
+              solutions built for real operational environments.
             </p>
             <div className="animate-fade-up delay-400 mt-8 flex flex-wrap items-center gap-3 md:mt-10">
               <ButtonLink href="/get-in-touch" arrow className="group">
-                Contact us
+                Discuss a project
               </ButtonLink>
               <ButtonLink href="/work" variant="secondary">
-                View work
+                Explore our work
               </ButtonLink>
             </div>
           </div>
 
-          <div className="relative w-full min-w-0 lg:justify-self-end">
-            <div className="mx-auto w-full max-w-[520px] lg:ml-auto lg:mr-0 lg:max-w-[560px] xl:max-w-[600px]">
+          <div className="relative z-[1] w-full min-w-0 pb-6 sm:pb-10 lg:justify-self-stretch lg:pb-12">
+            <div className="mx-auto w-full max-w-[640px] lg:mr-0 lg:ml-auto lg:max-w-none">
               <HeroProduct />
             </div>
           </div>

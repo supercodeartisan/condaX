@@ -48,6 +48,17 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    const legacyAssociateSlugs = [
+      ["junior-full-stack-engineer", "associate-full-stack-engineer"],
+      ["junior-frontend-engineer", "associate-frontend-engineer"],
+      ["junior-backend-engineer", "associate-backend-engineer"],
+    ] as const;
+    return legacyAssociateSlugs.flatMap(([from, to]) => [
+      { source: `/careers/${from}`, destination: `/careers/${to}`, permanent: true },
+      { source: `/careers/${from}/apply`, destination: `/careers/${to}/apply`, permanent: true },
+    ]);
+  },
 };
 
 export default nextConfig;

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { ServicePage } from "@/components/ServicePage";
-import { BrowserFrame } from "@/components/visuals/BrowserFrame";
-import { HarborFlow } from "@/components/visuals/HarborFlow";
+import { AutomationPipeline } from "@/components/visuals/diagrams/AutomationPipeline";
 
 export const metadata: Metadata = { title: "Automations" };
 
@@ -11,11 +10,8 @@ export default function AutomationsPage() {
   return (
     <ServicePage
       eyebrow="Solution"
-      visual={
-        <BrowserFrame os="dark" title="Automations" url="ops.yourco.com / workflows">
-          <HarborFlow className="rounded-none border-0 shadow-none" />
-        </BrowserFrame>
-      }
+      visualTone="diagram"
+      visual={<AutomationPipeline className="mx-auto w-full" />}
       title="Automate repeatable work currently handled by email."
       lede="Connect the tools you already operate - and add AI where people were only copying, routing, classifying, or summarizing. Checkpoints stay where judgment is required."
       cta="Chart an automation"

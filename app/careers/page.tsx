@@ -3,6 +3,7 @@ import Link from "next/link";
 import { StickyCta } from "@/components/StickyCta";
 import { ButtonLink } from "@/components/ui/Button";
 import { EditorialImage } from "@/components/ui/EditorialImage";
+import { CareersRoleList } from "@/components/careers/CareersRoleList";
 import { hiringProcess, roles, whyJoin } from "@/lib/careers";
 import { images } from "@/lib/images";
 import { site } from "@/lib/site";
@@ -10,7 +11,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Careers",
   description:
-    "Condax hires senior (5+) and junior (0–2) engineers for remote AI enablement and custom product delivery.",
+    "Condax hires senior (5+) and associate (0–2) engineers for remote AI enablement and custom product delivery — open internationally.",
 };
 
 export default function CareersPage() {
@@ -28,8 +29,9 @@ export default function CareersPage() {
         <p className="mt-6 max-w-[48ch] text-[18px] leading-relaxed text-neutral">
           Condax hires engineers for AI enablement and custom products - TypeScript delivery,
           Java/Spring Boot, C#/.NET, and specialists who run deep technical interviews. Senior
-          roles require 5+ years in production; junior full-stack, frontend, and backend roles are
-          open at 0–2 years beside senior ICs. Roles are remote and open internationally. Strong
+          roles require 5+ years in production; associate full-stack, frontend, and backend roles
+          are open at 0–2 years beside senior ICs. Roles are remote-first and open internationally.
+          Strong
           craft and strong English communication are both required.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
@@ -97,39 +99,15 @@ export default function CareersPage() {
         <h2 className="font-display text-[36px] font-medium tracking-tight text-ink md:text-[48px]">
           Open roles
         </h2>
-        <p className="mt-3 text-[16px] text-neutral">
-          {roles.length} open roles across senior and junior delivery engineering (including
-          Java/Spring and C#/.NET) and technical interviewing. Senior delivery roles require 5+
-          years in production; junior roles are 0–2 years. No matching role?{" "}
+        <p className="mt-3 max-w-[58ch] text-[16px] text-neutral">
+          Filter by craft, level, and region eligibility. Senior delivery roles require 5+ years in
+          production; associate roles are 0–2 years. No matching role?{" "}
           <Link href="/careers/general" className="font-medium text-cobalt link-underline">
             Submit a general application
           </Link>
           .
         </p>
-        <div className="mt-10 divide-y divide-hairline border-y border-hairline">
-          {roles.map((role) => (
-            <Link
-              key={role.slug}
-              href={`/careers/${role.slug}`}
-              className="group grid gap-4 py-8 transition-colors md:grid-cols-[1fr_180px_auto] md:items-center"
-            >
-              <div>
-                <div className="text-[22px] font-medium tracking-tight text-ink transition-colors group-hover:text-cobalt">
-                  {role.title}
-                </div>
-                <p className="mt-2 max-w-[52ch] text-[15px] text-neutral">{role.summary}</p>
-              </div>
-              <div className="text-[13px] text-muted">
-                <div>{role.team}</div>
-                <div className="mt-1">{role.location}</div>
-                <div className="mt-1">{role.type}</div>
-              </div>
-              <span className="hidden rounded-full border border-hairline px-3 py-1 text-[13px] text-charcoal md:inline-flex">
-                View
-              </span>
-            </Link>
-          ))}
-        </div>
+        <CareersRoleList roles={roles} />
       </section>
 
       <section className="paddings mx-auto my-10 flex max-w-[1720px] flex-col items-start justify-between gap-6 border border-hairline bg-warm/50 px-8 py-12 md:flex-row md:items-center md:rounded-[24px]">

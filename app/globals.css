@@ -17,6 +17,17 @@
   --color-cobalt-hover: #2448d4;
   --color-surface: #ffffff;
   --color-night: #1c1c1a;
+  /* Deeper navy for enterprise surfaces (use alongside ink, not as body default) */
+  --color-navy: #0f1b33;
+  --color-navy-soft: #1a2a45;
+
+  /* Layout scale */
+  --max-width-page: 1520px;
+  --max-width-prose: 42rem;
+  --section-space: 7rem;
+  --radius-control: 9999px;
+  --radius-panel: 22px;
+  --shadow-panel: 0 36px 100px rgba(17, 17, 16, 0.11);
 
   /* Compat aliases — old dark/lime → light/cobalt so internal pages stay readable */
   --color-px-black: #f7f5f1;
@@ -118,6 +129,48 @@ body {
 .font-display .display-line {
   display: block;
   line-height: 1.12;
+}
+
+/* Type scale utilities — progressive modernization without forcing every headline */
+.type-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4vw, 3.75rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+
+.type-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.type-h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.type-body-lg {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.type-body {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.type-meta {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .eyebrow {

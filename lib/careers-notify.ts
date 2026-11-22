@@ -35,7 +35,7 @@ export async function notifyNewApplication(
     `Nationality: ${input.nationality}`,
     `Location: ${[input.city, input.state, input.country].filter(Boolean).join(", ")}`,
     input.address ? `Address: ${input.address}` : null,
-    `Date of birth: ${input.dateOfBirth}`,
+    input.dateOfBirth ? `Date of birth: ${input.dateOfBirth}` : null,
     `Availability: ${input.startDate}`,
     `CV (admin): ${siteUrl}/api/admin/applications/${applicationId}/cv`,
     `Download CV: ${siteUrl}/api/admin/applications/${applicationId}/cv?download=1`,

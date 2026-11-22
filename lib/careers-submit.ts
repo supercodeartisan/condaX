@@ -52,9 +52,7 @@ export async function submitCareerApplication(
     country: String(formData.get("country") ?? ""),
     city: String(formData.get("city") ?? ""),
     state: String(formData.get("state") ?? ""),
-    address: String(formData.get("address") ?? ""),
     start: String(formData.get("start") ?? ""),
-    dob: String(formData.get("dob") ?? ""),
     note: String(formData.get("note") ?? "") || "",
   };
 
@@ -126,9 +124,9 @@ export async function submitCareerApplication(
     country: parsed.data.country,
     city: parsed.data.city,
     state: emptyToNull(parsed.data.state),
-    address: emptyToNull(parsed.data.address),
+    address: null,
     startDate: parsed.data.start,
-    dateOfBirth: parsed.data.dob,
+    dateOfBirth: null,
     note: parsed.data.note || "",
     answers,
     cvUrl,

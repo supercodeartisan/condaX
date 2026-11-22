@@ -100,22 +100,9 @@ export const applicationFieldsSchema = z.object({
   country: countryName,
   city: z.string().trim().min(1).max(100),
   state: optionalText,
-  address: optionalText,
   start: z.enum(START_AVAILABILITY_VALUES, {
     message: "Please select when you can start.",
   }),
-  dob: z
-    .string()
-    .trim()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "Date of birth must be a valid day, month, and year.")
-    .superRefine((value, ctx) => {
-      const bounds = getDobBounds();
-      refineIsoDateInRange(value, bounds, {
-        invalid: "Date of birth must be a real calendar day (day / month / year).",
-        before: `Date of birth is outside the accepted range (min age ${DOB_MIN_AGE}, max age ${DOB_MAX_AGE}).`,
-        after: `Candidates must be at least ${DOB_MIN_AGE} years old.`,
-      }, ctx);
-    }),
   note: z.preprocess(
     (v) => (typeof v === "string" ? v.trim() : ""),
     z.string().max(8000).default(""),

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { ServicePage } from "@/components/ServicePage";
-import { BrowserFrame } from "@/components/visuals/BrowserFrame";
-import { KiteAssistant } from "@/components/visuals/KiteAssistant";
+import { RagArchitecture } from "@/components/visuals/diagrams/RagArchitecture";
 
 export const metadata: Metadata = { title: "Copilots & chat" };
 
@@ -11,11 +10,8 @@ export default function CopilotsPage() {
   return (
     <ServicePage
       eyebrow="Solution"
-      visual={
-        <BrowserFrame os="chrome" title="Copilot" url="assistant.yourco.com / support">
-          <KiteAssistant className="rounded-none border-0 shadow-none" />
-        </BrowserFrame>
-      }
+      visualTone="diagram"
+      visual={<RagArchitecture className="mx-auto w-full" />}
       title="Assistants grounded in your organization’s data."
       lede="Customer or internal copilots on your documents, tickets, and product context - with retrieval, guardrails, and human handover security can explain."
       cta="Scope a copilot"

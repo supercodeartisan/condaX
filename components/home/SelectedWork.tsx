@@ -3,9 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
-import { KiteAssistant } from "@/components/visuals/KiteAssistant";
-import { MeridianOps } from "@/components/visuals/MeridianOps";
-import { HarborFlow } from "@/components/visuals/HarborFlow";
+import { WorkScreenshot } from "@/components/work/WorkScreenshot";
 
 const concepts = [
   {
@@ -26,7 +24,13 @@ const concepts = [
     category: "Intelligent automation",
     blurb: "Classify, retrieve, and execute - with human review where judgment is required.",
   },
-];
+  {
+    slug: "atlas",
+    name: "Atlas",
+    category: "AI enablement decision",
+    blurb: "A clear adopt, build, or defer recommendation with owners and next steps.",
+  },
+] as const;
 
 export function SelectedWork() {
   return (
@@ -34,27 +38,17 @@ export function SelectedWork() {
       <Container>
         <Reveal className="max-w-[40rem]">
           <Eyebrow>Selected concepts</Eyebrow>
-          <h2 className="font-display display-section mt-4 text-[40px] font-medium tracking-tight text-ink md:text-[52px]">
-            Representative product work.
-          </h2>
+          <h2 className="font-display type-h2 mt-4 text-ink">Representative product work.</h2>
           <p className="mt-5 max-w-[46ch] text-[16px] leading-relaxed text-neutral md:text-[17px]">
-            Sample product compositions for assistants, operations software, and automation. Client
-            case studies will replace these when published.
+            Product demonstrations for assistants, operations software, automation, and decision
+            memos. Labeled as samples until verified client case studies are published.
           </p>
         </Reveal>
 
         <div className="mt-16 space-y-16 md:mt-24 md:space-y-24">
-          <ConceptBlock concept={concepts[0]}>
-            <KiteAssistant />
-          </ConceptBlock>
-
-          <ConceptBlock concept={concepts[1]} reverse>
-            <MeridianOps />
-          </ConceptBlock>
-
-          <ConceptBlock concept={concepts[2]}>
-            <HarborFlow />
-          </ConceptBlock>
+          {concepts.map((concept, i) => (
+            <ConceptBlock key={concept.slug} concept={concept} reverse={i % 2 === 1} />
+          ))}
         </div>
       </Container>
     </Section>
@@ -64,11 +58,9 @@ export function SelectedWork() {
 function ConceptBlock({
   concept,
   reverse,
-  children,
 }: {
   concept: (typeof concepts)[number];
   reverse?: boolean;
-  children: React.ReactNode;
 }) {
   return (
     <Reveal>
@@ -102,8 +94,8 @@ function ConceptBlock({
           </div>
 
           <div className={reverse ? "lg:order-1 min-w-0" : "min-w-0"}>
-            <div className="overflow-hidden rounded-[22px] transition-transform duration-500 ease-out group-hover:scale-[1.01]">
-              {children}
+            <div className="overflow-hidden rounded-[22px] shadow-[0_24px_60px_rgba(17,17,16,0.08)] ring-1 ring-black/[0.04] transition-transform duration-500 ease-out group-hover:scale-[1.01]">
+              <WorkScreenshot slug={concept.slug} />
             </div>
           </div>
         </div>

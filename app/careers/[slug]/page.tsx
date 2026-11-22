@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { BackLink } from "@/components/ui/BackLink";
 import { ButtonLink } from "@/components/ui/Button";
-import { getRole, hiringProcess, roles } from "@/lib/careers";
+import {
+  CAREERS_SLUG_REDIRECTS,
+  getRole,
+  hiringProcess,
+  roles,
+} from "@/lib/careers";
+import { roleJobPostingJsonLd } from "@/lib/careers-jobposting";
 
 export function generateStaticParams() {
   return roles.map((r) => ({ slug: r.slug }));
@@ -24,12 +30,20 @@ export async function generateMetadata({
 
 export default async function RolePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  const redirectSlug = CAREERS_SLUG_REDIRECTS[slug];
+  if (redirectSlug) redirect(`/careers/${redirectSlug}`);
+
   const role = getRole(slug);
   if (!role) notFound();
+
+  const jsonLd = roleJobPostingJsonLd(role);
 
   const facts = [
     { label: "Team", value: role.team },
     { label: "Location", value: role.location },
+    { label: "Work style", value: "Remote-first" },
+    { label: "Eligible regions", value: role.eligibleRegions.join(" · ") },
+    { label: "Employment", value: role.employmentTypes.join(" · ") },
     { label: "Engagement", value: role.type },
     { label: "Experience", value: role.experience },
     { label: "Reports to", value: role.reportsTo },
@@ -37,6 +51,10 @@ export default async function RolePage({ params }: { params: Promise<{ slug: str
 
   return (
     <main id="main-content" className="pt-36 lg:pt-40">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <article className="paddings mx-auto max-w-[920px] pt-10 pb-24 lg:pt-14">
         <BackLink href="/careers">All careers</BackLink>
 

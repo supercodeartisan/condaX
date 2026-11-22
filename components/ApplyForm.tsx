@@ -1,13 +1,12 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { EmailLink } from "@/components/EmailLink";
 import { FormSecurityFields } from "@/components/FormSecurityFields";
 import { readTurnstileToken } from "@/components/TurnstileField";
-import { CalendarDatePicker } from "@/components/ui/CalendarDatePicker";
 import { COUNTRIES } from "@/lib/countries";
-import { getDobBounds, START_AVAILABILITY_OPTIONS } from "@/lib/careers-apply";
+import { START_AVAILABILITY_OPTIONS } from "@/lib/careers-apply";
 
 type Question = { id: string; label: string; hint?: string };
 
@@ -26,7 +25,6 @@ export function ApplyForm({
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [cvLabel, setCvLabel] = useState("Upload CV (PDF or Word) *");
-  const dobBounds = useMemo(() => getDobBounds(), []);
   const defaultCountry = locationDefaults?.country ?? "";
   const defaultCity = locationDefaults?.city ?? "";
 
@@ -42,11 +40,6 @@ export function ApplyForm({
         setError(null);
         const form = e.currentTarget;
         const body = new FormData(form);
-        if (!String(body.get("dob") ?? "").trim()) {
-          setError("Please select your date of birth on the calendar.");
-          setBusy(false);
-          return;
-        }
         if (!String(body.get("nationality") ?? "").trim()) {
           setError("Please select your nationality.");
           setBusy(false);
@@ -131,18 +124,10 @@ export function ApplyForm({
           placeholder="Portfolio, GitHub, or website (optional)"
         />
         <CountrySelect
-          label="Nationality *"
+          label="Nationality (country) *"
           name="nationality"
-          hint="Citizenship / nationality for contracting paperwork."
+          hint="Country associated with your citizenship or contracting paperwork — not a work-authorization gate."
           defaultValue=""
-        />
-        <CalendarDatePicker
-          name="dob"
-          label="Date of birth *"
-          hint="Pick day, month, and year on the calendar. Applicants must be 18-80."
-          min={dobBounds.min}
-          max={dobBounds.max}
-          initialViewDate={`${new Date().getFullYear() - 25}-01-01`}
         />
       </fieldset>
 
@@ -170,22 +155,13 @@ export function ApplyForm({
             showLabel
           />
         </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Field
-            label="State / province"
-            name="state"
-            required={false}
-            autoComplete="address-level1"
-            placeholder="State / province (optional)"
-          />
-          <Field
-            label="Street address"
-            name="address"
-            required={false}
-            autoComplete="street-address"
-            placeholder="Street address (optional)"
-          />
-        </div>
+        <Field
+          label="State / province"
+          name="state"
+          required={false}
+          autoComplete="address-level1"
+          placeholder="State / province (optional)"
+        />
       </fieldset>
 
       <fieldset className="space-y-4">

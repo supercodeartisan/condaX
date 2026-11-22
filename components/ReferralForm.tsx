@@ -12,10 +12,12 @@ export function ReferralForm() {
   return (
     <form
       className="mt-10 flex flex-col gap-4"
+      aria-busy={busy}
       onSubmit={async (e) => {
         e.preventDefault();
         setBusy(true);
         setError(null);
+        setResult(null);
         const form = e.currentTarget;
         const data = Object.fromEntries(new FormData(form).entries());
         const turnstileToken = readTurnstileToken(form);
@@ -81,14 +83,23 @@ export function ReferralForm() {
       <FormSecurityFields />
       <button
         type="submit"
-        disabled={busy}
+        disabled={busy || Boolean(result)}
+        aria-disabled={busy || Boolean(result)}
         className="inline-flex w-fit items-center rounded-full bg-cobalt px-6 py-3 text-[16px] font-medium text-white hover:bg-cobalt-hover disabled:opacity-60"
       >
-        {busy ? "Creating link…" : "Create referral link"}
+        {busy ? "Creating link…" : result ? "Link created" : "Create referral link"}
       </button>
-      {error ? <p className="text-[14px] text-red-700">{error}</p> : null}
+      {error ? (
+        <p className="text-[14px] text-red-700" role="alert">
+          {error}
+        </p>
+      ) : null}
       {result ? (
-        <div className="rounded-2xl border border-cobalt/20 bg-cobalt/5 p-5 text-[14px] text-neutral">
+        <div
+          className="rounded-2xl border border-cobalt/20 bg-cobalt/5 p-5 text-[14px] text-neutral"
+          role="status"
+          aria-live="polite"
+        >
           <p className="font-medium text-ink">Referral ready</p>
           <p className="mt-2">
             Code: <span className="font-medium text-cobalt">{result.code}</span>

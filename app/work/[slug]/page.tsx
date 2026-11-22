@@ -1,12 +1,35 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PillLink } from "@/components/Buttons";
 import { BackLink } from "@/components/ui/BackLink";
 import { WorkScreenshot } from "@/components/work/WorkScreenshot";
 import { workCases } from "@/lib/work-cases";
-import { workItems } from "@/lib/site";
+import { site, workItems } from "@/lib/site";
 
 export function generateStaticParams() {
   return workItems.map((w) => ({ slug: w.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const item = workItems.find((w) => w.slug === slug);
+  if (!item) {
+    return { title: "Work" };
+  }
+  const description = `${item.blurb} Product demonstration by ${site.name}—a representative sample, not a verified client case study.`;
+  return {
+    title: `${item.name} · Product demonstration`,
+    description,
+    openGraph: {
+      title: `${item.name} · Product demonstration · ${site.name}`,
+      description,
+      url: `${site.url}/work/${item.slug}`,
+    },
+  };
 }
 
 export default async function WorkCasePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -18,7 +41,9 @@ export default async function WorkCasePage({ params }: { params: Promise<{ slug:
   return (
     <main id="main-content" className="paddings mx-auto max-w-[1100px] pt-40 pb-24 lg:pt-44">
       <BackLink href="/work">All work</BackLink>
-      <p className="mt-8 text-[13px] tracking-[0.14em] text-neutral uppercase">{item.industry}</p>
+      <p className="mt-8 text-[13px] tracking-[0.14em] text-neutral uppercase">
+        Product demonstration · {item.industry}
+      </p>
       <h1 className="font-display mt-4 text-[40px] leading-[1.12] font-light md:text-[56px]">
         {item.name}
       </h1>
@@ -83,10 +108,15 @@ export default async function WorkCasePage({ params }: { params: Promise<{ slug:
         </section>
       ) : null}
 
-      <p className="mt-12 text-[14px] leading-relaxed text-muted">
-        Sample concept illustrating Condax delivery. Published with permission-ready client stories
-        when available.
-      </p>
+      <aside
+        className="mt-12 rounded-[16px] border border-hairline bg-warm px-5 py-4 text-[14px] leading-relaxed text-neutral"
+        role="note"
+      >
+        <strong className="font-medium text-ink">Product demonstration.</strong> This page describes a
+        representative concept Condax uses to show delivery patterns—it is not a verified client case
+        study, testimonial, or named engagement. Permissioned client stories replace demonstrations
+        when they are ready to publish.
+      </aside>
 
       <div className="mt-16 rounded-[24px] border border-cobalt/15 bg-paper p-8">
         <h2 className="font-display text-[28px] font-light">Discuss a comparable initiative</h2>

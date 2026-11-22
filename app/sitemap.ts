@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/refer-a-client",
     "/legal/privacy-policy",
     "/legal/cookie-policy",
+    "/security",
   ];
 
   return [
@@ -50,6 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.5,
     })),
+    // Career URLs (including associate-* slugs) from lib/careers roles catalog.
     ...roles.map((role) => ({
       url: `${base}/careers/${role.slug}`,
       lastModified: now,

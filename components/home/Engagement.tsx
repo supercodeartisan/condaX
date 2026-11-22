@@ -6,24 +6,41 @@ import { Reveal } from "@/components/ui/Reveal";
 const paths = [
   {
     index: "01",
-    label: "Advisory",
-    title: "Discovery and pilots",
+    label: "AI for teams",
+    title: "Enablement and adoption",
     description:
-      "Expert guidance before a larger build - scope, feasibility, and investment clarity first.",
+      "Select, deploy, and govern AI tools in the workflows people already run - with training, policy, and measurement.",
+    items: [
+      "Tool selection and rollout",
+      "Workflow embedding",
+      "Access and data governance",
+      "Team enablement",
+      "Adoption measurement",
+      "Focused AI pilots",
+    ],
+    href: "/services/ai-for-teams",
+    cta: "Explore AI for teams",
+  },
+  {
+    index: "02",
+    label: "Advisory",
+    title: "Discovery and decisions",
+    description:
+      "Expert guidance before a larger build - scope, feasibility, and a written adopt, build, or defer recommendation.",
     items: [
       "Technical discovery",
       "Architecture advisory",
       "AI and automation feasibility",
       "Product strategy",
-      "Focused automation pilots",
       "Engineering audits",
+      "Investment clarity",
     ],
     href: "/services/advisory",
     cta: "Explore advisory",
   },
   {
-    index: "02",
-    label: "Delivery",
+    index: "03",
+    label: "Custom products",
     title: "Product engineering",
     description:
       "An engineering partner for AI systems, automation, or a substantial product - with clean handover.",
@@ -33,7 +50,7 @@ const paths = [
       "SaaS and custom products",
       "Legacy modernization",
       "Intelligent operations systems",
-      "Long-term engineering partnerships",
+      "Long-term partnerships",
     ],
     href: "/services/custom-products",
     cta: "Explore product engineering",
@@ -44,15 +61,15 @@ export function Engagement() {
   return (
     <section className="border-y border-hairline bg-paper py-28 md:py-36">
       <Container>
-        <div className="grid gap-14 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-20 lg:items-start">
+        <div className="grid items-start gap-14 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-20">
           <Reveal className="max-w-[28rem] lg:sticky lg:top-28">
             <Eyebrow>How we engage</Eyebrow>
-            <h2 className="font-display display-section mt-4 text-[40px] font-medium tracking-tight text-ink md:text-[52px]">
-              Two engagement models. One delivery standard.
+            <h2 className="font-display type-h2 mt-4 text-ink">
+              Three engagement paths. One delivery standard.
             </h2>
             <p className="mt-5 text-[17px] leading-relaxed text-neutral">
-              Whether you need a decision or delivery capacity, we define scope, governance, and
-              handover before implementation begins.
+              Whether you need enablement, a decision, or delivery capacity, we define scope,
+              governance, and handover before implementation begins.
             </p>
           </Reveal>
 
@@ -60,16 +77,12 @@ export function Engagement() {
             {paths.map((path, pathIndex) => (
               <Reveal key={path.title} delay={pathIndex * 80}>
                 <article className="grid gap-8 py-10 sm:grid-cols-[4.5rem_1fr] sm:gap-10 md:py-12">
-                  <span className="font-display text-[13px] tabular-nums text-muted">
-                    {path.index}
-                  </span>
+                  <span className="font-display text-[13px] text-muted tabular-nums">{path.index}</span>
                   <div>
                     <p className="text-[12px] font-medium tracking-[0.14em] text-cobalt uppercase">
                       {path.label}
                     </p>
-                    <h3 className="font-display mt-3 text-[28px] font-medium tracking-tight text-ink md:text-[32px]">
-                      {path.title}
-                    </h3>
+                    <h3 className="font-display type-h3 mt-3 text-ink">{path.title}</h3>
                     <p className="mt-3 max-w-[44ch] text-[16px] leading-relaxed text-neutral">
                       {path.description}
                     </p>

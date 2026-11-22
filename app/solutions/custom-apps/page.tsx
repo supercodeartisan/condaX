@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { ServicePage } from "@/components/ServicePage";
-import { BrowserFrame } from "@/components/visuals/BrowserFrame";
-import { KiteAssistant } from "@/components/visuals/KiteAssistant";
+import { SaaSArchitecture } from "@/components/visuals/diagrams/SaaSArchitecture";
 
 export const metadata: Metadata = {
   title: "Custom apps",
@@ -15,11 +14,8 @@ export default function CustomAppsPage() {
   return (
     <ServicePage
       eyebrow="Solution · Customer-facing"
-      visual={
-        <BrowserFrame os="chrome" title="Customer app" url="app.yourco.com / home">
-          <KiteAssistant className="rounded-none border-0 shadow-none" />
-        </BrowserFrame>
-      }
+      visualTone="diagram"
+      visual={<SaaSArchitecture className="mx-auto w-full max-w-2xl" />}
       title="Customer-facing web and mobile products."
       lede="When the application is revenue infrastructure - portals, field apps, partner surfaces - we design and ship experiences your customers use. Distinct from internal tools: brand, acquisition, and retention sit in the brief."
       cta="Scope a customer app"

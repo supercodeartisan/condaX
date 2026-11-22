@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Sans, Outfit } from "next/font/google";
 import { FooterHost } from "@/components/FooterHost";
 import { Header } from "@/components/Header";
+import { SeoJsonLd } from "@/components/SeoJsonLd";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${outfit.variable} ${ibmPlex.variable}`}>
       <body className="bg-warm min-h-dvh font-sans text-charcoal antialiased">
+        <SeoJsonLd />
         <Header />
         {children}
         <FooterHost />

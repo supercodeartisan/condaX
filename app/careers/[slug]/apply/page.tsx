@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { ApplyForm } from "@/components/ApplyForm";
 import { BackLink } from "@/components/ui/BackLink";
-import { getRole, roles } from "@/lib/careers";
+import { CAREERS_SLUG_REDIRECTS, getRole, roles } from "@/lib/careers";
 import {
   getRequestGeoFromHeaders,
   locationPrefillFromGeo,
@@ -25,6 +25,9 @@ export async function generateMetadata({
 
 export default async function ApplyPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  const redirectSlug = CAREERS_SLUG_REDIRECTS[slug];
+  if (redirectSlug) redirect(`/careers/${redirectSlug}/apply`);
+
   const role = getRole(slug);
   if (!role) notFound();
 
